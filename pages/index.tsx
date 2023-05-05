@@ -39,42 +39,6 @@ export default function Home() {
         </button>
       </div>
       <div className="col-span-2 col-start-6 mt-3">
-        {/* <div className="h-full flex flex-col overflow-hidden select-none gap-4">
-          <ul className="flex-shrink-0 flex flex-col justify-around min-h-full gap-4 animate-scroll">
-            {[...Array(3)].map((_, idx) => (
-              <li
-                key={idx}
-                className="relative h-full w-full bg-white overflow-hidden rounded-md"
-              >
-                <Image
-                  fill={true}
-                  alt=""
-                  src={
-                    "https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8"
-                  }
-                  className="object-cover"
-                />
-              </li>
-            ))}
-          </ul>
-          <ul className="flex-shrink-0 flex flex-col justify-around min-h-full gap-4 animate-scroll">
-            {[...Array(3)].map((_, idx) => (
-              <li
-                key={idx}
-                className="relative h-full w-full bg-white overflow-hidden rounded-md"
-              >
-                <Image
-                  fill={true}
-                  alt=""
-                  src={
-                    "https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8"
-                  }
-                  className="object-cover"
-                />
-              </li>
-            ))}
-          </ul>
-        </div> */}
         <Marquee
           images={[...Array(3)].map(
             (_) =>
@@ -83,42 +47,6 @@ export default function Home() {
         />
       </div>
       <div className="col-span-2 col-start-9 mt-3">
-        {/* <div className="h-full flex flex-col overflow-hidden select-none gap-4">
-          <ul className="flex-shrink-0 flex flex-col justify-around min-h-full gap-4 animate-scroll [animation-direction:reverse]">
-            {[...Array(3)].map((_, idx) => (
-              <li
-                key={idx}
-                className="relative h-full w-full bg-white overflow-hidden rounded-md"
-              >
-                <Image
-                  fill={true}
-                  alt=""
-                  src={
-                    "https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8"
-                  }
-                  className="object-cover"
-                />
-              </li>
-            ))}
-          </ul>
-          <ul className="flex-shrink-0 flex flex-col justify-around min-h-full gap-4 animate-scroll [animation-direction:reverse]">
-            {[...Array(3)].map((_, idx) => (
-              <li
-                key={idx}
-                className="relative h-full w-full bg-white overflow-hidden rounded-md"
-              >
-                <Image
-                  fill={true}
-                  alt=""
-                  src={
-                    "https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8"
-                  }
-                  className="object-cover"
-                />
-              </li>
-            ))}
-          </ul>
-        </div> */}
         <Marquee
           images={[...Array(3)].map(
             (_) =>
