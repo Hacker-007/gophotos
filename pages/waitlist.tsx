@@ -1,32 +1,46 @@
 import { PageWithLayout } from '@/components/layouts/pageTypes'
-import { useState } from 'react'
+import { RadioGroupItem } from '@/components/RadioGroupItem'
+
+import { RadioGroup } from '@radix-ui/react-radio-group'
 
 const WaitlistPage: PageWithLayout = () => {
-	const [currentStep, setCurrentStep] = useState(0)
-
 	return (
-		<div className="grid h-full w-full content-center justify-center">
-			<div className="flex space-x-2">
-				<div
-					className={`h-1.5 w-20 rounded-full ${
-						currentStep >= 0 ? 'bg-black/80' : 'bg-black/30'
-					}`}
-				/>
-				<div
-					className={`h-1.5 w-20 rounded-full ${
-						currentStep >= 1 ? 'bg-black/80' : 'bg-black/30'
-					}`}
-				/>
-				<div
-					className={`h-1.5 w-20 rounded-full ${
-						currentStep >= 2 ? 'bg-black/80' : 'bg-black/30'
-					}`}
-				/>
-				<div
-					className={`h-1.5 w-20 rounded-full ${
-						currentStep >= 3 ? 'bg-black/80' : 'bg-black/30'
-					}`}
-				/>
+		<div className="flex h-full w-full flex-col items-center justify-center">
+			<p className="text-lg text-gray-600">
+				Are you a photographer or looking for one?
+			</p>
+			<RadioGroup className="mt-7 flex w-1/2 flex-col items-center">
+				<RadioGroupItem
+					className="h-16 w-full max-w-sm"
+					value="photographer"
+				>
+					<div className="h-full p-2">
+						<div className="flex flex-col items-start">
+							<p className="font-medium">Photographer</p>
+							<p className="text-xs">
+								Lorem ipsum dolor sit amet consectetur.
+							</p>
+						</div>
+					</div>
+				</RadioGroupItem>
+				<RadioGroupItem
+					className="mt-5 h-16 w-full max-w-sm"
+					value="customer"
+				>
+					<div className="h-full p-2">
+						<div className="flex flex-col items-start">
+							<p className="font-medium">
+								Looking for a photographer
+							</p>
+							<p className="text-xs">
+								Lorem ipsum dolor sit amet consectetur.
+							</p>
+						</div>
+					</div>
+				</RadioGroupItem>
+			</RadioGroup>
+			<div className="w-1/2">
+				<p className="float-right text-sm">Question 1 of 3</p>
 			</div>
 		</div>
 	)

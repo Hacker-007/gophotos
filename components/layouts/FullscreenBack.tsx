@@ -10,7 +10,7 @@ export default function FullscreenBackLayout({ children }: PropsWithChildren) {
 		<div
 			className={`${inter.className} flex h-screen w-screen flex-col bg-zinc-100 px-16 pt-7`}
 		>
-			<nav className="flex h-10 w-full items-center justify-between">
+			<nav className="grid h-10 w-full grid-cols-3 grid-rows-1 items-center justify-center">
 				<Link href="/" className="flex items-center font-semibold">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -28,6 +28,9 @@ export default function FullscreenBackLayout({ children }: PropsWithChildren) {
 					</svg>
 					<span className="pl-1">Back</span>
 				</Link>
+				<p className="text-center font-semibold">
+					Artisan<span className="text-xl">.</span>
+				</p>
 			</nav>
 			{children}
 		</div>

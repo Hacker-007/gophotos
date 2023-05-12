@@ -24,9 +24,9 @@ const LandingPage: PageWithLayout = () => {
 				</h2>
 				<Link
 					href="/waitlist"
-					className="group mt-10 flex w-fit items-center justify-center rounded-md border border-black px-3 py-2 font-medium hover:bg-gray-200"
+					className="group mt-10 flex w-fit items-center justify-center rounded-md border border-black/50 px-3 py-2 font-medium hover:bg-gray-200"
 				>
-					<span className="flex-shrink-0">Join Waitlist</span>
+					<span className="text-sm flex-shrink-0">Join Waitlist</span>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
