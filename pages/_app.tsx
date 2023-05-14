@@ -4,6 +4,7 @@ import { PropsWithChildren } from 'react'
 
 import { layouts } from '@/components/layouts'
 import type { AppProps } from '@/components/layouts/pageTypes'
+import { SSRProvider } from 'react-aria'
 
 export default function App({ Component, pageProps }: AppProps) {
 	const Layout = Component.layoutKey
@@ -11,8 +12,10 @@ export default function App({ Component, pageProps }: AppProps) {
 		: (page: PropsWithChildren) => <>{page}</>
 
 	return (
-		<Layout>
-			<Component {...pageProps} />
-		</Layout>
+		<SSRProvider>
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
+		</SSRProvider>
 	)
 }
