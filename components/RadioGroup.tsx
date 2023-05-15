@@ -6,6 +6,7 @@ import { RadioGroupState, useRadioGroupState } from 'react-stately'
 
 type RadioGroupProps = {
 	label: string
+	className: string,
 }
 
 const RadioGroupContext = React.createContext<RadioGroupState | undefined>(
@@ -14,6 +15,7 @@ const RadioGroupContext = React.createContext<RadioGroupState | undefined>(
 
 export function RadioGroup({
 	label,
+	className,
 	children,
 }: PropsWithChildren<RadioGroupProps>) {
 	const state = useRadioGroupState({})
@@ -28,7 +30,7 @@ export function RadioGroup({
 	return (
 		<div
 			{...radioGroupProps}
-			className="flex w-full flex-col items-center space-y-5"
+			className={className}
 		>
 			<RadioGroupContext.Provider value={state}>
 				{children}
