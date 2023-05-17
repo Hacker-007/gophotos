@@ -12,7 +12,7 @@ const playfairDisplay = PlayfairDisplay({
 const LandingPage: PageWithLayout = () => {
 	return (
 		<main className="grid h-full w-full grid-cols-12 gap-5">
-			<div className="col-span-5 flex flex-col justify-center">
+			<div className="col-span-4 flex flex-col justify-center">
 				<h1
 					className={`${playfairDisplay.className} col-span-2 text-6xl font-medium`}
 				>
@@ -43,7 +43,7 @@ const LandingPage: PageWithLayout = () => {
 					</svg>
 				</Link>
 			</div>
-			<div className="col-span-2 col-start-6 mt-3">
+			<div className="col-span-3 col-start-5 mt-3">
 				<Marquee
 					images={[...Array(3)].map(
 						_ =>
@@ -51,7 +51,7 @@ const LandingPage: PageWithLayout = () => {
 					)}
 				/>
 			</div>
-			<div className="col-span-2 col-start-9 mt-3">
+			<div className="col-span-3 col-start-9 mt-3">
 				<Marquee
 					images={[...Array(3)].map(
 						_ =>
