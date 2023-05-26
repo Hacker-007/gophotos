@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { useState } from 'react'
+
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { PageWithLayout } from '@/components/layouts/pageTypes'
@@ -21,9 +22,9 @@ type WaitlistResponseSchema = z.infer<typeof WaitlistResponse>
 
 const WaitlistPage: PageWithLayout = () => {
 	const [step, setStep] = useState(1)
-	const [value, setValue] = useState<WaitlistResponseSchema | undefined>(
-		undefined
-	)
+	const [response, setResponse] = useState<
+		WaitlistResponseSchema | undefined
+	>(undefined)
 
 	return (
 		<div className="h-full w-full">
@@ -32,12 +33,12 @@ const WaitlistPage: PageWithLayout = () => {
 					<CategoryQuestion
 						onNext={({ category }) => {
 							if (category === 'photographer') {
-								setValue({
+								setResponse({
 									category: 'photographer',
 									name: '',
 								})
 							} else {
-								setValue({
+								setResponse({
 									category: 'customer',
 								})
 							}
@@ -47,28 +48,28 @@ const WaitlistPage: PageWithLayout = () => {
 						questionNumber={step}
 					/>
 				)}
-				{/* {step === 2 && value?.category === 'photographer' && (
-				<PhotographerQuestion
-					onBack={() => setStep(currentStep => currentStep - 1)}
-					onNext={({ name }) => {
-						setValue(currentValue => ({
-							category: 'photographer',
-							name,
-							...currentValue,
-						}))
+				{step === 2 && response?.category === 'photographer' && (
+					<PhotographerQuestion
+						onBack={() => setStep(currentStep => currentStep - 1)}
+						onNext={({ name }) => {
+							setResponse(currentResponse => ({
+								category: 'photographer',
+								name,
+								...currentResponse,
+							}))
 
-						setStep(currentStep => currentStep + 1)
-					}}
-					questionNumber={step}
-				/>
-			)} */}
-				{step === 2 && value?.category === 'photographer' && (
+							setStep(currentStep => currentStep + 1)
+						}}
+						questionNumber={step}
+					/>
+				)}
+				{/* {step === 2 && response?.category === 'photographer' && (
 					<DummyQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
 						questionNumber={step}
 					/>
-				)}
-				{step === 2 && value?.category === 'customer' && (
+				)} */}
+				{step === 2 && response?.category === 'customer' && (
 					<DummyQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
 						questionNumber={step}

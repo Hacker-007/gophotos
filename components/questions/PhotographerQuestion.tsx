@@ -1,6 +1,9 @@
+import { z } from 'zod'
+
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
+
+import { motion } from 'framer-motion'
 
 const questionSchema = z.object({
 	name: z.string(),
@@ -28,11 +31,17 @@ export default function PhotographerQuestion({
 	}
 
 	return (
-		<>
-			<p className="text-lg text-gray-600">Intro prompt.</p>
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.5 }}
+			className="flex h-full w-full flex-col items-center justify-center"
+		>
+			<p className="text-lg text-gray-600">You are a photographer.</p>
 			<form
 				action="/"
-				className="mt-7 inline-flex w-1/2 flex-col items-center"
+				className="inline-flex w-1/2 flex-col items-center"
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<div className="mt-5 w-full max-w-sm border-t border-gray-900/10"></div>
@@ -87,6 +96,6 @@ export default function PhotographerQuestion({
 					</button>
 				</div>
 			</form>
-		</>
+		</motion.div>
 	)
 }

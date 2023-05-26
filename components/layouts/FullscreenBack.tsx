@@ -12,7 +12,7 @@ export default function FullscreenBackLayout({ children }: PropsWithChildren) {
 		>
 			<nav className="flex h-10 w-full items-center justify-center">
 				<Link href="/" className="text-center font-semibold">
-					Artisan<span className="text-xl">.</span>
+					GoPhotos<span className="text-xl">.</span>
 				</Link>
 			</nav>
 			{children}
