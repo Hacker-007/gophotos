@@ -12,10 +12,10 @@ export default function App({ Component, pageProps }: AppProps) {
 		: ({ children }: PropsWithChildren<typeof pageProps>) => <>{children}</>
 
 	return (
-		<SSRProvider>
+		// <SSRProvider>
 			<Layout>
 				<Component {...pageProps} />
 			</Layout>
-		</SSRProvider>
+		// </SSRProvider>
 	)
 }
