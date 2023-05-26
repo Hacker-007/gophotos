@@ -9,7 +9,7 @@ import { SSRProvider } from 'react-aria'
 export default function App({ Component, pageProps }: AppProps) {
 	const Layout = Component.layoutKey
 		? layouts[Component.layoutKey]
-		: (page: PropsWithChildren) => <>{page}</>
+		: ({ children }: PropsWithChildren<typeof pageProps>) => <>{children}</>
 
 	return (
 		<SSRProvider>
