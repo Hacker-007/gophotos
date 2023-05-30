@@ -1,12 +1,13 @@
+'use client'
+
 import { z } from 'zod'
 
 import { useState } from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
-import { PageWithLayout } from '@/components/layouts/pageTypes'
 import CategoryQuestion from '@/components/questions/CategoryQuestion'
-import PhotographerQuestion from '@/components/questions/PhotographerQuestion'
+// import PhotographerQuestion from '@/components/questions/PhotographerQuestion'
 
 const WaitlistResponse = z.discriminatedUnion('category', [
 	z.object({
@@ -20,7 +21,7 @@ const WaitlistResponse = z.discriminatedUnion('category', [
 
 type WaitlistResponseSchema = z.infer<typeof WaitlistResponse>
 
-const WaitlistPage: PageWithLayout = () => {
+export default function WaitlistPage() {
 	const [step, setStep] = useState(1)
 	const [response, setResponse] = useState<
 		WaitlistResponseSchema | undefined
@@ -48,7 +49,7 @@ const WaitlistPage: PageWithLayout = () => {
 						questionNumber={step}
 					/>
 				)}
-				{step === 2 && response?.category === 'photographer' && (
+				{/* {step === 2 && response?.category === 'photographer' && (
 					<PhotographerQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
 						onNext={({ name }) => {
@@ -62,13 +63,14 @@ const WaitlistPage: PageWithLayout = () => {
 						}}
 						questionNumber={step}
 					/>
-				)}
-				{/* {step === 2 && response?.category === 'photographer' && (
+				)} */}
+				{/* {step === 1 && <DummyQuestion questionNumber={step} />} */}
+				{step === 2 && response?.category === 'photographer' && (
 					<DummyQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
 						questionNumber={step}
 					/>
-				)} */}
+				)}
 				{step === 2 && response?.category === 'customer' && (
 					<DummyQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
@@ -155,6 +157,3 @@ function DummyQuestion({ questionNumber, onBack }: DummyQuestionProps) {
 		</motion.div>
 	)
 }
-
-WaitlistPage.layoutKey = 'fullscreenBack'
-export default WaitlistPage
