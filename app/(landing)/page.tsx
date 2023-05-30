@@ -3,13 +3,12 @@ import { Playfair_Display as PlayfairDisplay } from 'next/font/google'
 import Link from 'next/link'
 
 import Marquee from '@/components/Marquee'
-import { PageWithLayout } from '@/components/layouts/pageTypes'
 
 const playfairDisplay = PlayfairDisplay({
 	subsets: ['latin'],
 })
 
-const LandingPage: PageWithLayout = () => {
+export default function LandingPage() {
 	return (
 		<main className="grid h-full w-full grid-cols-12 gap-5">
 			<div className="col-span-4 flex flex-col justify-center">
@@ -63,6 +62,3 @@ const LandingPage: PageWithLayout = () => {
 		</main>
 	)
 }
-
-LandingPage.layoutKey = 'main'
-export default LandingPage
