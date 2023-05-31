@@ -5,19 +5,10 @@ import * as z from 'zod'
 import { motion } from 'framer-motion'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { RadioGroup, RadioGroupItem } from '@/components/ui/RadioGroup'
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from '@/components/ui/Form'
+import { Form } from '@/components/ui/Form'
 import { MultiSelect } from '../ui/MultiSelect'
-import { Checkbox } from '../ui/Checkbox'
 
 const questionSchema = z.object({
 	name: z.string(),
@@ -84,17 +75,8 @@ export default function PhotographerQuestion({
 						Are you a photographer or looking for one?
 					</p>
 
+					<MultiSelect items={items} />
 
-
-
-					{/* <MultiSelect items={items} /> */}
-					<Checkbox value="test" />
-					
-					
-					
-					
-					
-					
 					<div className="mt-5 w-full max-w-sm border-t border-gray-900/10"></div>
 					<div className="mt-1 flex w-full max-w-sm justify-between text-sm">
 						{onBack && (

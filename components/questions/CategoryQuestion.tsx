@@ -5,7 +5,7 @@ import * as z from 'zod'
 import { motion } from 'framer-motion'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { RadioGroup, RadioGroupItem } from '@/components/ui/RadioGroup'
 import {
