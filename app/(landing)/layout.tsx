@@ -2,6 +2,7 @@ import '../globals.css'
 import { Inter } from 'next/font/google'
 
 import NavigationBar from '@/components/NaviationBar'
+import classNames from '@/utils/classnames'
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -21,7 +22,10 @@ export default function RootLayout({
 		<html lang="en">
 			<body>
 				<div
-					className={`${inter.className} flex h-screen w-screen flex-col bg-zinc-100 px-16 pt-7`}
+					className={classNames(
+						inter.className,
+						'flex h-screen w-screen flex-col bg-zinc-100 px-16 pt-7'
+					)}
 				>
 					<NavigationBar />
 					{children}

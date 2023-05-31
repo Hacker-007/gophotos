@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import CategoryQuestion from '@/components/questions/CategoryQuestion'
-// import PhotographerQuestion from '@/components/questions/PhotographerQuestion'
+import PhotographerQuestion from '@/components/questions/PhotographerQuestion'
 
 const WaitlistResponse = z.discriminatedUnion('category', [
 	z.object({
@@ -49,7 +49,7 @@ export default function WaitlistPage() {
 						questionNumber={step}
 					/>
 				)}
-				{/* {step === 2 && response?.category === 'photographer' && (
+				{step === 2 && response?.category === 'photographer' && (
 					<PhotographerQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
 						onNext={({ name }) => {
@@ -63,14 +63,14 @@ export default function WaitlistPage() {
 						}}
 						questionNumber={step}
 					/>
-				)} */}
+				)}
 				{/* {step === 1 && <DummyQuestion questionNumber={step} />} */}
-				{step === 2 && response?.category === 'photographer' && (
+				{/* {step === 2 && response?.category === 'photographer' && (
 					<DummyQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
 						questionNumber={step}
 					/>
-				)}
+				)} */}
 				{step === 2 && response?.category === 'customer' && (
 					<DummyQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}

@@ -11,6 +11,7 @@ import {
 } from 'react-hook-form'
 
 import { Label } from '@/components/ui/Label'
+import classNames from '@/utils/classnames'
 
 const Form = FormProvider
 
@@ -93,7 +94,7 @@ const FormLabel = React.forwardRef<
 	return (
 		<Label
 			ref={ref}
-			className={`${error && 'text-red-700'} ${className}`}
+			className={classNames(error && 'text-red-700', className)}
 			htmlFor={formItemId}
 			{...props}
 		/>
@@ -136,7 +137,7 @@ const FormDescription = React.forwardRef<
 		<p
 			ref={ref}
 			id={formDescriptionId}
-			className={`text-sm ${className}`}
+			className={classNames('text-sm', className)}
 			{...props}
 		/>
 	)
@@ -159,7 +160,10 @@ const FormMessage = React.forwardRef<
 		<p
 			ref={ref}
 			id={formMessageId}
-			className={`mt-2 float-right text-sm font-medium text-red-700 flex items-center gap-1 ${className}`}
+			className={classNames(
+				'float-right mt-2 flex items-center gap-1 text-sm font-medium text-red-700',
+				className
+			)}
 			{...props}
 		>
 			<svg
@@ -168,7 +172,7 @@ const FormMessage = React.forwardRef<
 				viewBox="0 0 24 24"
 				strokeWidth={1.5}
 				stroke="currentColor"
-				className="w-6 h-6"
+				className="h-6 w-6"
 			>
 				<path
 					strokeLinecap="round"

@@ -1,3 +1,4 @@
+import classNames from '@/utils/classnames'
 import '../../globals.css'
 import { Inter } from 'next/font/google'
 
@@ -14,7 +15,10 @@ export default function FullscreenBackLayout({
 		<html lang="en">
 			<body>
 				<div
-					className={`${inter.className} flex h-screen w-screen flex-col bg-zinc-100 px-16 pt-7`}
+					className={classNames(
+						inter.className,
+						'flex h-screen w-screen flex-col bg-zinc-100 px-16 pt-7'
+					)}
 				>
 					<nav className="flex h-10 w-full items-center justify-center">
 						<Link href="/" className="text-center font-semibold">

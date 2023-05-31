@@ -1,3 +1,4 @@
+import classNames from '@/utils/classnames'
 import Image from 'next/image'
 
 type MarqueeProps = {
@@ -9,9 +10,10 @@ export default function Marquee({ images, reversed }: MarqueeProps) {
 	return (
 		<div className="flex h-full select-none flex-col gap-4 overflow-hidden">
 			<ul
-				className={`flex min-h-full flex-shrink-0 animate-scroll flex-col justify-around gap-4 ${
+				className={classNames(
+					'flex min-h-full flex-shrink-0 animate-scroll flex-col justify-around gap-4',
 					reversed ? '[animation-direction:reverse]' : ''
-				}`}
+				)}
 			>
 				{images.map((imageUrl, idx) => (
 					<li
@@ -28,9 +30,10 @@ export default function Marquee({ images, reversed }: MarqueeProps) {
 				))}
 			</ul>
 			<ul
-				className={`flex min-h-full flex-shrink-0 animate-scroll flex-col justify-around gap-4 ${
+				className={classNames(
+					'flex min-h-full flex-shrink-0 animate-scroll flex-col justify-around gap-4',
 					reversed ? '[animation-direction:reverse]' : ''
-				}`}
+				)}
 			>
 				{images.map((imageUrl, idx) => (
 					<li
