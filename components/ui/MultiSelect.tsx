@@ -73,7 +73,7 @@ const MultiSelect = ({
 					</svg>
 				</button>
 			</PopoverTrigger>
-			<PopoverContent className="z-10 w-40 bg-zinc-50">
+			<PopoverContent asChild className="w-40 bg-zinc-50">
 				<div className="flex flex-col space-y-1">
 					{items.map(item => (
 						<div
@@ -88,8 +88,7 @@ const MultiSelect = ({
 								}
 							/>
 							<label
-								htmlFor="terms"
-								className="text-sm font-medium leading-none"
+								className="text-sm leading-none"
 							>
 								{item.label}
 							</label>

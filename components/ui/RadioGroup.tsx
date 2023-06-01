@@ -24,13 +24,10 @@ const RadioGroupItem = forwardRef<
 >(({ className, children, ...props }, ref) => {
 	return (
 		<RadioGroupPrimitive.Item ref={ref} asChild {...props}>
-			<label
-				className={classNames(
-					'h-16 w-full max-w-sm rounded-md border border-gray-400 transition-colors duration-300 data-[state=checked]:border-gray-800',
+				<div className={classNames(
+					'relative h-16 w-full max-w-sm rounded-md border border-gray-400 transition-colors duration-300 data-[state=checked]:border-gray-800',
 					className
-				)}
-			>
-				<div className="relative h-full w-full">
+				)}>
 					{children}
 					<RadioGroupPrimitive.Indicator asChild>
 						<svg
@@ -62,7 +59,6 @@ const RadioGroupItem = forwardRef<
 						</svg>
 					</RadioGroupPrimitive.Indicator>
 				</div>
-			</label>
 		</RadioGroupPrimitive.Item>
 	)
 })
