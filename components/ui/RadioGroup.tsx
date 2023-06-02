@@ -25,7 +25,7 @@ const RadioGroupItem = forwardRef<
 	return (
 		<RadioGroupPrimitive.Item ref={ref} asChild {...props}>
 				<div className={classNames(
-					'relative h-16 w-full max-w-sm rounded-md border border-gray-400 transition-colors duration-300 data-[state=checked]:border-gray-800',
+					'relative h-16 w-full max-w-sm rounded-md border-2 border-gray-300 transition-colors duration-300 data-[state=checked]:border-gray-800',
 					className
 				)}>
 					{children}

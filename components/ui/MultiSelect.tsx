@@ -50,7 +50,7 @@ const MultiSelect = ({
 			<PopoverTrigger asChild>
 				<button
 					aria-expanded={open}
-					className="flex w-40 items-center justify-between rounded-md border border-gray-400 p-2"
+					className="flex w-40 items-center justify-between rounded-md border-2 border-gray-300 p-2"
 				>
 					<span className="text-sm">
 						{checkedItems.length === 0
@@ -81,6 +81,7 @@ const MultiSelect = ({
 							className="flex items-center space-x-2"
 						>
 							<Checkbox
+								id={item.value}
 								value={item.value}
 								checked={item.checked}
 								handleCheckUpdate={checkedState =>
@@ -88,6 +89,7 @@ const MultiSelect = ({
 								}
 							/>
 							<label
+								htmlFor={item.value}
 								className="text-sm leading-none"
 							>
 								{item.label}
