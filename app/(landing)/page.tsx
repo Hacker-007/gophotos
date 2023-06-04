@@ -16,14 +16,14 @@ export default function LandingPage() {
 				<h1
 					className={classNames(
 						playfairDisplay.className,
-						'col-span-2 text-6xl font-medium'
+						'col-span-2 text-5xl font-medium'
 					)}
 				>
-					Beautiful Moments <br /> Are Everything
+					Revolutionizing Photography Experiences
 				</h1>
 				<h2 className="col-start-1 mt-3 max-w-sm text-sm text-zinc-400">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Facere esse vero rerum exercitationem
+					Connecting photographers and clients like never before.
+					Join our waitlist now to stay up to date and be the first to acces our groundbreaking photography services.
 				</h2>
 				<Link
 					href="/waitlist"
