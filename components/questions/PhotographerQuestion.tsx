@@ -321,7 +321,9 @@ export default function PhotographerQuestion({
 										<Input
 											className="h-10 w-full"
 											placeholder="Method"
-											{...form.register('otherMethodDescription')}
+											{...form.register(
+												'otherMethodDescription'
+											)}
 										/>
 										<FormMessage />
 									</div>

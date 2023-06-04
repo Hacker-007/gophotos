@@ -346,7 +346,9 @@ export default function CustomerQuestion({
 										<Input
 											className="h-10 w-full"
 											placeholder="Method"
-											{...form.register('otherMethodDescription')}
+											{...form.register(
+												'otherMethodDescription'
+											)}
 										/>
 										<FormMessage />
 									</div>
