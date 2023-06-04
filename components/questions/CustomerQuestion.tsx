@@ -28,11 +28,11 @@ import { Input } from '@/components/ui/Input'
 const questionSchema = z.object({
 	name: z.string().min(1, 'Required'),
 	email: z.string().email(),
-	instagramHandle: z.string().optional(),
-	experience: z.enum(['<1', '1-3', '3-5', '>5']),
-	isStudent: z.enum(['true', 'false']),
-	universityAffiliation: z.string().min(1, 'Required').optional(),
-	cameraUsed: z.string().min(1, 'Required'),
+	universityAffiliation: z.string().optional(),
+	hiringFrequency: z.enum(['0', '1-4', '5-9', '10-19', '20+']),
+	importantFactor: z.enum(['price', 'experience', 'style', 'other']),
+	otherFactorDescription: z.string().min(1, 'Required').optional(),
+	potentialCustomer: z.enum(['yes', 'maybe', 'no']),
 	marketingMethod: z.enum([
 		'linkedin',
 		'instagram',
@@ -46,29 +46,29 @@ const questionSchema = z.object({
 
 export type QuestionSchema = z.infer<typeof questionSchema>
 
-type PhotographerQuestionProps = {
+type CustomerQuestionProps = {
 	questionNumber: number
 	onBack?: () => void
 	onNext: (values: QuestionSchema) => Promise<void>
 }
 
-export default function PhotographerQuestion({
+export default function CustomerQuestion({
 	questionNumber,
 	onBack,
 	onNext,
-}: PhotographerQuestionProps) {
+}: CustomerQuestionProps) {
 	const [loading, setLoading] = useState(false)
 	const form = useForm<QuestionSchema>({
 		resolver: zodResolver(questionSchema),
 	})
 
-	const watchIsStudent = form.watch('isStudent')
+	const watchFactor = form.watch('importantFactor')
 	const watchMethod = form.watch('marketingMethod')
 	useEffect(() => {
-		if (watchIsStudent === 'true') {
-			form.register('universityAffiliation')
+		if (watchFactor === 'other') {
+			form.register('otherFactorDescription')
 		} else {
-			form.unregister('universityAffiliation')
+			form.unregister('otherFactorDescription')
 		}
 
 		if (watchMethod === 'other') {
@@ -76,7 +76,7 @@ export default function PhotographerQuestion({
 		} else {
 			form.unregister('otherMethodDescription')
 		}
-	}, [form, watchIsStudent, watchMethod])
+	}, [form, watchFactor, watchMethod])
 
 	const onSubmit: SubmitHandler<QuestionSchema> = data => {
 		setLoading(true)
@@ -139,74 +139,134 @@ export default function PhotographerQuestion({
 								)}
 							/>
 						</div>
-						<div className="grid max-w-sm grid-cols-2 gap-x-2">
+						<FormField
+							control={undefined}
+							name="universityAffiliation"
+							render={() => (
+								<div className="w-full max-w-sm">
+									<FormLabel className="flex items-center pl-3 text-sm font-medium">
+										University Affiliation{' '}
+										<span className="pl-1 text-xs font-normal">
+											(optional)
+										</span>
+									</FormLabel>
+									<Input
+										className="h-10 w-full"
+										placeholder="University"
+										{...form.register(
+											'universityAffiliation'
+										)}
+									/>
+									<FormMessage />
+								</div>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="hiringFrequency"
+							render={({ field }) => (
+								<div className="w-full max-w-sm">
+									<FormItem className="w-full">
+										<FormLabel className="pl-3 text-sm font-medium">
+											Hiring Frequency
+										</FormLabel>
+										<Select
+											onValueChange={field.onChange}
+											defaultValue={field.value}
+										>
+											<SelectTrigger>
+												<SelectValue placeholder="Select" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="0">
+													Never hired before
+												</SelectItem>
+												<SelectItem value="1-4">
+													1 to 4 times
+												</SelectItem>
+												<SelectItem value="5-9">
+													5 to 9 times
+												</SelectItem>
+												<SelectItem value="10-19">
+													10 to 19 times
+												</SelectItem>
+												<SelectItem value="20+">
+													20 times or more
+												</SelectItem>
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								</div>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="importantFactor"
+							render={({ field }) => (
+								<div className="w-full max-w-sm">
+									<FormItem className="w-full">
+										<FormLabel className="pl-3 text-sm font-medium">
+											Most important factor when hiring a
+											photographer
+										</FormLabel>
+										<Select
+											onValueChange={field.onChange}
+											defaultValue={field.value}
+										>
+											<SelectTrigger>
+												<SelectValue placeholder="Select" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="price">
+													Price
+												</SelectItem>
+												<SelectItem value="experience">
+													Experience
+												</SelectItem>
+												<SelectItem value="style">
+													Style
+												</SelectItem>
+												<SelectItem value="other">
+													Other
+												</SelectItem>
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								</div>
+							)}
+						/>
+						{watchFactor === 'other' && (
 							<FormField
 								control={undefined}
-								name="instagramHandle"
+								name="otherFactorDescription"
 								render={() => (
 									<div className="w-full max-w-sm">
-										<FormLabel className="flex items-center pl-3 text-sm font-medium">
-											Instagram{' '}
-											<span className="pl-1 text-xs font-normal">
-												(optional)
-											</span>
+										<FormLabel className="pl-3 text-sm font-medium">
+											Describe factor
 										</FormLabel>
 										<Input
 											className="h-10 w-full"
-											placeholder="Instagram Handle"
+											placeholder="Factor"
 											{...form.register(
-												'instagramHandle'
+												'otherFactorDescription'
 											)}
 										/>
 										<FormMessage />
 									</div>
 								)}
 							/>
-							<FormField
-								control={form.control}
-								name="experience"
-								render={({ field }) => (
-									<div className="w-full max-w-sm">
-										<FormItem className="w-full">
-											<FormLabel className="pl-3 text-sm font-medium">
-												Experience
-											</FormLabel>
-											<Select
-												onValueChange={field.onChange}
-												defaultValue={field.value}
-											>
-												<SelectTrigger>
-													<SelectValue placeholder="Select" />
-												</SelectTrigger>
-												<SelectContent>
-													<SelectItem value="<1">
-														&lt; 1 year
-													</SelectItem>
-													<SelectItem value="1-3">
-														1 to 3 years
-													</SelectItem>
-													<SelectItem value="3-5">
-														3 to 5 years
-													</SelectItem>
-													<SelectItem value=">5">
-														&gt; 5 years
-													</SelectItem>
-												</SelectContent>
-											</Select>
-											<FormMessage />
-										</FormItem>
-									</div>
-								)}
-							/>
-						</div>
+						)}
 						<FormField
 							control={form.control}
-							name="isStudent"
+							name="potentialCustomer"
 							render={({ field }) => (
 								<div className="w-full max-w-sm">
 									<FormItem className="w-full">
 										<FormLabel className="pl-3 text-sm font-medium">
-											Student
+											Do you plan to use this site to hire
+											photographers
 										</FormLabel>
 										<Select
 											onValueChange={field.onChange}
@@ -216,54 +276,19 @@ export default function PhotographerQuestion({
 												<SelectValue placeholder="Select" />
 											</SelectTrigger>
 											<SelectContent>
-												<SelectItem value="true">
+												<SelectItem value="yes">
 													Yes
 												</SelectItem>
-												<SelectItem value="false">
+												<SelectItem value="maybe">
+													Maybe
+												</SelectItem>
+												<SelectItem value="no">
 													No
 												</SelectItem>
 											</SelectContent>
 										</Select>
 										<FormMessage />
 									</FormItem>
-								</div>
-							)}
-						/>
-						{watchIsStudent === 'true' && (
-							<FormField
-								control={undefined}
-								name="universityAffiliation"
-								render={() => (
-									<div className="w-full max-w-sm">
-										<FormLabel className="pl-3 text-sm font-medium">
-											University
-										</FormLabel>
-										<Input
-											className="h-10 w-full"
-											placeholder="University"
-											{...form.register(
-												'universityAffiliation'
-											)}
-										/>
-										<FormMessage />
-									</div>
-								)}
-							/>
-						)}
-						<FormField
-							control={undefined}
-							name="cameraUsed"
-							render={() => (
-								<div className="w-full max-w-sm">
-									<FormLabel className="pl-3 text-sm font-medium">
-										Camera used
-									</FormLabel>
-									<Input
-										className="h-10 w-full"
-										placeholder="Camera used"
-										{...form.register('cameraUsed')}
-									/>
-									<FormMessage />
 								</div>
 							)}
 						/>

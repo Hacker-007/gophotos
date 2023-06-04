@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-export default function PhotographerInterest() {
+export default function CustomerInterest() {
 	const router = useRouter()
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
