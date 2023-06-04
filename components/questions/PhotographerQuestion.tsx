@@ -156,7 +156,7 @@ export default function PhotographerQuestion({
 								<Input
 									id="name"
 									className="h-10 w-full"
-									placeholder="Name"
+									placeholder="Qudus Shittu"
 									{...form.register('name')}
 								/>
 								{form.formState.errors.name && (
@@ -193,7 +193,7 @@ export default function PhotographerQuestion({
 								<Input
 									id="email"
 									className="h-10 w-full"
-									placeholder="Email"
+									placeholder="info@gophotos.us"
 									{...form.register('email')}
 								/>
 								{form.formState.errors.email && (
@@ -231,7 +231,7 @@ export default function PhotographerQuestion({
 								</Label>
 								<Input
 									className="h-10 w-full"
-									placeholder="Instagram Handle"
+									placeholder="@gophotos.official"
 									{...form.register('instagramHandle')}
 								/>
 								{form.formState.errors.instagramHandle && (
@@ -268,7 +268,7 @@ export default function PhotographerQuestion({
 									<div className="w-full max-w-sm">
 										<FormItem className="w-full">
 											<FormLabel className="flex items-center pl-3 text-sm font-medium">
-												Experience
+												Years of Experience
 											</FormLabel>
 											<Select
 												onValueChange={field.onChange}
@@ -373,7 +373,7 @@ export default function PhotographerQuestion({
 							</Label>
 							<Input
 								className="h-10 w-full"
-								placeholder="Camera used"
+								placeholder="Nikon d750"
 								{...form.register('cameraUsed')}
 							/>
 							{form.formState.errors.cameraUsed && (
