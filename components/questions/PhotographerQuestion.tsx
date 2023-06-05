@@ -113,7 +113,7 @@ export default function PhotographerQuestion({
 										</FormLabel>
 										<Input
 											className="h-10 w-full"
-											placeholder="Name"
+											placeholder="Jim Smith"
 											{...form.register('name')}
 										/>
 										<FormMessage />
@@ -131,7 +131,7 @@ export default function PhotographerQuestion({
 										<Input
 											id="email"
 											className="h-10 w-full"
-											placeholder="Email"
+											placeholder="jimsmith@gmail.com"
 											{...form.register('email')}
 										/>
 										<FormMessage />
@@ -153,7 +153,7 @@ export default function PhotographerQuestion({
 										</FormLabel>
 										<Input
 											className="h-10 w-full"
-											placeholder="Instagram Handle"
+											placeholder="@jimsmith"
 											{...form.register(
 												'instagramHandle'
 											)}
@@ -169,7 +169,7 @@ export default function PhotographerQuestion({
 									<div className="w-full max-w-sm">
 										<FormItem className="w-full">
 											<FormLabel className="pl-3 text-sm font-medium">
-												Experience
+												Years of Experience
 											</FormLabel>
 											<Select
 												onValueChange={field.onChange}
@@ -260,7 +260,7 @@ export default function PhotographerQuestion({
 									</FormLabel>
 									<Input
 										className="h-10 w-full"
-										placeholder="Camera used"
+										placeholder="Nikon D750"
 										{...form.register('cameraUsed')}
 									/>
 									<FormMessage />
