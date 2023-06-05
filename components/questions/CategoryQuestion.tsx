@@ -83,9 +83,11 @@ export default function CategoryQuestion({
 																Photographer
 															</p>
 															<p className="text-xs">
-																Lorem ipsum
-																dolor sit amet
-																consectetur.
+																I am a
+																photographer
+																looking to make
+																a living through
+																my lens.
 															</p>
 														</div>
 													</div>
@@ -105,9 +107,10 @@ export default function CategoryQuestion({
 																photographer
 															</p>
 															<p className="text-xs">
-																Lorem ipsum
-																dolor sit amet
-																consectetur.
+																I am a customer
+																looking to hire
+																local
+																photographers.
 															</p>
 														</div>
 													</div>
