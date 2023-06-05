@@ -19,13 +19,11 @@ export default function LandingPage() {
 						'col-span-2 text-6xl font-medium'
 					)}
 				>
-					Revolutionizing The Photography Experience
+					Beautiful Moments <br /> Are Everything
 				</h1>
 				<h2 className="col-start-1 mt-3 max-w-sm text-sm text-zinc-400">
-					Connecting photographers and customer like never before.
-					<br />
-					Join our waitlist now to stay up to date and be the first to
-					access our groundbreaking photography services.
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					Facere esse vero rerum exercitationem
 				</h2>
 				<Link
 					href="/waitlist"

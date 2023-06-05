@@ -1,38 +1,31 @@
 'use client'
 
+import { z } from 'zod'
+
 import { useState } from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
 import CategoryQuestion from '@/components/questions/CategoryQuestion'
 import PhotographerQuestion from '@/components/questions/PhotographerQuestion'
-import PhotographerInterest from '@/components/questions/PhotographerInterest'
 
-type WaitlistResponse =
-	| ({
-			category: 'photographer'
-			name: string
-			email: string
-			instagramHandle?: string
-			experience: '<1' | '1-3' | '3-5' | '>5'
-			marketingMethod: string
-			cameraUsed: string
-	  } & (
-			| {
-					isStudent: 'true'
-					universityAffiliation: string
-			  }
-			| { isStudent: 'false' }
-	  ))
-	| {
-			category: 'customer'
-	  }
+const WaitlistResponse = z.discriminatedUnion('category', [
+	z.object({
+		category: z.literal('photographer'),
+		name: z.string(),
+	}),
+	z.object({
+		category: z.literal('customer'),
+	}),
+])
+
+type WaitlistResponseSchema = z.infer<typeof WaitlistResponse>
 
 export default function WaitlistPage() {
 	const [step, setStep] = useState(1)
-	const [response, setResponse] = useState<WaitlistResponse | undefined>(
-		undefined
-	)
+	const [response, setResponse] = useState<
+		WaitlistResponseSchema | undefined
+	>(undefined)
 
 	return (
 		<div className="h-full w-full">
@@ -44,11 +37,6 @@ export default function WaitlistPage() {
 								setResponse({
 									category: 'photographer',
 									name: '',
-									email: '',
-									experience: '<1',
-									cameraUsed: '',
-									marketingMethod: '',
-									isStudent: 'false',
 								})
 							} else {
 								setResponse({
@@ -64,43 +52,14 @@ export default function WaitlistPage() {
 				{step === 2 && response?.category === 'photographer' && (
 					<PhotographerQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
-						onNext={response => {
-							const marketingMethod =
-								response.marketingMethod === 'other'
-									? response.otherMethod
-									: response.marketingMethod
-							const updatedResponse = {
-								name: response.name,
-								email: response.email,
-								instagramHandle: response.instagramHandle,
-								experience: response.experience,
-								cameraUsed: response.cameraUsed,
-								marketingMethod,
-							}
+						onNext={({ name }) => {
+							setResponse(currentResponse => ({
+								category: 'photographer',
+								name,
+								...currentResponse,
+							}))
 
-							if (response.isStudent === 'true') {
-								setResponse({
-									category: 'photographer',
-									isStudent: 'true',
-									universityAffiliation:
-										response.universityAffiliation,
-									...updatedResponse,
-								})
-							} else {
-								setResponse({
-									category: 'photographer',
-									isStudent: 'false',
-									...updatedResponse,
-								})
-							}
-
-							return new Promise(resolve =>
-								setTimeout(() => {
-									console.log(response)
-									setStep(currentStep => currentStep + 1)
-									return resolve()
-								}, 3000)
-							)
+							setStep(currentStep => currentStep + 1)
 						}}
 						questionNumber={step}
 					/>
@@ -118,7 +77,7 @@ export default function WaitlistPage() {
 						questionNumber={step}
 					/>
 				)}
-				{step === 3 && <PhotographerInterest />}
+				{step === 3 && <DummyQuestion questionNumber={step} />}
 			</AnimatePresence>
 		</div>
 	)
