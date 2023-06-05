@@ -144,9 +144,9 @@ export default function CustomerQuestion({
 							name="universityAffiliation"
 							render={() => (
 								<div className="w-full max-w-sm">
-									<FormLabel className="flex items-center pl-3 text-sm font-medium">
+									<FormLabel className="pl-3 text-sm font-medium">
 										University Affiliation{' '}
-										<span className="pl-1 text-xs font-normal">
+										<span className="text-xs font-normal">
 											(optional)
 										</span>
 									</FormLabel>
@@ -357,12 +357,47 @@ export default function CustomerQuestion({
 						)}
 					</div>
 					<div className="mt-5 w-full max-w-sm border-t border-gray-900/10"></div>
-					<div className="mt-1 flex w-full max-w-sm justify-between text-sm">
+					<div className="mt-1 grid w-full max-w-sm grid-cols-3 text-sm">
 						{onBack && (
+							<div className="flex justify-start">
+								<button
+									onClick={onBack}
+									className="flex items-center rounded-md p-2 font-semibold hover:bg-gray-200"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										strokeWidth={1.5}
+										stroke="currentColor"
+										className="h-5 w-5"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+										/>
+									</svg>
+
+									<span className="pr-1">Back</span>
+								</button>
+							</div>
+						)}
+						<div className="col-start-2  flex flex-col items-center justify-center">
+							<p className="font-light">
+								Question{' '}
+								<span className="font-semibold">
+									{questionNumber}
+								</span>{' '}
+								of <span className="font-semibold">3</span>
+							</p>
+						</div>
+						<div className="flex justify-end">
 							<button
-								onClick={onBack}
+								type="submit"
 								className="flex items-center rounded-md p-2 font-semibold hover:bg-gray-200"
 							>
+								<span className="pr-1">Submit</span>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"
@@ -374,40 +409,11 @@ export default function CustomerQuestion({
 									<path
 										strokeLinecap="round"
 										strokeLinejoin="round"
-										d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+										d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
 									/>
 								</svg>
-
-								<span className="pr-1">Back</span>
 							</button>
-						)}
-						<p className="mt-2 font-light">
-							Question{' '}
-							<span className="font-semibold">
-								{questionNumber}
-							</span>{' '}
-							of <span className="font-semibold">3</span>
-						</p>
-						<button
-							type="submit"
-							className="flex items-center rounded-md p-2 font-semibold hover:bg-gray-200"
-						>
-							<span className="pr-1">Submit</span>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								strokeWidth={1.5}
-								stroke="currentColor"
-								className="h-5 w-5"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-								/>
-							</svg>
-						</button>
+						</div>
 					</div>
 				</form>
 			</Form>

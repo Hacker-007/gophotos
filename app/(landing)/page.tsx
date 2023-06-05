@@ -16,27 +16,30 @@ export default function LandingPage() {
 				<h1
 					className={classNames(
 						playfairDisplay.className,
-						'col-span-2 text-5xl font-medium'
+						'col-span-2 font-medium md:text-3xl lg:text-4xl'
 					)}
 				>
 					Revolutionizing Photography Experiences
 				</h1>
-				<h2 className="col-start-1 mt-3 max-w-sm text-sm text-zinc-400">
-					Connecting photographers and clients like never before.
-					Join our waitlist now to stay up to date and be the first to acces our groundbreaking photography services.
+				<h2 className="col-start-1 mt-3 max-w-sm text-sm text-zinc-400 md:text-xs">
+					Connecting photographers and clients like never before. Join
+					our waitlist now to stay up to date and be the first to
+					acces our groundbreaking photography services.
 				</h2>
 				<Link
 					href="/waitlist"
-					className="group mt-10 flex w-fit items-center justify-center rounded-md border border-gray-400 px-3 py-2 font-medium hover:bg-gray-200"
+					className="group mt-10 flex w-fit items-center justify-center rounded-md border border-gray-400 px-3 py-2 font-medium hover:bg-gray-200 md:mt-5"
 				>
-					<span className="flex-shrink-0 text-sm">Join Waitlist</span>
+					<span className="flex-shrink-0 md:text-xs lg:text-sm">
+						Join Waitlist
+					</span>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
 						strokeWidth="1.5"
 						stroke="currentColor"
-						className="ml-2 h-6 w-6 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+						className="ml-2 flex-shrink-0 transition-transform group-hover:translate-x-0.5 md:h-4 md:w-4 lg:h-6 lg:w-6"
 					>
 						<path
 							strokeLinecap="round"
@@ -46,7 +49,7 @@ export default function LandingPage() {
 					</svg>
 				</Link>
 			</div>
-			<div className="col-span-3 col-start-5 mt-3">
+			<div className="col-span-3 mt-3 md:col-start-6 lg:col-start-5">
 				<Marquee
 					images={[...Array(3)].map(
 						_ =>
@@ -54,7 +57,7 @@ export default function LandingPage() {
 					)}
 				/>
 			</div>
-			<div className="col-span-3 col-start-9 mt-3">
+			<div className="col-span-3 mt-3 md:col-start-10 lg:col-start-9">
 				<Marquee
 					images={[...Array(3)].map(
 						_ =>
