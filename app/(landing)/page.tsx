@@ -3,6 +3,7 @@ import { Playfair_Display as PlayfairDisplay } from 'next/font/google'
 import Link from 'next/link'
 
 import Marquee from '@/components/Marquee'
+import classNames from '@/utils/classnames'
 
 const playfairDisplay = PlayfairDisplay({
 	subsets: ['latin'],
@@ -13,7 +14,10 @@ export default function LandingPage() {
 		<main className="grid h-full w-full grid-cols-12 gap-5">
 			<div className="col-span-4 flex flex-col justify-center">
 				<h1
-					className={`${playfairDisplay.className} col-span-2 text-6xl font-medium`}
+					className={classNames(
+						playfairDisplay.className,
+						'col-span-2 text-6xl font-medium'
+					)}
 				>
 					Beautiful Moments <br /> Are Everything
 				</h1>
@@ -25,7 +29,7 @@ export default function LandingPage() {
 					href="/waitlist"
 					className="group mt-10 flex w-fit items-center justify-center rounded-md border border-gray-400 px-3 py-2 font-medium hover:bg-gray-200"
 				>
-					<span className="text-sm flex-shrink-0">Join Waitlist</span>
+					<span className="flex-shrink-0 text-sm">Join Waitlist</span>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
