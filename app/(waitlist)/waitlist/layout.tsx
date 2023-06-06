@@ -17,7 +17,7 @@ export default function FullscreenBackLayout({
 				<div
 					className={classNames(
 						inter.className,
-						'flex h-screen w-screen flex-col bg-zinc-100 px-16 pt-7'
+						'flex h-screen w-screen flex-col bg-zinc-100 px-6 pt-5 md:px-16 md:pt-7'
 					)}
 				>
 					<nav className="flex h-10 w-full items-center justify-center">

@@ -13,13 +13,12 @@ import {
 	FormControl,
 	FormField,
 	FormItem,
-	FormLabel,
 	FormMessage,
 } from '@/components/ui/Form'
 
 const questionSchema = z.object({
 	category: z.enum(['photographer', 'customer'], {
-		required_error: 'a category is required',
+		required_error: 'Required',
 	}),
 })
 
@@ -55,10 +54,10 @@ export default function CategoryQuestion({
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="inline-flex w-1/2 flex-col items-center"
+					className="inline-flex w-full md:w-1/2 flex-col items-center"
 				>
 					<p className="mb-7 text-gray-600 md:text-[15px] lg:text-base">
-						Are you a photographer or looking for one?
+						Are you a photographer or looking to hire one?
 					</p>
 					<FormField
 						control={form.control}
@@ -83,9 +82,7 @@ export default function CategoryQuestion({
 																Photographer
 															</p>
 															<p className="text-xs">
-																I am looking to
-																make a living
-																through my lens.
+																I am looking for local work opportunities.
 															</p>
 														</div>
 													</div>
@@ -121,7 +118,7 @@ export default function CategoryQuestion({
 						)}
 					/>
 					<div className="mt-5 w-full max-w-sm border-t border-gray-900/10"></div>
-					<div className="mt-1 grid w-full max-w-sm grid-cols-3 text-sm">
+					<div className="mt-1 grid w-full max-w-sm grid-cols-[80px_auto_80px] md:grid-cols-3 text-sm">
 						{onBack && (
 							<div className="flex justify-start">
 								<button
@@ -147,7 +144,7 @@ export default function CategoryQuestion({
 								</button>
 							</div>
 						)}
-						<div className="col-start-2  flex flex-col items-center justify-center">
+						<div className="col-start-2 flex flex-col items-center justify-center">
 							<p className="font-light">
 								Question{' '}
 								<span className="font-semibold">

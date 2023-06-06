@@ -93,7 +93,7 @@ export default function PhotographerQuestion({
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="relative inline-flex w-1/2 flex-col items-center justify-center"
+					className="relative inline-flex w-full flex-col items-center justify-center md:w-1/2"
 				>
 					{loading && (
 						<div className="absolute z-10 flex h-full w-full max-w-sm items-center justify-center rounded-md bg-gray-400/50">
@@ -102,7 +102,7 @@ export default function PhotographerQuestion({
 					)}
 					<p className="mb-7 text-gray-600">?</p>
 					<div className="flex w-full flex-col items-center space-y-2">
-						<div className="grid w-full max-w-sm grid-cols-2 gap-x-2">
+						<div className="grid w-full max-w-sm grid-cols-1 gap-y-2 md:grid-cols-2 md:gap-x-2">
 							<FormField
 								control={undefined}
 								name="name"
@@ -139,7 +139,7 @@ export default function PhotographerQuestion({
 								)}
 							/>
 						</div>
-						<div className="grid max-w-sm grid-cols-2 items-center gap-x-2">
+						<div className="grid max-w-sm grid-cols-1 items-center gap-y-2 md:grid-cols-2 md:gap-x-2">
 							<FormField
 								control={undefined}
 								name="instagramHandle"
@@ -332,7 +332,7 @@ export default function PhotographerQuestion({
 						)}
 					</div>
 					<div className="mt-5 w-full max-w-sm border-t border-gray-900/10"></div>
-					<div className="mt-1 grid w-full max-w-sm grid-cols-3 text-sm">
+					<div className="mt-1 grid w-full max-w-sm grid-cols-[75px_auto_90px] text-sm md:grid-cols-3">
 						{onBack && (
 							<div className="flex justify-start">
 								<button
