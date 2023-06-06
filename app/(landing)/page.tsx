@@ -2,7 +2,7 @@ import { Playfair_Display as PlayfairDisplay } from 'next/font/google'
 
 import Link from 'next/link'
 
-import Marquee from '@/components/Marquee'
+import { VerticalMarquee, HorizontalMarquee } from '@/components/Marquee'
 import classNames from '@/utils/classnames'
 
 const playfairDisplay = PlayfairDisplay({
@@ -11,32 +11,35 @@ const playfairDisplay = PlayfairDisplay({
 
 export default function LandingPage() {
 	return (
-		<main className="grid h-full w-full grid-cols-12 gap-5">
-			<div className="col-span-4 flex flex-col justify-center">
+		<main className="flex h-full w-full flex-col md:grid md:grid-cols-12 md:gap-5">
+			<div className="mt-5 md:col-span-4 md:mt-0 md:flex md:flex-col md:justify-center">
 				<h1
 					className={classNames(
 						playfairDisplay.className,
-						'col-span-2 text-5xl font-medium'
+						'text-2xl font-medium md:col-span-2 md:text-justify md:text-3xl lg:text-4xl'
 					)}
 				>
-					Revolutionizing Photography Experiences
+					Revolutionizing Photography
 				</h1>
-				<h2 className="col-start-1 mt-3 max-w-sm text-sm text-zinc-400">
-					Connecting photographers and clients like never before.
-					Join our waitlist now to stay up to date and be the first to acces our groundbreaking photography services.
+				<h2 className="mt-3 max-w-sm text-sm text-zinc-400 md:col-start-1 lg:text-sm">
+					Connecting photographers and clients like never before. Join
+					our waitlist now to stay up to date and be the first to
+					access our groundbreaking photography services.
 				</h2>
 				<Link
 					href="/waitlist"
-					className="group mt-10 flex w-fit items-center justify-center rounded-md border border-gray-400 px-3 py-2 font-medium hover:bg-gray-200"
+					className="group mt-5 flex w-fit items-center justify-center rounded-md border border-gray-400 px-3 py-2 font-medium hover:bg-gray-200 md:mt-5 lg:mt-10"
 				>
-					<span className="flex-shrink-0 text-sm">Join Waitlist</span>
+					<span className="flex-shrink-0 text-xs lg:text-sm">
+						Join Waitlist
+					</span>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
 						strokeWidth="1.5"
 						stroke="currentColor"
-						className="ml-2 h-6 w-6 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+						className="ml-2 h-5 w-5 flex-shrink-0 transition-transform group-hover:translate-x-0.5 lg:h-6 lg:w-6"
 					>
 						<path
 							strokeLinecap="round"
@@ -46,16 +49,33 @@ export default function LandingPage() {
 					</svg>
 				</Link>
 			</div>
-			<div className="col-span-3 col-start-5 mt-3">
-				<Marquee
+			<div className="mt-3 hidden md:col-span-3 md:col-start-6 md:block lg:col-start-5">
+				<VerticalMarquee
 					images={[...Array(3)].map(
 						_ =>
 							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
 					)}
 				/>
 			</div>
-			<div className="col-span-3 col-start-9 mt-3">
-				<Marquee
+			<div className="mt-3 hidden md:col-span-3 md:col-start-10 md:block lg:col-start-9">
+				<VerticalMarquee
+					images={[...Array(3)].map(
+						_ =>
+							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
+					)}
+					reversed
+				/>
+			</div>
+			<div className="mt-3 block md:col-span-3 md:col-start-6 md:hidden lg:col-start-5">
+				<HorizontalMarquee
+					images={[...Array(3)].map(
+						_ =>
+							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
+					)}
+				/>
+			</div>
+			<div className="mt-3 block md:col-span-3 md:col-start-10 md:hidden lg:col-start-9">
+				<HorizontalMarquee
 					images={[...Array(3)].map(
 						_ =>
 							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
