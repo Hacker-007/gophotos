@@ -75,7 +75,7 @@ export function VerticalMarquee({ images, reversed }: VerticalMarqueeProps) {
 				{images.map((imageUrl, idx) => (
 					<span
 						key={`${imageUrl}/${idx}`}
-						className="relative mt-4 h-48 w-36 overflow-hidden rounded-md bg-white first:mt-0 lg:w-52 xl:h-64 xl:w-80"
+						className="relative mt-4 h-48 w-36 overflow-hidden rounded-md bg-white first:mt-0 lg:w-52 xl:h-64 xl:w-[310px]"
 					>
 						<Image
 							fill={true}
@@ -96,7 +96,7 @@ export function VerticalMarquee({ images, reversed }: VerticalMarqueeProps) {
 				{images.map((imageUrl, idx) => (
 					<span
 						key={`${imageUrl}/${idx}`}
-						className="relative mt-4 h-48 w-36 overflow-hidden rounded-md bg-white lg:w-52 xl:h-64 xl:w-80"
+						className="relative mt-4 h-48 w-36 overflow-hidden rounded-md bg-white lg:w-52 xl:h-64 xl:w-[310px]"
 					>
 						<Image
 							fill={true}

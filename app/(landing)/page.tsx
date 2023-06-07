@@ -11,7 +11,7 @@ const playfairDisplay = PlayfairDisplay({
 
 export default function LandingPage() {
 	return (
-		<main className="flex h-full w-full flex-col md:grid md:grid-cols-12 md:gap-5">
+		<main className="flex h-full w-full flex-col overflow-hidden md:grid md:grid-cols-12 md:gap-5">
 			<div className="mt-5 md:col-span-4 md:mt-0 md:flex md:flex-col md:justify-center">
 				<h1
 					className={classNames(
@@ -49,40 +49,52 @@ export default function LandingPage() {
 					</svg>
 				</Link>
 			</div>
-			<div className="mt-3 hidden md:col-span-3 md:col-start-6 md:block lg:col-start-5">
-				<VerticalMarquee
-					images={[
-						'/images/Birthday.jpg',
-						'/images/Night Streaks.jpg',
-						'/images/Group Picture.jpg',
-					]}
-				/>
-			</div>
-			<div className="mt-3 hidden md:col-span-3 md:col-start-10 md:block lg:col-start-9">
+			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-6 md:block lg:col-start-5">
 				<VerticalMarquee
 					images={[
 						'/images/Graduation.jpg',
 						'/images/Headshot.jpg',
 						'/images/Old Landscape.jpg',
+						'/images/Chariot Monument.jpg',
+						'/images/Lion Statue.jpg',
+						'/images/Solo Photographer.jpg',
+					]}
+				/>
+			</div>
+			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-10 md:block lg:col-start-9">
+				<VerticalMarquee
+					images={[
+						'/images/Birthday.jpg',
+						'/images/Night Streaks.jpg',
+						'/images/Group Picture.jpg',
+						'/images/Eiffel Tower.jpg',
+						'/images/Smiling Club.jpg',
+						'/images/Street Night View.jpg',
 					]}
 					reversed
 				/>
 			</div>
-			<div className="mt-3 block md:col-span-3 md:col-start-6 md:hidden lg:col-start-5">
-				<HorizontalMarquee
-					images={[
-						'/images/Birthday.jpg',
-						'/images/Night Streaks.jpg',
-						'/images/Group Picture.jpg',
-					]}
-				/>
-			</div>
-			<div className="mt-3 block md:col-span-3 md:col-start-10 md:hidden lg:col-start-9">
+			<div className="mt-7 block md:hidden">
 				<HorizontalMarquee
 					images={[
 						'/images/Graduation.jpg',
 						'/images/Headshot.jpg',
 						'/images/Old Landscape.jpg',
+						'/images/Chariot Monument.jpg',
+						'/images/Lion Statue.jpg',
+						'/images/Solo Photographer.jpg',
+					]}
+				/>
+			</div>
+			<div className="mt-7 block md:hidden">
+				<HorizontalMarquee
+					images={[
+						'/images/Birthday.jpg',
+						'/images/Night Streaks.jpg',
+						'/images/Group Picture.jpg',
+						'/images/Eiffel Tower.jpg',
+						'/images/Smiling Club.jpg',
+						'/images/Street Night View.jpg',
 					]}
 					reversed
 				/>
