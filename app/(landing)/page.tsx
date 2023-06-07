@@ -51,35 +51,39 @@ export default function LandingPage() {
 			</div>
 			<div className="mt-3 hidden md:col-span-3 md:col-start-6 md:block lg:col-start-5">
 				<VerticalMarquee
-					images={[...Array(3)].map(
-						_ =>
-							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
-					)}
+					images={[
+						'/images/Birthday.jpg',
+						'/images/Night Streaks.jpg',
+						'/images/Group Picture.jpg',
+					]}
 				/>
 			</div>
 			<div className="mt-3 hidden md:col-span-3 md:col-start-10 md:block lg:col-start-9">
 				<VerticalMarquee
-					images={[...Array(3)].map(
-						_ =>
-							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
-					)}
+					images={[
+						'/images/Graduation.jpg',
+						'/images/Headshot.jpg',
+						'/images/Old Landscape.jpg',
+					]}
 					reversed
 				/>
 			</div>
 			<div className="mt-3 block md:col-span-3 md:col-start-6 md:hidden lg:col-start-5">
 				<HorizontalMarquee
-					images={[...Array(3)].map(
-						_ =>
-							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
-					)}
+					images={[
+						'/images/Birthday.jpg',
+						'/images/Night Streaks.jpg',
+						'/images/Group Picture.jpg',
+					]}
 				/>
 			</div>
 			<div className="mt-3 block md:col-span-3 md:col-start-10 md:hidden lg:col-start-9">
 				<HorizontalMarquee
-					images={[...Array(3)].map(
-						_ =>
-							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
-					)}
+					images={[
+						'/images/Graduation.jpg',
+						'/images/Headshot.jpg',
+						'/images/Old Landscape.jpg',
+					]}
 					reversed
 				/>
 			</div>
