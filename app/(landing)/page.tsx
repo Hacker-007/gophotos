@@ -11,17 +11,17 @@ const playfairDisplay = PlayfairDisplay({
 
 export default function LandingPage() {
 	return (
-		<main className="flex h-full w-full flex-col overflow-hidden md:grid md:grid-cols-12 md:gap-5">
+		<main className="flex h-full w-full flex-col overflow-hidden md:grid md:grid-cols-[repeat(13,minmax(0,1fr))] md:gap-5">
 			<div className="mt-5 md:col-span-4 md:mt-0 md:flex md:flex-col md:justify-center">
 				<h1
 					className={classNames(
 						playfairDisplay.className,
-						'text-2xl font-medium md:col-span-2 md:text-justify md:text-3xl lg:text-4xl'
+						'text-2xl font-medium md:col-span-2 md:text-justify md:text-2xl lg:text-4xl'
 					)}
 				>
 					Revolutionizing Photography
 				</h1>
-				<h2 className="mt-3 max-w-sm text-sm text-zinc-400 md:col-start-1 lg:text-sm">
+				<h2 className="mt-3 max-w-sm text-xs text-zinc-400 md:col-start-1 lg:text-sm">
 					Connecting photographers and clients like never before. Join
 					our waitlist now to stay up to date and be the first to
 					access our groundbreaking photography services.
@@ -49,7 +49,7 @@ export default function LandingPage() {
 					</svg>
 				</Link>
 			</div>
-			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-6 md:block lg:col-start-5">
+			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-5 md:block">
 				<VerticalMarquee
 					images={[
 						'/images/Graduation.jpg',
@@ -61,7 +61,20 @@ export default function LandingPage() {
 					]}
 				/>
 			</div>
-			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-10 md:block lg:col-start-9">
+			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-8 md:block">
+				<VerticalMarquee
+					images={[
+						'/images/Speaker Event.jpg',
+						'/images/Concert.jpg',
+						'/images/Ring Delivery.jpg',
+						'/images/Graduation Celebration.jpg',
+						'/images/Street Headshot.jpg',
+						'/images/Graduation Solo.jpg',
+					]}
+					reversed
+				/>
+			</div>
+			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-11 md:block">
 				<VerticalMarquee
 					images={[
 						'/images/Birthday.jpg',
@@ -71,7 +84,6 @@ export default function LandingPage() {
 						'/images/Smiling Club.jpg',
 						'/images/Street Night View.jpg',
 					]}
-					reversed
 				/>
 			</div>
 			<div className="mt-7 block md:hidden">
