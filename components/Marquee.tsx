@@ -12,7 +12,7 @@ export function HorizontalMarquee({
 }: HorizontalMarqueeProps) {
 	return (
 		<div className="flex w-full select-none gap-4 overflow-hidden">
-			<div className="blurred-background-left absolute left-0 z-10 h-48 w-1/5 bg-zinc-100" />
+			<div className="blurred-background-left absolute left-0 z-10 h-48 w-[40px] bg-zinc-100" />
 			<ul
 				className={classNames(
 					'flex min-w-full flex-shrink-0 animate-horizontal-scroll justify-around gap-4',
@@ -55,7 +55,7 @@ export function HorizontalMarquee({
 					</li>
 				))}
 			</ul>
-			<div className="blurred-background-right absolute right-0 z-10 h-48 w-1/5 bg-zinc-100" />
+			<div className="blurred-background-right absolute right-0 z-10 h-48 w-[40px] bg-zinc-100" />
 		</div>
 	)
 }
@@ -68,7 +68,7 @@ type VerticalMarqueeProps = {
 export function VerticalMarquee({ images, reversed }: VerticalMarqueeProps) {
 	return (
 		<div className="relative flex h-full flex-col overflow-y-hidden">
-			<div className="blurred-background-top absolute z-10 h-1/5 w-full bg-zinc-100" />
+			<div className="blurred-background-top absolute z-10 h-[40px] w-full bg-zinc-100" />
 			<div
 				className={classNames(
 					'flex animate-vertical-scroll flex-col',
@@ -78,7 +78,7 @@ export function VerticalMarquee({ images, reversed }: VerticalMarqueeProps) {
 				{images.map((imageUrl, idx) => (
 					<span
 						key={`${imageUrl}/${idx}`}
-						className="relative mt-4 h-48 w-32 overflow-hidden rounded-md bg-white first:mt-0 lg:h-56 lg:w-44 xl:h-64 xl:w-64"
+						className="relative mt-4 h-48 w-full overflow-hidden rounded-md bg-white first:mt-0 lg:h-56 xl:h-64"
 					>
 						<Image
 							fill={true}
@@ -92,14 +92,14 @@ export function VerticalMarquee({ images, reversed }: VerticalMarqueeProps) {
 			</div>
 			<div
 				className={classNames(
-					'absolute flex animate-vertical-scroll2 flex-col',
+					'absolute flex animate-vertical-scroll2 flex-col w-full',
 					reversed ? '[animation-direction:reverse]' : ''
 				)}
 			>
 				{images.map((imageUrl, idx) => (
 					<span
 						key={`${imageUrl}/${idx}`}
-						className="relative mt-4 h-48 w-32 overflow-hidden rounded-md bg-white lg:h-56 lg:w-44 xl:h-64 xl:w-64"
+						className="relative mt-4 h-48 w-full overflow-hidden rounded-md bg-white lg:h-56 xl:h-64"
 					>
 						<Image
 							fill={true}
@@ -111,7 +111,7 @@ export function VerticalMarquee({ images, reversed }: VerticalMarqueeProps) {
 					</span>
 				))}
 			</div>
-			<div className="blurred-background-bottom absolute bottom-0 z-10 h-1/5 w-full bg-zinc-100" />
+			<div className="blurred-background-bottom absolute bottom-0 z-10 h-[40px] w-full bg-zinc-100" />
 		</div>
 	)
 }
