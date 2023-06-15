@@ -11,17 +11,17 @@ const playfairDisplay = PlayfairDisplay({
 
 export default function LandingPage() {
 	return (
-		<main className="flex h-full w-full flex-col md:grid md:grid-cols-12 md:gap-5">
+		<main className="flex h-full w-full flex-col overflow-hidden md:grid md:grid-cols-[repeat(13,minmax(0,1fr))] md:gap-5">
 			<div className="mt-5 md:col-span-4 md:mt-0 md:flex md:flex-col md:justify-center">
 				<h1
 					className={classNames(
 						playfairDisplay.className,
-						'text-2xl font-medium md:col-span-2 md:text-justify md:text-3xl lg:text-4xl'
+						'text-2xl font-medium md:col-span-2 md:text-justify md:text-2xl lg:text-4xl'
 					)}
 				>
 					Revolutionizing Photography
 				</h1>
-				<h2 className="mt-3 max-w-sm text-sm text-zinc-400 md:col-start-1 lg:text-sm">
+				<h2 className="mt-3 max-w-sm text-xs text-zinc-400 md:col-start-1 lg:text-sm">
 					Connecting photographers and clients like never before. Join
 					our waitlist now to stay up to date and be the first to
 					access our groundbreaking photography services.
@@ -49,37 +49,65 @@ export default function LandingPage() {
 					</svg>
 				</Link>
 			</div>
-			<div className="mt-3 hidden md:col-span-3 md:col-start-6 md:block lg:col-start-5">
+			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-5 md:block">
 				<VerticalMarquee
-					images={[...Array(3)].map(
-						_ =>
-							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
-					)}
+					images={[
+						'/images/Graduation.jpg',
+						'/images/Headshot.jpg',
+						'/images/Old Landscape.jpg',
+						'/images/Chariot Monument.jpg',
+						'/images/Lion Statue.jpg',
+						'/images/Solo Photographer.jpg',
+					]}
 				/>
 			</div>
-			<div className="mt-3 hidden md:col-span-3 md:col-start-10 md:block lg:col-start-9">
+			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-8 md:block">
 				<VerticalMarquee
-					images={[...Array(3)].map(
-						_ =>
-							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
-					)}
+					images={[
+						'/images/Speaker Event.jpg',
+						'/images/Concert.jpg',
+						'/images/Ring Delivery.jpg',
+						'/images/Graduation Celebration.jpg',
+						'/images/Street Headshot.jpg',
+						'/images/Graduation Solo.jpg',
+					]}
 					reversed
 				/>
 			</div>
-			<div className="mt-3 block md:col-span-3 md:col-start-6 md:hidden lg:col-start-5">
-				<HorizontalMarquee
-					images={[...Array(3)].map(
-						_ =>
-							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
-					)}
+			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-11 md:block">
+				<VerticalMarquee
+					images={[
+						'/images/Birthday.jpg',
+						'/images/Night Streaks.jpg',
+						'/images/Group Picture.jpg',
+						'/images/Eiffel Tower.jpg',
+						'/images/Smiling Club.jpg',
+						'/images/Street Night View.jpg',
+					]}
 				/>
 			</div>
-			<div className="mt-3 block md:col-span-3 md:col-start-10 md:hidden lg:col-start-9">
+			<div className="mt-7 block md:hidden">
 				<HorizontalMarquee
-					images={[...Array(3)].map(
-						_ =>
-							'https://plus.unsplash.com/premium_photo-1680632914285-0bc6110e475c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8'
-					)}
+					images={[
+						'/images/Graduation.jpg',
+						'/images/Headshot.jpg',
+						'/images/Old Landscape.jpg',
+						'/images/Chariot Monument.jpg',
+						'/images/Lion Statue.jpg',
+						'/images/Solo Photographer.jpg',
+					]}
+				/>
+			</div>
+			<div className="mt-7 block md:hidden">
+				<HorizontalMarquee
+					images={[
+						'/images/Birthday.jpg',
+						'/images/Night Streaks.jpg',
+						'/images/Group Picture.jpg',
+						'/images/Eiffel Tower.jpg',
+						'/images/Smiling Club.jpg',
+						'/images/Street Night View.jpg',
+					]}
 					reversed
 				/>
 			</div>

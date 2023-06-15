@@ -5,14 +5,18 @@ import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
 import CategoryQuestion from '@/components/questions/CategoryQuestion'
+
 import PhotographerQuestion, {
 	QuestionSchema as PhotographerQuestionSchema,
 } from '@/components/questions/PhotographerQuestion'
 import CustomerQuestion, {
 	QuestionSchema as CustomerQuestionSchema,
 } from '@/components/questions/CustomerQuestion'
+
 import PhotographerInterest from '@/components/questions/PhotographerInterest'
 import CustomerInterest from '@/components/questions/CustomerInterest'
+
+import { saveResponse } from '@/utils/api'
 
 type WaitlistResponse =
 	| ({
@@ -64,19 +68,15 @@ export default function WaitlistPage() {
 				{step === 2 && response?.category === 'photographer' && (
 					<PhotographerQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
-						onNext={response => {
-							setResponse({
-								category: 'photographer',
+						onNext={async response => {
+							const updatedResponse = {
+								category: 'photographer' as const,
 								...response,
-							})
+							}
 
-							return new Promise(resolve =>
-								setTimeout(() => {
-									console.log(response)
-									setStep(currentStep => currentStep + 1)
-									return resolve()
-								}, 1000)
-							)
+							setResponse(updatedResponse)
+							await saveResponse(updatedResponse)
+							setStep(currentStep => currentStep + 1)
 						}}
 						questionNumber={step}
 					/>
@@ -84,19 +84,15 @@ export default function WaitlistPage() {
 				{step === 2 && response?.category === 'customer' && (
 					<CustomerQuestion
 						onBack={() => setStep(currentStep => currentStep - 1)}
-						onNext={response => {
-							setResponse({
-								category: 'customer',
+						onNext={async response => {
+							const updatedResponse = {
+								category: 'customer' as const,
 								...response,
-							})
+							}
 
-							return new Promise(resolve =>
-								setTimeout(() => {
-									console.log(response)
-									setStep(currentStep => currentStep + 1)
-									return resolve()
-								}, 1000)
-							)
+							setResponse(updatedResponse)
+							await saveResponse(updatedResponse)
+							setStep(currentStep => currentStep + 1)
 						}}
 						questionNumber={step}
 					/>

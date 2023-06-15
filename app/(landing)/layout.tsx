@@ -2,6 +2,8 @@ import '../globals.css'
 import { Inter } from 'next/font/google'
 
 import NavigationBar from '@/components/NaviationBar'
+import Footer from '@/components/Footer'
+
 import classNames from '@/utils/classnames'
 
 const inter = Inter({
@@ -29,6 +31,9 @@ export default function RootLayout({
 				>
 					<NavigationBar />
 					{children}
+					<div className="flex-shrink-0">
+						<Footer />
+					</div>
 				</div>
 			</body>
 		</html>

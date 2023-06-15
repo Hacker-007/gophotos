@@ -8,9 +8,9 @@ module.exports = {
 	theme: {
 		extend: {
 			animation: {
-				'vertical-scroll': 'vertical-scroll 50s linear infinite',
-				'vertical-scroll2': 'vertical-scroll2 50s linear infinite',
-				'horizontal-scroll': 'horizontal-scroll 50s linear infinite',
+				'vertical-scroll': 'vertical-scroll 100s linear infinite',
+				'vertical-scroll2': 'vertical-scroll2 100s linear infinite',
+				'horizontal-scroll': 'horizontal-scroll 100s linear infinite',
 			},
 			keyframes: {
 				'vertical-scroll': {
