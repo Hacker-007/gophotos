@@ -78,9 +78,10 @@ export default function PhotographerQuestion({
 		}
 	}, [form, watchIsStudent, watchMethod])
 
-	const onSubmit: SubmitHandler<QuestionSchema> = data => {
+	const onSubmit: SubmitHandler<QuestionSchema> = async data => {
 		setLoading(true)
-		onNext(data).then(() => setLoading(false))
+		await onNext(data)
+		setLoading(false)
 	}
 
 	return (
