@@ -94,7 +94,7 @@ export default function CustomerQuestion({
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="relative inline-flex w-full flex-col items-center justify-center md:w-1/2"
+					className="relative flex w-full flex-col items-center justify-center md:w-1/2"
 				>
 					{loading && (
 						<div className="absolute z-10 flex h-full w-full max-w-sm items-center justify-center rounded-md bg-gray-400/50">
@@ -102,7 +102,7 @@ export default function CustomerQuestion({
 						</div>
 					)}
 					<p className="mb-7 text-gray-600">?</p>
-					<div className="flex w-full flex-col items-center space-y-2">
+					<div className="flex h-4/5 w-full flex-col items-center space-y-2 overflow-auto md:h-full">
 						<div className="grid w-full max-w-sm grid-cols-1 gap-y-2 md:grid-cols-2 md:gap-x-2">
 							<FormField
 								control={undefined}
@@ -340,7 +340,7 @@ export default function CustomerQuestion({
 								render={() => (
 									<div className="w-full max-w-sm">
 										<FormLabel className="pl-3 text-sm font-medium">
-											Describe method
+											Please specify
 										</FormLabel>
 										<Input
 											className="h-10 w-full"

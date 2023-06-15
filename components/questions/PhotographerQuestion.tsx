@@ -94,15 +94,15 @@ export default function PhotographerQuestion({
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="relative inline-flex w-full flex-col items-center justify-center md:w-1/2"
+					className="relative flex w-full flex-col items-center justify-center md:w-1/2"
 				>
 					{loading && (
 						<div className="absolute z-10 flex h-full w-full max-w-sm items-center justify-center rounded-md bg-gray-400/50">
 							<div className="square-loader"></div>
 						</div>
 					)}
-					<p className="mb-7 text-gray-600">?</p>
-					<div className="flex w-full flex-col items-center space-y-2">
+					<p className="text-gray-600">?</p>
+					<div className="flex h-4/5 w-full flex-col items-center space-y-2 overflow-auto md:h-full">
 						<div className="grid w-full max-w-sm grid-cols-1 gap-y-2 md:grid-cols-2 md:gap-x-2">
 							<FormField
 								control={undefined}
@@ -140,12 +140,12 @@ export default function PhotographerQuestion({
 								)}
 							/>
 						</div>
-						<div className="grid max-w-sm grid-cols-1 items-center gap-y-2 md:grid-cols-2 md:gap-x-2">
+						<div className="grid w-full max-w-sm grid-cols-1 gap-y-2 md:grid-cols-2 md:gap-x-2">
 							<FormField
 								control={undefined}
 								name="instagramHandle"
 								render={() => (
-									<div className="w-full max-w-sm">
+									<div className="w-full">
 										<FormLabel className="pl-3 text-sm font-medium">
 											Instagram{' '}
 											<span className="text-xs font-normal">
@@ -167,7 +167,7 @@ export default function PhotographerQuestion({
 								control={form.control}
 								name="experience"
 								render={({ field }) => (
-									<div className="w-full max-w-sm">
+									<div className="w-full">
 										<FormItem className="w-full">
 											<FormLabel className="pl-3 text-sm font-medium">
 												Years of Experience
@@ -317,7 +317,7 @@ export default function PhotographerQuestion({
 								render={() => (
 									<div className="w-full max-w-sm">
 										<FormLabel className="pl-3 text-sm font-medium">
-											Describe method
+											Please specify
 										</FormLabel>
 										<Input
 											className="h-10 w-full"
