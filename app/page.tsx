@@ -1,9 +1,8 @@
 import { Playfair_Display as PlayfairDisplay } from 'next/font/google'
 
-import Link from 'next/link'
-
 import { VerticalMarquee, HorizontalMarquee } from '@/components/Marquee'
 import classNames from '@/utils/classnames'
+import TypeformQuestion from '@/components/TypeformQuestion'
 
 const playfairDisplay = PlayfairDisplay({
 	subsets: ['latin'],
@@ -26,8 +25,7 @@ export default function LandingPage() {
 					our waitlist now to stay up to date and be the first to
 					access our groundbreaking photography services.
 				</h2>
-				<Link
-					href="/waitlist"
+				<TypeformQuestion
 					className="group mt-5 flex w-fit items-center justify-center rounded-md border border-gray-400 px-3 py-2 font-medium hover:bg-gray-200 md:mt-5 lg:mt-10"
 				>
 					<span className="flex-shrink-0 text-xs lg:text-sm">
@@ -47,7 +45,7 @@ export default function LandingPage() {
 							d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
 						/>
 					</svg>
-				</Link>
+				</TypeformQuestion>
 			</div>
 			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-5 md:block">
 				<VerticalMarquee
