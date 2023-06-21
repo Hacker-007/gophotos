@@ -26,7 +26,7 @@ export default function RootLayout({
 				<div
 					className={classNames(
 						inter.className,
-						'flex h-screen w-screen flex-col bg-zinc-100 px-6 pt-5 md:px-16 md:pt-7'
+						'flex h-screen w-screen flex-col bg-zinc-100 px-6 pt-5'
 					)}
 				>
 					<NavigationBar />

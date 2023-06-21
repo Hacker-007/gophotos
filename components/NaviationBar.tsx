@@ -7,7 +7,7 @@ export default function NavigationBar() {
 				GoPhotos<span className="text-xl">.</span>
 			</Link>
 			<div className="space-x-12">
-				<Link href="/" className="text-sm font-medium">
+				<Link href="/about" className="text-sm font-medium">
 					About Us
 				</Link>
 			</div>
