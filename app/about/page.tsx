@@ -4,7 +4,7 @@ export default function AboutUsPage() {
 			<h2 className="mt-5 text-lg font-medium">Our Mission</h2>
 			<p>...</p>
 			<h3 className="mt-5 text-lg font-medium">Our Team</h3>
-			<div className="mt-2 grid grid-cols-1 gap-3">
+			<div className="mt-2 grid grid-cols-1 sm:grid-cols-2 grid-flow-dense gap-3">
 				<div className="flex space-x-3">
 					<div className="aspect-square h-32 rounded-md bg-green-200"></div>
 					<div>
@@ -21,8 +21,8 @@ export default function AboutUsPage() {
 				</div>
 			</div>
 			<h3 className="mt-5 text-lg font-medium">Contact Us</h3>
-			<div className="mt-2 grid grid-cols-1 gap-3">
-				<div className="flex space-x-3">
+			<div className="mt-2 flex flex-col space-y-2">
+				<div className="flex space-x-1">
 					<svg
 						fill="currentColor"
 						viewBox="0 0 24 24"
@@ -37,7 +37,7 @@ export default function AboutUsPage() {
 					</svg>
 					<p className="text-sm">help@gophotos.us</p>
 				</div>
-				<div className="flex space-x-3">
+				<div className="flex space-x-1">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
