@@ -1,15 +1,34 @@
-import { ReactNode } from 'react'
+'use client'
+
+import { ReactNode, forwardRef, ComponentPropsWithoutRef } from 'react'
+
+import classNames from '@/utils/classnames'
 
 type ButtonProps = {
-	children: ReactNode
+	leftIcon?: ReactNode
 	rightIcon?: ReactNode
+	className?: string
+	children: ReactNode
 }
 
-export default function Button({ rightIcon, children }: ButtonProps) {
+const Button = forwardRef<
+	HTMLButtonElement,
+	ButtonProps & ComponentPropsWithoutRef<'button'>
+>(({ leftIcon, rightIcon, className, children, ...props }, forwardedRef) => {
 	return (
-		<div className="group flex items-center rounded-md text-sm font-medium">
+		<button
+			ref={forwardedRef}
+			className={classNames(
+				'group flex items-center gap-1 rounded-md text-sm font-medium',
+				className
+			)}
+			{...props}
+		>
+			{leftIcon}
 			{children}
 			{rightIcon}
-		</div>
+		</button>
 	)
-}
+})
+
+export default Button
