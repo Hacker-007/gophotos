@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Badge from './Badge'
-import { LayoutGroup } from 'framer-motion'
 
 type BadgeGroupProps = {
 	items: string[]
@@ -16,7 +15,6 @@ export default function BadgeGroup({
 	const [items, setItems] = useState(
 		initialItems.map((item, idx) => ({
 			selected: false,
-			stableIdx: idx,
 			value: item,
 		}))
 	)
@@ -27,39 +25,27 @@ export default function BadgeGroup({
 				item.value === value
 					? {
 							selected: !item.selected,
-							stableIdx: item.stableIdx,
 							value,
 					  }
 					: item
 			)
 
-			updatedItems.sort((a, b) => {
-				if (a.selected === b.selected) {
-					return a.stableIdx - b.stableIdx
-				}
-
-				return Number(b.selected) - Number(a.selected)
-			})
-
-			console.log(updatedItems)
 			return updatedItems
 		})
 	}
 
 	return (
 		<div className={className}>
-			<LayoutGroup>
-				{items.map(item => (
-					<Badge
-						fill={item.selected}
-						handleClick={() => toggleItem(item.value)}
-						className="whitespace-nowrap"
-						key={item.value}
-					>
-						{item.value}
-					</Badge>
-				))}
-			</LayoutGroup>
+			{items.map(item => (
+				<Badge
+					fill={item.selected}
+					handleClick={() => toggleItem(item.value)}
+					className="whitespace-nowrap"
+					key={item.value}
+				>
+					{item.value}
+				</Badge>
+			))}
 		</div>
 	)
 }

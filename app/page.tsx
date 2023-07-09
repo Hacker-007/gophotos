@@ -22,7 +22,7 @@ export default function Home() {
 						'Headshots',
 					]}
 				/>
-				<p className="mt-1 text-xs font-medium">showing 91 results</p>
+				<p className="mt-2 text-xs font-medium">showing 91 results</p>
 				<div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] justify-items-center gap-3">
 					<PortfolioPreview />
 					<PortfolioPreview />

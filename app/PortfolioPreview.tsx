@@ -6,31 +6,10 @@ export default function PortfolioPreview({}: PortfolioPreviewProps) {
 	return (
 		<div className="w-full">
 			<div className="h-48 w-full overflow-auto rounded-md @container">
-				<div className="grid gap-1 h-full w-full grid-cols-3 @md:grid-cols-4 @md:grid-rows-2">
-					<div className="relative col-span-2 h-full w-full bg-red-200 @md:row-span-2">
-						<Image
-							alt="Bob Ross Picture 1"
-							className="object-cover"
-							src="/Concert.jpg"
-							fill
-						/>
-					</div>
-					<div className="relative col-span-1 h-full w-full bg-green-200 @md:row-span-2">
-						<Image
-							alt="Bob Ross Picture 2"
-							className="object-cover"
-							src="/Birthday.jpg"
-							fill
-						/>
-					</div>
-					<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md:row-span-2 @md:block">
-						<Image
-							alt="Bob Ross Picture 3"
-							className="object-cover"
-							src="/Concert.jpg"
-							fill
-						/>
-					</div>
+				<div className="grid h-full w-full grid-cols-3 gap-1 @md:grid-cols-4 @md:grid-rows-2">
+					<div className="relative col-span-2 h-full w-full bg-red-200 @md:row-span-2"></div>
+					<div className="relative col-span-1 h-full w-full bg-green-200 @md:row-span-2"></div>
+					<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md:row-span-2 @md:block"></div>
 				</div>
 			</div>
 			<div className="mt-2 flex items-center justify-between">

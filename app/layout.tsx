@@ -29,7 +29,7 @@ export default function RootLayout({
 					)}
 				>
 					<NavigationBar className="px-4 py-2 flex-shrink-0" />
-					<div className="flex-grow px-4">{children}</div>
+					<div className="mt-2 mb-4 flex-grow px-4">{children}</div>
 					<footer className="h-10 flex-shrink-0 px-4 text-xs text-gray-400">
 						©️GoPhotos 2023
 					</footer>

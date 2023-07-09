@@ -25,7 +25,12 @@ type NavigationBarProps = {
 
 export default function NavigationBar({ className }: NavigationBarProps) {
 	return (
-		<nav className={classNames("flex h-16 w-full items-center justify-between border-b border-b-gray-300", className)}>
+		<nav
+			className={classNames(
+				'flex h-16 w-full items-center justify-between border-b border-b-gray-300',
+				className
+			)}
+		>
 			<Link href="/" className="text-sm font-semibold">
 				GoPhotos<span className="text-xl">.</span>
 			</Link>
@@ -42,7 +47,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 					leaveFrom="transform opacity-100 scale-100"
 					leaveTo="transform opacity-0 scale-[.98]"
 				>
-					<Menu.Items className="absolute z-10 right-0 mt-6 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+					<Menu.Items className="absolute right-0 z-10 mt-6 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 						<div className="p-1">
 							<Menu.Item>
 								{({ active }) => (
@@ -51,7 +56,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 											active
 												? 'bg-cyan-700 text-white'
 												: 'text-gray-900',
-											'p-2 w-full'
+											'w-full p-2'
 										)}
 										leftIcon={
 											<HomeIcon className="mr-1 h-4 w-4" />
@@ -68,7 +73,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 											active
 												? 'bg-cyan-700 text-white'
 												: 'text-gray-900',
-											'p-2 w-full'
+											'w-full p-2'
 										)}
 										leftIcon={
 											<CameraIcon className="mr-1 h-4 w-4" />
@@ -85,7 +90,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 											active
 												? 'bg-cyan-700 text-white'
 												: 'text-gray-900',
-											'p-2 w-full'
+											'w-full p-2'
 										)}
 										leftIcon={
 											<GiftIcon className="mr-1 h-4 w-4" />
@@ -102,7 +107,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 											active
 												? 'bg-cyan-700 text-white'
 												: 'text-gray-900',
-											'p-2 w-full'
+											'w-full p-2'
 										)}
 										leftIcon={
 											<EnvelopeIcon className="mr-1 h-4 w-4" />
@@ -121,7 +126,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 											active
 												? 'bg-cyan-700 text-white'
 												: 'text-gray-900',
-											'p-2 w-full'
+											'w-full p-2'
 										)}
 										leftIcon={
 											<BellIcon className="mr-1 h-4 w-4" />
@@ -133,7 +138,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 							</Menu.Item>
 							<Menu.Item>
 								<Button
-									className="p-2 w-full"
+									className="w-full p-2"
 									rightIcon={
 										<ArrowLongRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
 									}
