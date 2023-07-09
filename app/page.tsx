@@ -1,31 +1,34 @@
+import BadgeGroup from '@/components/BadgeGroup'
+import Input from '@/components/Input'
+import PortfolioPreview from './PortfolioPreview'
+
 export default function Home() {
 	return (
 		<main>
-			<div className="relative isolate w-full overflow-hidden">
-        Search
-				<svg
-					className="absolute inset-0 -z-10 h-full w-full stroke-gray-200/[40]"
-					aria-hidden="true"
-				>
-					<defs>
-						<pattern
-							id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc"
-							width="125"
-							height="200"
-							x="50%"
-							y="-1"
-							patternUnits="userSpaceOnUse"
-						>
-							<path d="M.5 200V.5" fill="none"></path>
-						</pattern>
-					</defs>
-					<rect
-						width="100%"
-						height="100%"
-						strokeWidth="0"
-						fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)"
-					></rect>
-				</svg>
+			<div className="w-full overflow-hidden">
+				<div className="w-full grid grid-cols-[repeat(auto-fit,minmax(224px,1fr))] gap-1">
+					<Input label="Location" name="location" />
+					<Input label="Price" name="price" />
+					<Input label="Date and Time" name="time" />
+				</div>
+				<BadgeGroup
+					className="mt-4 flex space-x-3 overflow-x-auto"
+					items={[
+						'Indoor',
+						'Outdoor',
+						'Bright Lights',
+						'Dim Lights',
+						'Group',
+						'Headshots',
+					]}
+				/>
+				<p className="mt-1 text-xs font-medium">showing 91 results</p>
+				<div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] justify-items-center gap-3">
+					<PortfolioPreview />
+					<PortfolioPreview />
+					<PortfolioPreview />
+					<PortfolioPreview />
+				</div>
 			</div>
 		</main>
 	)

@@ -19,9 +19,13 @@ import Button from './Button'
 
 import classNames from '@/utils/classnames'
 
-export default function NavigationBar() {
+type NavigationBarProps = {
+	className?: string
+}
+
+export default function NavigationBar({ className }: NavigationBarProps) {
 	return (
-		<nav className="flex h-16 w-full items-center justify-between border-b border-b-gray-300 px-4 py-2">
+		<nav className={classNames("flex h-16 w-full items-center justify-between border-b border-b-gray-300", className)}>
 			<Link href="/" className="text-sm font-semibold">
 				GoPhotos<span className="text-xl">.</span>
 			</Link>
