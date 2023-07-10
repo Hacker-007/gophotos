@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Badge from './Badge'
+import classNames from '@/utils/classnames'
 
 type BadgeGroupProps = {
 	items: string[]
@@ -40,7 +41,12 @@ export default function BadgeGroup({
 				<Badge
 					fill={item.selected}
 					handleClick={() => toggleItem(item.value)}
-					className="whitespace-nowrap"
+					className={classNames(
+						'whitespace-nowrap',
+						item.selected
+							? 'hover:bg-cyan-600'
+							: 'hover:bg-black/10'
+					)}
 					key={item.value}
 				>
 					{item.value}

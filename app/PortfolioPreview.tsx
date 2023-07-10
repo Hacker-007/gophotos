@@ -1,17 +1,21 @@
 import Image from 'next/image'
 
+import ViewProfileOverlay from './ViewProfileOverlay'
+
 type PortfolioPreviewProps = {}
 
 export default function PortfolioPreview({}: PortfolioPreviewProps) {
 	return (
-		<div className="w-full">
-			<div className="h-48 w-full overflow-auto rounded-md @container">
+		<div className="group w-full">
+			<ViewProfileOverlay
+				className="relative h-48 w-full overflow-auto rounded-md @container"
+			>
 				<div className="grid h-full w-full grid-cols-3 gap-1 @md:grid-cols-4 @md:grid-rows-2">
 					<div className="relative col-span-2 h-full w-full bg-red-200 @md:row-span-2"></div>
 					<div className="relative col-span-1 h-full w-full bg-green-200 @md:row-span-2"></div>
 					<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md:row-span-2 @md:block"></div>
 				</div>
-			</div>
+			</ViewProfileOverlay>
 			<div className="mt-2 flex items-center justify-between">
 				<div className="flex items-center space-x-2">
 					<div className="relative h-8 w-8 overflow-hidden rounded-full">

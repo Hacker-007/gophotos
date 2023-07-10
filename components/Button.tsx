@@ -3,6 +3,7 @@
 import { ReactNode, forwardRef, ComponentPropsWithoutRef } from 'react'
 
 import classNames from '@/utils/classnames'
+import { motion } from 'framer-motion'
 
 type ButtonProps = {
 	leftIcon?: ReactNode
