@@ -5,6 +5,7 @@ import { ReactNode, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 type ViewProfileOverlayProps = {
+	handleClick?: () => void
 	className?: string
 	children?: ReactNode
 }
@@ -19,6 +20,7 @@ const variants = {
 }
 
 export default function ViewProfileOverlay({
+	handleClick,
 	className,
 	children,
 }: ViewProfileOverlayProps) {
@@ -54,6 +56,7 @@ export default function ViewProfileOverlay({
 								duration: 0.2,
 								ease: 'easeInOut',
 							}}
+							onClick={handleClick}
 							className="absolute inset-0 z-20 m-auto h-min w-min whitespace-nowrap rounded-md border border-gray-600 p-2 text-sm font-medium transition-colors duration-200 hover:bg-black/20"
 						>
 							View Profile

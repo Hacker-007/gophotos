@@ -1,13 +1,20 @@
+'use client'
+
 import Image from 'next/image'
 
 import ViewProfileOverlay from './ViewProfileOverlay'
+import { useState } from 'react'
+import Portfolio from './Portfolio'
 
 type PortfolioPreviewProps = {}
 
 export default function PortfolioPreview({}: PortfolioPreviewProps) {
+	const [isFullPortfolioOpen, setIsFullPortfolioOpen] = useState(false)
+
 	return (
 		<div className="group w-full">
 			<ViewProfileOverlay
+				handleClick={() => setIsFullPortfolioOpen(true)}
 				className="relative h-48 w-full overflow-auto rounded-md @container"
 			>
 				<div className="grid h-full w-full grid-cols-3 gap-1 @md:grid-cols-4 @md:grid-rows-2">
@@ -53,6 +60,10 @@ export default function PortfolioPreview({}: PortfolioPreviewProps) {
 					</p>
 				</div>
 			</div>
+			<Portfolio
+				isOpen={isFullPortfolioOpen}
+				handleClose={() => setIsFullPortfolioOpen(false)}
+			/>
 		</div>
 	)
 }
