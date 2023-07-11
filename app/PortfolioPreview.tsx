@@ -5,14 +5,17 @@ import Image from 'next/image'
 import ViewProfileOverlay from './ViewProfileOverlay'
 import { useState } from 'react'
 import Portfolio from './Portfolio'
+import classNames from '@/utils/classnames'
 
-type PortfolioPreviewProps = {}
+type PortfolioPreviewProps = {
+	className?: string
+}
 
-export default function PortfolioPreview({}: PortfolioPreviewProps) {
+export default function PortfolioPreview({ className }: PortfolioPreviewProps) {
 	const [isFullPortfolioOpen, setIsFullPortfolioOpen] = useState(false)
 
 	return (
-		<div className="group w-full">
+		<div className={classNames('group w-full', className)}>
 			<ViewProfileOverlay
 				handleClick={() => setIsFullPortfolioOpen(true)}
 				className="relative h-48 w-full overflow-auto rounded-md @container"
@@ -48,7 +51,7 @@ export default function PortfolioPreview({}: PortfolioPreviewProps) {
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 20 20"
 							fill="currentColor"
-							className="h-4 w-4"
+							className="h-3 w-3"
 						>
 							<path
 								fillRule="evenodd"

@@ -25,7 +25,7 @@ export default function RootLayout({
 				<div
 					className={classNames(
 						inter.className,
-						'flex h-screen w-screen flex-col'
+						'flex h-screen w-screen overflow-x-hidden flex-col'
 					)}
 				>
 					<NavigationBar className="px-4 py-2 flex-shrink-0" />

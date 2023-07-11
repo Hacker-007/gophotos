@@ -33,27 +33,11 @@ export default function Portfolio({ isOpen, handleClose }: PortfolioProps) {
 							leaveFrom="opacity-100 scale-100"
 							leaveTo="opacity-0 scale-95"
 						>
-							<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-								<Dialog.Title
-									as="h3"
-									className="text-lg font-medium leading-6 text-gray-900"
-								>
-									Bob Ross
-								</Dialog.Title>
-								<div className="mt-2">
-									<p className="text-sm text-gray-500">
-										Portfolio
-									</p>
-								</div>
-
-								<div className="mt-4">
-									<button
-										type="button"
-										className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-										onClick={handleClose}
-									>
-										Close
-									</button>
+							<Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-md bg-white text-left align-middle shadow-xl transition-all @container">
+								<div className="grid h-48 w-full grid-cols-3 gap-1 @md:grid-cols-4 @md:grid-rows-2">
+									<div className="relative col-span-2 h-full w-full bg-red-200 @md:row-span-2"></div>
+									<div className="relative col-span-1 h-full w-full bg-green-200 @md:row-span-2"></div>
+									<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md:row-span-2 @md:block"></div>
 								</div>
 							</Dialog.Panel>
 						</Transition.Child>
