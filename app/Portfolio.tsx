@@ -33,11 +33,15 @@ export default function Portfolio({ isOpen, handleClose }: PortfolioProps) {
 							leaveFrom="opacity-100 scale-100"
 							leaveTo="opacity-0 scale-95"
 						>
-							<Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-md bg-white text-left align-middle shadow-xl transition-all @container">
-								<div className="grid h-48 w-full grid-cols-3 gap-1 @md:grid-cols-4 @md:grid-rows-2">
-									<div className="relative col-span-2 h-full w-full bg-red-200 @md:row-span-2"></div>
-									<div className="relative col-span-1 h-full w-full bg-green-200 @md:row-span-2"></div>
-									<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md:row-span-2 @md:block"></div>
+							<Dialog.Panel className="w-full max-w-3xl transform overflow-hidden rounded-md bg-white text-left align-middle shadow-xl transition-all @container">
+								<div className="grid h-48 w-full grid-cols-4 gap-1">
+									<div className="relative col-span-2 h-full w-full bg-red-200"></div>
+									<div className="relative col-span-1 h-full w-full bg-green-200"></div>
+									<div className="relative col-span-1 h-full w-full bg-blue-200"></div>
+								</div>
+								<div className="grid grid-cols-3 w-full h-72">
+									<div className="col-span-2 h-full w-full bg-purple-200"></div>
+									<div className="col-span-1 h-full w-full bg-orange-200"></div>
 								</div>
 							</Dialog.Panel>
 						</Transition.Child>

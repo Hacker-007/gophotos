@@ -25,10 +25,34 @@ export default function Home() {
 				/>
 				<p className="mt-2 text-xs font-medium">showing 91 results</p>
 				<div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(288px,1fr))] justify-items-center gap-3">
-					<PortfolioPreview />
-					<PortfolioPreview />
-					<PortfolioPreview />
-					<PortfolioPreview />
+					<PortfolioPreview
+						name="Bob Ross"
+						location="Cambridge, MA"
+						hourlyRate="$150"
+						rating={4.7}
+						numberOfReviews={1027}
+					/>
+					<PortfolioPreview
+						name="Revanth Pothukuchi"
+						location="Bothell, WA"
+						hourlyRate="$1500"
+						rating={5.0}
+						numberOfReviews={4129}
+					/>
+					<PortfolioPreview
+						name="Qudus Shittu"
+						location="Cambridge, MA"
+						hourlyRate="$150"
+						rating={4.7}
+						numberOfReviews={1027}
+					/>
+					<PortfolioPreview
+						name="Bob Ross"
+						location="Cambridge, MA"
+						hourlyRate="$150"
+						rating={4.7}
+						numberOfReviews={1027}
+					/>
 				</div>
 			</div>
 		</main>

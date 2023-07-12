@@ -1,17 +1,35 @@
 'use client'
 
-import Image from 'next/image'
-
 import ViewProfileOverlay from './ViewProfileOverlay'
 import { useState } from 'react'
 import Portfolio from './Portfolio'
 import classNames from '@/utils/classnames'
 
 type PortfolioPreviewProps = {
+	name: string
+	location: string
+	hourlyRate: string
+	rating: number
+	numberOfReviews: number
 	className?: string
 }
 
-export default function PortfolioPreview({ className }: PortfolioPreviewProps) {
+function formatRating(rating: number) {
+	if (Number.isInteger(rating)) {
+		return `${rating}.0`  
+	} else {
+		return `${rating}`
+	}
+}
+
+export default function PortfolioPreview({
+	name,
+	location,
+	hourlyRate,
+	rating,
+	numberOfReviews: numberReviews,
+	className,
+}: PortfolioPreviewProps) {
 	const [isFullPortfolioOpen, setIsFullPortfolioOpen] = useState(false)
 
 	return (
@@ -20,30 +38,24 @@ export default function PortfolioPreview({ className }: PortfolioPreviewProps) {
 				handleClick={() => setIsFullPortfolioOpen(true)}
 				className="relative h-48 w-full overflow-auto rounded-md @container"
 			>
-				<div className="grid h-full w-full grid-cols-3 gap-1 @md:grid-cols-4 @md:grid-rows-2">
-					<div className="relative col-span-2 h-full w-full bg-red-200 @md:row-span-2"></div>
-					<div className="relative col-span-1 h-full w-full bg-green-200 @md:row-span-2"></div>
-					<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md:row-span-2 @md:block"></div>
+				<div className="grid h-full w-full grid-cols-3 gap-1 @md:grid-cols-4 @2xl:grid-cols-5">
+					<div className="relative col-span-2 h-full w-full bg-red-200"></div>
+					<div className="relative col-span-1 h-full w-full bg-green-200"></div>
+					<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md:block"></div>
+					<div className="relative col-span-1 hidden h-full w-full bg-purple-200 @2xl:block"></div>
 				</div>
 			</ViewProfileOverlay>
 			<div className="mt-2 flex items-center justify-between">
 				<div className="flex items-center space-x-2">
-					<div className="relative h-8 w-8 overflow-hidden rounded-full">
-						<Image
-							fill
-							className="object-cover"
-							src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-							alt="Bob Ross Profile Picture"
-						/>
-					</div>
+					<div className="relative h-8 w-8 overflow-hidden rounded-full bg-gray-300"></div>
 					<div>
-						<p className="text-sm font-medium">Bob Ross</p>
-						<p className="text-xs font-light">Cambridge, MA</p>
+						<p className="text-sm font-medium">{name}</p>
+						<p className="text-xs font-light">{location}</p>
 					</div>
 				</div>
 				<div>
 					<p className="text-right text-xs">
-						<span className="font-semibold">$150</span>
+						<span className="font-semibold">{hourlyRate}</span>
 						/hr
 					</p>
 					<p className="flex items-center justify-end text-xs font-medium">
@@ -59,7 +71,7 @@ export default function PortfolioPreview({ className }: PortfolioPreviewProps) {
 								clipRule="evenodd"
 							/>
 						</svg>
-						4.7 (1027)
+						{formatRating(rating)} ({numberReviews})
 					</p>
 				</div>
 			</div>
