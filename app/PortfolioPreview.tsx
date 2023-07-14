@@ -50,7 +50,7 @@ export default function PortfolioPreview({
 					<div className="relative h-8 w-8 overflow-hidden rounded-full bg-gray-300"></div>
 					<div>
 						<p className="text-sm font-medium">{name}</p>
-						<p className="text-xs font-light">{location}</p>
+						<p className="text-xs">{location}</p>
 					</div>
 				</div>
 				<div>
