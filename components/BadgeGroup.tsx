@@ -1,16 +1,19 @@
 'use client'
 
-import { useState } from 'react'
 import Badge from './Badge'
+
 import classNames from '@/utils/classnames'
+import { useState } from 'react'
 
 type BadgeGroupProps = {
 	items: string[]
+	static?: boolean
 	className?: string
 }
 
 export default function BadgeGroup({
 	items: initialItems,
+	static: isStatic,
 	className,
 }: BadgeGroupProps) {
 	const [items, setItems] = useState(
@@ -21,18 +24,20 @@ export default function BadgeGroup({
 	)
 
 	const toggleItem = (value: string) => {
-		setItems(items => {
-			const updatedItems = items.map(item =>
-				item.value === value
-					? {
-							selected: !item.selected,
-							value,
-					  }
-					: item
-			)
+		if (!isStatic) {
+			setItems(items => {
+				const updatedItems = items.map(item =>
+					item.value === value
+						? {
+								selected: !item.selected,
+								value,
+						  }
+						: item
+				)
 
-			return updatedItems
-		})
+				return updatedItems
+			})
+		}
 	}
 
 	return (
@@ -43,9 +48,11 @@ export default function BadgeGroup({
 					handleClick={() => toggleItem(item.value)}
 					className={classNames(
 						'whitespace-nowrap',
-						item.selected
-							? 'hover:bg-cyan-600'
-							: 'hover:bg-black/10'
+						isStatic && 'cursor-default',
+						!isStatic &&
+							(item.selected
+								? 'hover:bg-cyan-600'
+								: 'hover:bg-black/10')
 					)}
 					key={item.value}
 				>

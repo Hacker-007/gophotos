@@ -1,5 +1,6 @@
-import classNames from '@/utils/classnames'
 import { ReactNode } from 'react'
+
+import classNames from '@/utils/classnames'
 
 type ViewProfileOverlayProps = {
 	handleClick?: () => void

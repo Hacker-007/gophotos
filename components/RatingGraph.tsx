@@ -24,7 +24,6 @@ function RatingGraphComponent({
 	label: number
 	percentage: number
 }) {
-    console.log(percentage)
 	return (
 		<div className="flex flex-1 items-center text-sm">
 			<p className="text-gray-900">{label} stars</p>

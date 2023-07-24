@@ -1,8 +1,10 @@
 'use client'
 
-import ViewProfileOverlay from './ViewProfileOverlay'
-import { useState } from 'react'
 import Portfolio from './Portfolio'
+import ViewProfileOverlay from './ViewProfileOverlay'
+
+import { useState } from 'react'
+
 import classNames from '@/utils/classnames'
 
 type PortfolioPreviewProps = {

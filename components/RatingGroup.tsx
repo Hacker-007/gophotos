@@ -1,4 +1,3 @@
-import classNames from '@/utils/classnames'
 import { StarIcon } from '@heroicons/react/24/solid'
 
 type RatingGroupProps = {

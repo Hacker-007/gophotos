@@ -1,7 +1,7 @@
 'use client'
 
-import { Fragment } from 'react'
-import Link from 'next/link'
+import { HorizontalDivider } from './Divider'
+import Button from './Button'
 
 import {
 	ArrowLongRightIcon,
@@ -14,8 +14,8 @@ import {
 } from '@heroicons/react/24/outline'
 import { Menu, Transition } from '@headlessui/react'
 
-import { HorizontalDivider } from './Divider'
-import Button from './Button'
+import Link from 'next/link'
+import { Fragment } from 'react'
 
 import classNames from '@/utils/classnames'
 
@@ -31,7 +31,11 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 				className
 			)}
 		>
-			<Link href="/" className="text-sm font-semibold">
+			<Link
+				href="/"
+				passHref={undefined}
+				className="text-sm font-semibold"
+			>
 				GoPhotos<span className="text-xl">.</span>
 			</Link>
 			<Menu as="div" className="relative flex sm:hidden">
