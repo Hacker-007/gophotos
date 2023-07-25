@@ -1,13 +1,9 @@
-'use client'
-
-import Portfolio from './Portfolio'
 import ViewProfileOverlay from './ViewProfileOverlay'
-
-import { useState } from 'react'
 
 import classNames from '@/utils/classnames'
 
 type PortfolioPreviewProps = {
+	photographerId: string
 	name: string
 	location: string
 	hourlyRate: string
@@ -25,19 +21,18 @@ function formatRating(rating: number) {
 }
 
 export default function PortfolioPreview({
+	photographerId,
 	name,
 	location,
 	hourlyRate,
 	rating,
-	numberOfReviews: numberReviews,
+	numberOfReviews,
 	className,
 }: PortfolioPreviewProps) {
-	const [isFullPortfolioOpen, setIsFullPortfolioOpen] = useState(false)
-
 	return (
 		<div className={classNames('group w-full', className)}>
 			<ViewProfileOverlay
-				handleClick={() => setIsFullPortfolioOpen(true)}
+				photographerId={photographerId}
 				className="relative h-48 w-full overflow-auto rounded-md @container"
 			>
 				<div className="grid h-full w-full grid-cols-3 gap-1 @md:grid-cols-4 @2xl:grid-cols-5">
@@ -73,14 +68,14 @@ export default function PortfolioPreview({
 								clipRule="evenodd"
 							/>
 						</svg>
-						{formatRating(rating)} ({numberReviews})
+						{formatRating(rating)} ({numberOfReviews})
 					</p>
 				</div>
 			</div>
-			<Portfolio
+			{/* <Portfolio
 				isOpen={isFullPortfolioOpen}
 				handleClose={() => setIsFullPortfolioOpen(false)}
-			/>
+			/> */}
 		</div>
 	)
 }

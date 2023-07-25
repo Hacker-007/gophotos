@@ -26,6 +26,7 @@ export default function Home() {
 				<p className="mt-2 text-xs font-medium">showing 91 results</p>
 				<div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(288px,1fr))] justify-items-center gap-3">
 					<PortfolioPreview
+						photographerId="1"
 						name="Bob Ross"
 						location="Cambridge, MA"
 						hourlyRate="$150"
@@ -33,6 +34,7 @@ export default function Home() {
 						numberOfReviews={1027}
 					/>
 					<PortfolioPreview
+						photographerId="2"
 						name="Revanth Pothukuchi"
 						location="Bothell, WA"
 						hourlyRate="$1500"
@@ -40,6 +42,7 @@ export default function Home() {
 						numberOfReviews={4129}
 					/>
 					<PortfolioPreview
+						photographerId="3"
 						name="Qudus Shittu"
 						location="Cambridge, MA"
 						hourlyRate="$150"
@@ -47,6 +50,7 @@ export default function Home() {
 						numberOfReviews={1027}
 					/>
 					<PortfolioPreview
+						photographerId="4"
 						name="Bob Ross"
 						location="Cambridge, MA"
 						hourlyRate="$150"

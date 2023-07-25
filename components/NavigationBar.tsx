@@ -58,7 +58,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 									<Button
 										className={classNames(
 											active
-												? 'bg-cyan-700 text-white'
+												? 'bg-black text-white'
 												: 'text-gray-900',
 											'w-full p-2'
 										)}
@@ -75,7 +75,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 									<Button
 										className={classNames(
 											active
-												? 'bg-cyan-700 text-white'
+												? 'bg-black text-white'
 												: 'text-gray-900',
 											'w-full p-2'
 										)}
@@ -92,7 +92,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 									<Button
 										className={classNames(
 											active
-												? 'bg-cyan-700 text-white'
+												? 'bg-black text-white'
 												: 'text-gray-900',
 											'w-full p-2'
 										)}
@@ -109,7 +109,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 									<Button
 										className={classNames(
 											active
-												? 'bg-cyan-700 text-white'
+												? 'bg-black text-white'
 												: 'text-gray-900',
 											'w-full p-2'
 										)}
@@ -128,7 +128,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 									<Button
 										className={classNames(
 											active
-												? 'bg-cyan-700 text-white'
+												? 'bg-black text-white'
 												: 'text-gray-900',
 											'w-full p-2'
 										)}

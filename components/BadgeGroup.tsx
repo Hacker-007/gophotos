@@ -49,10 +49,7 @@ export default function BadgeGroup({
 					className={classNames(
 						'whitespace-nowrap',
 						isStatic && 'cursor-default',
-						!isStatic &&
-							(item.selected
-								? 'hover:bg-cyan-600'
-								: 'hover:bg-black/10')
+						!isStatic && (item.selected ? 'hover:bg-black/80' : 'hover:bg-black/10' )
 					)}
 					key={item.value}
 				>
