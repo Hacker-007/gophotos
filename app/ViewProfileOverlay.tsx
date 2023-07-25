@@ -18,8 +18,8 @@ export default function ViewProfileOverlay({
 		<div className={classNames('group', className)}>
 			<Link
 				href={`/photographer/${photographerId}`}
-				target='_blank'
-				rel='noopener noreferrer'
+				// target='_blank'
+				// rel='noopener noreferrer'
 				className="absolute inset-0 z-10 m-auto flex items-center justify-center bg-black/10 text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:opacity-100"
 			>
 				View Profile

@@ -14,13 +14,13 @@ type PortfolioPreviewProps = {
 
 function formatRating(rating: number) {
 	if (Number.isInteger(rating)) {
-		return `${rating}.0`  
+		return `${rating}.0`
 	} else {
 		return `${rating}`
 	}
 }
 
-export default function PortfolioPreview({
+export default async function PortfolioPreview({
 	photographerId,
 	name,
 	location,
@@ -72,10 +72,6 @@ export default function PortfolioPreview({
 					</p>
 				</div>
 			</div>
-			{/* <Portfolio
-				isOpen={isFullPortfolioOpen}
-				handleClose={() => setIsFullPortfolioOpen(false)}
-			/> */}
 		</div>
 	)
 }
