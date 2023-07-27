@@ -1,3 +1,6 @@
+import classNames from '@/utils/classnames'
+import { StarIcon } from '@heroicons/react/24/solid'
+
 type RatingGraphProps = {
 	ratings: [number, number, number, number, number]
 	className?: string
@@ -5,10 +8,10 @@ type RatingGraphProps = {
 
 export default function RatingGraph({ ratings, className }: RatingGraphProps) {
 	return (
-		<div className={className}>
+		<div className={classNames('space-y-1', className)}>
 			{ratings.reverse().map((ratingPercentage, idx) => (
 				<RatingGraphComponent
-					key={ratingPercentage}
+					key={idx}
 					label={5 - idx}
 					percentage={ratingPercentage}
 				/>
@@ -25,18 +28,23 @@ function RatingGraphComponent({
 	percentage: number
 }) {
 	return (
-		<div className="flex flex-1 items-center text-sm">
-			<p className="text-gray-900">{label} stars</p>
-			<div className="relative ml-2 flex-1">
-				<div className="h-3 rounded-sm border border-gray-200 bg-gray-100"></div>
-				<div
-					className="absolute inset-y-0 rounded-sm border border-yellow-400 bg-yellow-400"
-					style={{
-						width: `calc(${percentage}%)`,
-					}}
-				></div>
+		<div className="w-full flex text-sm">
+			<div className="w-2.5 flex justify-center items-center">
+				<p className='text-gray-900 font-medium'>{label}</p>
 			</div>
-			<p className="w-7 text-right text-xs text-gray-900">
+			<div className='flex-1 flex items-center gap-x-1'>
+				<StarIcon className="h-4 w-4 text-yellow-400" />
+				<div className="relative h-5 w-full place-self-center">
+					<div className="h-full rounded-sm border border-gray-200 bg-gray-100"></div>
+					<div
+						className="absolute inset-y-0 rounded-sm border border-yellow-400 bg-yellow-400"
+						style={{
+							width: `calc(${percentage}%)`,
+						}}
+					/>
+				</div>
+			</div>
+			<p className="w-7 text-right text-xs text-gray-700">
 				{Math.round(percentage)}%
 			</p>
 		</div>

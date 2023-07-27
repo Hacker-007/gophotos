@@ -29,6 +29,7 @@
 	},
 	"devDependencies": {
 		"@tailwindcss/forms": "^0.5.3",
+		"@tailwindcss/typography": "^0.5.9",
 		"prettier-plugin-tailwindcss": "^0.3.0"
 	},
 	"lint-staged": {

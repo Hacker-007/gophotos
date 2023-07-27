@@ -27,7 +27,7 @@ export default function Input({ label, name, className }: InputProps) {
 					type="text"
 					name={name}
 					id={id}
-					className="block w-full h-8 rounded-md border-0 bg-gray-50 px-7 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-cyan-700 text-[13px] font-semibold"
+					className="block w-full h-8 rounded-md border-0 bg-gray-50 px-7 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black text-sm font-semibold"
 					placeholder=""
 				/>
 			</div>
