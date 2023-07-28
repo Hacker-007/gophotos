@@ -9,10 +9,10 @@ type RatingProps = {
 export default function Rating({ rating, className }: RatingProps) {
     return (
         <div className={classNames('flex', className)}>
-            {[...Array(rating)].map(starNum => (
+            {[...Array(rating)].map((_, starNum) => (
                 <StarIcon key={starNum} className="w-5 h-5 text-yellow-400" />
             ))}
-            {[...Array(5 - rating)].map(starNum => (
+            {[...Array(5 - rating)].map((_, starNum) => (
                 <StarIcon key={starNum} className="w-5 h-5 text-gray-300" />
             ))}
         </div>
