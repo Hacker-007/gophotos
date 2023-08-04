@@ -30,7 +30,7 @@ export default async function PortfolioPreview({
 	className,
 }: PortfolioPreviewProps) {
 	return (
-		<div className={classNames('group w-full', className)}>
+		<div className={classNames('w-full', className)}>
 			<ViewProfileOverlay
 				photographerId={photographerId}
 				className="relative h-48 w-full overflow-auto rounded-md @container"

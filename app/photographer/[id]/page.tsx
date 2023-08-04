@@ -4,8 +4,8 @@ import BadgeGroup from '@/components/BadgeGroup'
 import RatingGraph from '@/components/RatingGraph'
 import Rating from '@/components/Rating'
 import Tooltip from '@/components/Tooltip'
-import Input from '@/components/Input'
 import Button from '@/components/Button'
+import Carousel from './Carousel'
 
 type PhotographerPortfolioProps = {
 	params: {
@@ -15,11 +15,11 @@ type PhotographerPortfolioProps = {
 
 export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 	return (
-		<div className="md:grid-row-2 grid h-full w-full grid-cols-1 md:grid-cols-2 md:gap-3">
-			<div className="md:col-span-2 md:row-start-1">
-				<div className="h-80 w-full bg-red-200">Carousel</div>
-			</div>
-			<section className="flex flex-col space-y-4 md:col-start-1 md:col-end-3 md:row-start-2">
+		<div className="grid h-full w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3">
+			<div className="w-full max-w-xl space-y-4 md:col-span-1 md:col-start-1 md:row-start-1">
+				<div className="mb-2 h-80 w-full max-w-xl @container">
+					<Carousel />
+				</div>
 				<div>
 					<div className="mt-2 flex w-full justify-between">
 						<div className="flex items-center gap-x-2">
@@ -42,6 +42,41 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="w-full max-w-md justify-self-start md:col-span-1 md:col-start-2 md:row-span-2 md:row-start-1 lg:col-start-3">
+				<div className="flex w-full flex-col md:sticky md:top-0 md:h-40 md:justify-evenly md:rounded-md md:border md:border-gray-300 md:p-3">
+					<div className="flex h-min w-full items-center justify-between gap-y-2">
+						<div>
+							<div className="flex items-center space-x-1">
+								<h3 className="text-sm font-medium">
+									Estimated price
+								</h3>
+								<Tooltip className="rounded-md border border-gray-500 bg-white p-1 shadow-md">
+									<p className="text-sm text-gray-600">
+										The estimate is calculated based on
+										previous events and rates.
+									</p>
+								</Tooltip>
+							</div>
+							<h4 className="text-md font-semibold">
+								$200.00 - $500.00
+							</h4>
+						</div>
+						<div className="text-right">
+							<h4 className="text-sm font-medium">
+								September 14, 2023
+							</h4>
+							<h4 className="text-sm font-medium">
+								4:30 PM - 6:30 PM
+							</h4>
+						</div>
+					</div>
+					<Button className="mt-2 w-full justify-center border border-black p-2 hover:bg-gray-100">
+						Request Quote
+					</Button>
+				</div>
+			</div>
+			<section className="flex w-full max-w-xl flex-col space-y-4 md:col-span-1 md:col-start-1 md:row-start-2 lg:col-start-2 lg:row-start-1">
 				<div className="prose prose-sm w-full prose-headings:text-sm">
 					<h3 className="font-medium">About Photographer</h3>
 					<p>
@@ -60,7 +95,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 					<h3 className="font-medium">Skills</h3>
 					<BadgeGroup
 						static
-						className="mt-1 flex space-x-3 overflow-x-auto"
+						className="mt-1 flex gap-3 overflow-x-auto md:flex-wrap"
 						items={[
 							'Indoor',
 							'Outdoor',
@@ -91,109 +126,129 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 						</li>
 					</ul>
 				</div>
-				<div className="grid grid-cols-1 gap-5">
-					<div>
-						<div className="prose w-full prose-headings:text-sm">
-							<h3 className="font-medium">Reviews</h3>
-						</div>
-						<div>
-							<div className="flex items-center">
-								<StarIcon className="h-4 w-4 text-yellow-400" />
-								<h4 className="text-xl font-medium">
-									4.6
-									<span className="text-sm text-gray-600">
-										{' '}
-										/ 5.0
-									</span>
-								</h4>
-							</div>
-							<p className="mb-2 text-xs text-gray-500">
-								2370 reviews
-							</p>
-						</div>
-						<RatingGraph
-							className="w-full"
-							ratings={[4, 2, 4, 12, 78]}
-						/>
-					</div>
-					<ul className="grid grid-cols-1 gap-4">
-						<li>
-							<div className="flex items-center gap-x-2">
-								<div className="h-8 w-8 rounded-full bg-gray-300"></div>
-								<div className="flex flex-col">
-									<h3 className="text-sm font-medium">
-										Revanth Pothukuchi
-									</h3>
-									<p className="text-xs text-gray-600">
-										July 17, 2023
-									</p>
-								</div>
-							</div>
-							<Rating rating={5} />
-							<p className="mt-1 text-sm">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Possimus dolore vel impedit,
-								harum dolorem error sunt!
-							</p>
-						</li>
-						<li>
-							<div className="flex items-center gap-x-2">
-								<div className="h-8 w-8 rounded-full bg-gray-300"></div>
-								<div className="flex flex-col">
-									<h3 className="text-sm font-medium">
-										Revanth Pothukuchi
-									</h3>
-									<p className="text-xs text-gray-600">
-										July 17, 2023
-									</p>
-								</div>
-							</div>
-							<Rating rating={4} />
-							<p className="mt-1 text-sm">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Possimus dolore vel impedit,
-								harum dolorem error sunt!
-							</p>
-						</li>
-						<li>
-							<div className="flex items-center gap-x-2">
-								<div className="h-8 w-8 rounded-full bg-gray-300"></div>
-								<div className="flex flex-col">
-									<h3 className="text-sm font-medium">
-										Revanth Pothukuchi
-									</h3>
-									<p className="text-xs text-gray-600">
-										July 17, 2023
-									</p>
-								</div>
-							</div>
-							<Rating rating={3} />
-							<p className="mt-1 text-sm">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Possimus dolore vel impedit,
-								harum dolorem error sunt!
-							</p>
-						</li>
-					</ul>
-				</div>
 			</section>
-			<div className="sticky bottom-5 flex h-min w-full justify-center md:top-0 md:col-start-2 md:row-start-2">
-				<div className="w-full max-w-sm rounded-md border border-gray-400 bg-white p-3">
-					<Input label="Event date" name="event-date" />
-					<div className="mt-2 flex items-center gap-x-1">
-						<h3 className="font-medium">Price estimate</h3>
-						<Tooltip className="rounded-md border border-gray-500 bg-white p-1 shadow-md">
-							<p className="text-sm text-gray-600">
-								The estimate is calculated based on previous
-								events and rates.
-							</p>
-						</Tooltip>
+			<div className="grid w-full grid-cols-1 gap-5 md:col-span-2 md:col-start-1 md:row-start-3 md:justify-self-start lg:col-span-3 lg:grid-cols-[32rem_1fr]">
+				<div className="max-w-xl md:col-span-1 md:col-start-1">
+					<div className="prose w-full prose-headings:text-sm">
+						<h3 className="font-medium">Reviews</h3>
 					</div>
-					<h4 className="text-lg font-semibold">$200.00 - $500.00</h4>
-					<Button className="mt-2 w-full justify-center border border-black p-2 hover:bg-gray-100">
-						Request Quote
-					</Button>
+					<div>
+						<div className="flex items-center">
+							<StarIcon className="h-4 w-4 text-yellow-400" />
+							<h4 className="text-lg font-medium">
+								4.6
+								<span className="text-sm text-gray-600">
+									{' '}
+									/ 5.0
+								</span>
+							</h4>
+						</div>
+						<p className="mb-2 text-xs text-gray-500">
+							2370 reviews
+						</p>
+					</div>
+					<RatingGraph
+						className="w-full"
+						ratings={[4, 2, 4, 12, 78]}
+					/>
 				</div>
+				<ul className="grid grid-cols-[repeat(auto-fit,300px)] gap-4">
+					<li>
+						<div className="flex items-center gap-x-2">
+							<div className="h-8 w-8 rounded-full bg-gray-300"></div>
+							<div className="flex flex-col">
+								<h3 className="text-sm font-medium">
+									Revanth Pothukuchi
+								</h3>
+								<p className="text-xs text-gray-600">
+									July 17, 2023
+								</p>
+							</div>
+						</div>
+						<Rating rating={5} />
+						<p className="mt-1 text-sm">
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Possimus dolore vel impedit, harum dolorem
+							error sunt!
+						</p>
+					</li>
+					<li>
+						<div className="flex items-center gap-x-2">
+							<div className="h-8 w-8 rounded-full bg-gray-300"></div>
+							<div className="flex flex-col">
+								<h3 className="text-sm font-medium">
+									Revanth Pothukuchi
+								</h3>
+								<p className="text-xs text-gray-600">
+									July 17, 2023
+								</p>
+							</div>
+						</div>
+						<Rating rating={4} />
+						<p className="mt-1 text-sm">
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Possimus dolore vel impedit, harum dolorem
+							error sunt!
+						</p>
+					</li>
+					<li>
+						<div className="flex items-center gap-x-2">
+							<div className="h-8 w-8 rounded-full bg-gray-300"></div>
+							<div className="flex flex-col">
+								<h3 className="text-sm font-medium">
+									Revanth Pothukuchi
+								</h3>
+								<p className="text-xs text-gray-600">
+									July 17, 2023
+								</p>
+							</div>
+						</div>
+						<Rating rating={3} />
+						<p className="mt-1 text-sm">
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Possimus dolore vel impedit, harum dolorem
+							error sunt!
+						</p>
+					</li>
+					<li>
+						<div className="flex items-center gap-x-2">
+							<div className="h-8 w-8 rounded-full bg-gray-300"></div>
+							<div className="flex flex-col">
+								<h3 className="text-sm font-medium">
+									Revanth Pothukuchi
+								</h3>
+								<p className="text-xs text-gray-600">
+									July 17, 2023
+								</p>
+							</div>
+						</div>
+						<Rating rating={3} />
+						<p className="mt-1 text-sm">
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Possimus dolore vel impedit, harum dolorem
+							error sunt!
+						</p>
+					</li>
+					<li>
+						<div className="flex items-center gap-x-2">
+							<div className="h-8 w-8 rounded-full bg-gray-300"></div>
+							<div className="flex flex-col">
+								<h3 className="text-sm font-medium">
+									Revanth Pothukuchi
+								</h3>
+								<p className="text-xs text-gray-600">
+									July 17, 2023
+								</p>
+							</div>
+						</div>
+						<Rating rating={3} />
+						<p className="mt-1 text-sm">
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Possimus dolore vel impedit, harum dolorem
+							error sunt!
+						</p>
+					</li>
+				</ul>
 			</div>
 		</div>
 	)

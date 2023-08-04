@@ -55,124 +55,146 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 						<div className="p-1">
 							<Menu.Item>
 								{({ active }) => (
-									<Button
-										className={classNames(
-											active
-												? 'bg-black text-white'
-												: 'text-gray-900',
-											'w-full p-2'
-										)}
-										leftIcon={
-											<HomeIcon className="mr-1 h-4 w-4" />
-										}
-									>
-										Home
-									</Button>
+									<Link passHref={undefined} href="/">
+										<Button
+											className={classNames(
+												active
+													? 'bg-black text-white'
+													: 'text-gray-900',
+												'w-full p-2'
+											)}
+											leftIcon={
+												<HomeIcon className="mr-1 h-4 w-4" />
+											}
+										>
+											Home
+										</Button>
+									</Link>
 								)}
 							</Menu.Item>
 							<Menu.Item>
 								{({ active }) => (
-									<Button
-										className={classNames(
-											active
-												? 'bg-black text-white'
-												: 'text-gray-900',
-											'w-full p-2'
-										)}
-										leftIcon={
-											<CameraIcon className="mr-1 h-4 w-4" />
-										}
-									>
-										Product
-									</Button>
+									<Link passHref={undefined} href="/">
+										<Button
+											className={classNames(
+												active
+													? 'bg-black text-white'
+													: 'text-gray-900',
+												'w-full p-2'
+											)}
+											leftIcon={
+												<CameraIcon className="mr-1 h-4 w-4" />
+											}
+										>
+											Product
+										</Button>
+									</Link>
 								)}
 							</Menu.Item>
 							<Menu.Item>
 								{({ active }) => (
-									<Button
-										className={classNames(
-											active
-												? 'bg-black text-white'
-												: 'text-gray-900',
-											'w-full p-2'
-										)}
-										leftIcon={
-											<GiftIcon className="mr-1 h-4 w-4" />
-										}
-									>
-										Promo
-									</Button>
+									<Link passHref={undefined} href="/">
+										<Button
+											className={classNames(
+												active
+													? 'bg-black text-white'
+													: 'text-gray-900',
+												'w-full p-2'
+											)}
+											leftIcon={
+												<GiftIcon className="mr-1 h-4 w-4" />
+											}
+										>
+											Promo
+										</Button>
+									</Link>
 								)}
 							</Menu.Item>
 							<Menu.Item>
 								{({ active }) => (
-									<Button
-										className={classNames(
-											active
-												? 'bg-black text-white'
-												: 'text-gray-900',
-											'w-full p-2'
-										)}
-										leftIcon={
-											<EnvelopeIcon className="mr-1 h-4 w-4" />
-										}
-									>
-										Contact us
-									</Button>
+									<Link passHref={undefined} href="/">
+										<Button
+											className={classNames(
+												active
+													? 'bg-black text-white'
+													: 'text-gray-900',
+												'w-full p-2'
+											)}
+											leftIcon={
+												<EnvelopeIcon className="mr-1 h-4 w-4" />
+											}
+										>
+											Contact us
+										</Button>
+									</Link>
 								)}
 							</Menu.Item>
 						</div>
 						<div className="p-1">
 							<Menu.Item>
 								{({ active }) => (
-									<Button
-										className={classNames(
-											active
-												? 'bg-black text-white'
-												: 'text-gray-900',
-											'w-full p-2'
-										)}
-										leftIcon={
-											<BellIcon className="mr-1 h-4 w-4" />
-										}
-									>
-										Notifications
-									</Button>
+									<Link passHref={undefined} href="/">
+										<Button
+											className={classNames(
+												active
+													? 'bg-black text-white'
+													: 'text-gray-900',
+												'w-full p-2'
+											)}
+											leftIcon={
+												<BellIcon className="mr-1 h-4 w-4" />
+											}
+										>
+											Notifications
+										</Button>
+									</Link>
 								)}
 							</Menu.Item>
 							<Menu.Item>
-								<Button
-									className="w-full p-2"
-									rightIcon={
-										<ArrowLongRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-									}
-								>
-									Log in
-								</Button>
+								<Link passHref={undefined} href="/">
+									<Button
+										className="w-full p-2"
+										rightIcon={
+											<ArrowLongRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+										}
+									>
+										Log in
+									</Button>
+								</Link>
 							</Menu.Item>
 						</div>
 					</Menu.Items>
 				</Transition>
 			</Menu>
 			<div className="hidden h-full items-center sm:flex">
-				<Button>Home</Button>
+				<Link passHref={undefined} href="/">
+					<Button>Home</Button>
+				</Link>
 				<HorizontalDivider />
-				<Button>Product</Button>
+				<Link passHref={undefined} href="/">
+					<Button>Product</Button>
+				</Link>
 				<HorizontalDivider />
-				<Button>Promo</Button>
+				<Link passHref={undefined} href="/">
+					<Button>Promo</Button>
+				</Link>
 				<HorizontalDivider />
-				<Button>Contact us</Button>
+				<Link passHref={undefined} href="/">
+					<Button>Contact us</Button>
+				</Link>
 			</div>
 			<div className="hidden h-full items-center sm:flex">
 				<BellIcon className="h-5 w-5" />
 				<HorizontalDivider />
-				<Button
-					rightIcon={
-						<ArrowLongRightIcon className="ml-1 h-5 w-5 flex-shrink-0 transition-transform group-hover:translate-x-1" />
-					}
-				>
-					Log in
-				</Button>
+				<Link passHref={undefined} href="/">
+					<Button
+						rightIcon={
+							<ArrowLongRightIcon className="ml-1 h-5 w-5 flex-shrink-0 transition-transform group-hover:translate-x-1" />
+						}
+					>
+						Log in
+					</Button>
+				</Link>
 			</div>
 		</nav>
 	)
