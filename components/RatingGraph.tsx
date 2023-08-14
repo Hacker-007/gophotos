@@ -28,16 +28,15 @@ function RatingGraphComponent({
 	percentage: number
 }) {
 	return (
-		<div className="w-full flex text-sm">
-			<div className="w-2.5 flex justify-center items-center">
-				<p className='text-gray-900 font-medium'>{label}</p>
+		<div className="flex w-full text-sm">
+			<div className="flex w-2.5 items-center justify-center">
+				<p className="font-medium text-gray-900">{label}</p>
 			</div>
-			<div className='flex-1 flex items-center gap-x-1'>
+			<div className="flex flex-1 items-center gap-x-1">
 				<StarIcon className="h-4 w-4 text-yellow-400" />
-				<div className="relative h-5 w-full place-self-center">
-					<div className="h-full rounded-sm border border-gray-200 bg-gray-100"></div>
+				<div className="relative h-5 w-full place-self-center overflow-hidden rounded-full bg-gray-100">
 					<div
-						className="absolute inset-y-0 rounded-sm border border-yellow-400 bg-yellow-400"
+						className="absolute h-5 inset-y-0 my-auto w-full rounded-full bg-yellow-400"
 						style={{
 							width: `calc(${percentage}%)`,
 						}}

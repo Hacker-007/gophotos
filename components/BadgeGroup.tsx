@@ -9,12 +9,14 @@ type BadgeGroupProps = {
 	items: string[]
 	static?: boolean
 	className?: string
+	badgeClassName?: string
 }
 
 export default function BadgeGroup({
 	items: initialItems,
 	static: isStatic,
 	className,
+	badgeClassName,
 }: BadgeGroupProps) {
 	const [items, setItems] = useState(
 		initialItems.map((item, idx) => ({
@@ -49,7 +51,11 @@ export default function BadgeGroup({
 					className={classNames(
 						'whitespace-nowrap',
 						isStatic && 'cursor-default',
-						!isStatic && (item.selected ? 'hover:bg-black/80' : 'hover:bg-black/10' )
+						!isStatic &&
+							(item.selected
+								? 'hover:bg-black/80'
+								: 'hover:bg-black/10'),
+						badgeClassName
 					)}
 					key={item.value}
 				>

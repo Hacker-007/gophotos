@@ -7,7 +7,7 @@ import {
 	ArrowLongRightIcon,
 	Bars3BottomRightIcon,
 	BellIcon,
-	CameraIcon,
+	DocumentTextIcon,
 	EnvelopeIcon,
 	GiftIcon,
 	HomeIcon,
@@ -22,6 +22,29 @@ import classNames from '@/utils/classnames'
 type NavigationBarProps = {
 	className?: string
 }
+
+const links = [
+	{
+		displayName: 'Home',
+		href: '/',
+		icon: <HomeIcon className="mr-1 h-4 w-4" />,
+	},
+	{
+		displayName: 'Contracts',
+		href: '/contracts',
+		icon: <DocumentTextIcon className="mr-1 h-4 w-4" />,
+	},
+	{
+		displayName: 'Promo',
+		href: '/',
+		icon: <GiftIcon className="mr-1 h-4 w-4" />,
+	},
+	{
+		displayName: 'Contact Us',
+		href: '/',
+		icon: <EnvelopeIcon className="mr-1 h-4 w-4" />,
+	},
+]
 
 export default function NavigationBar({ className }: NavigationBarProps) {
 	return (
@@ -53,82 +76,25 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 				>
 					<Menu.Items className="absolute right-0 z-10 mt-6 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 						<div className="p-1">
-							<Menu.Item>
-								{({ active }) => (
-									<Link passHref={undefined} href="/">
-										<Button
-											className={classNames(
-												active
-													? 'bg-black text-white'
-													: 'text-gray-900',
-												'w-full p-2'
-											)}
-											leftIcon={
-												<HomeIcon className="mr-1 h-4 w-4" />
-											}
-										>
-											Home
-										</Button>
-									</Link>
-								)}
-							</Menu.Item>
-							<Menu.Item>
-								{({ active }) => (
-									<Link passHref={undefined} href="/">
-										<Button
-											className={classNames(
-												active
-													? 'bg-black text-white'
-													: 'text-gray-900',
-												'w-full p-2'
-											)}
-											leftIcon={
-												<CameraIcon className="mr-1 h-4 w-4" />
-											}
-										>
-											Product
-										</Button>
-									</Link>
-								)}
-							</Menu.Item>
-							<Menu.Item>
-								{({ active }) => (
-									<Link passHref={undefined} href="/">
-										<Button
-											className={classNames(
-												active
-													? 'bg-black text-white'
-													: 'text-gray-900',
-												'w-full p-2'
-											)}
-											leftIcon={
-												<GiftIcon className="mr-1 h-4 w-4" />
-											}
-										>
-											Promo
-										</Button>
-									</Link>
-								)}
-							</Menu.Item>
-							<Menu.Item>
-								{({ active }) => (
-									<Link passHref={undefined} href="/">
-										<Button
-											className={classNames(
-												active
-													? 'bg-black text-white'
-													: 'text-gray-900',
-												'w-full p-2'
-											)}
-											leftIcon={
-												<EnvelopeIcon className="mr-1 h-4 w-4" />
-											}
-										>
-											Contact us
-										</Button>
-									</Link>
-								)}
-							</Menu.Item>
+							{links.map(({ displayName, href, icon }) => (
+								<Menu.Item key={`${displayName}-${href}`}>
+									{({ active }) => (
+										<Link passHref={undefined} href={href}>
+											<Button
+												className={classNames(
+													active
+														? 'bg-black text-white'
+														: 'text-gray-900',
+													'w-full p-2 text-sm'
+												)}
+												leftIcon={icon}
+											>
+												{displayName}
+											</Button>
+										</Link>
+									)}
+								</Menu.Item>
+							))}
 						</div>
 						<div className="p-1">
 							<Menu.Item>
@@ -139,7 +105,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 												active
 													? 'bg-black text-white'
 													: 'text-gray-900',
-												'w-full p-2'
+												'w-full p-2 text-sm'
 											)}
 											leftIcon={
 												<BellIcon className="mr-1 h-4 w-4" />
@@ -153,7 +119,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 							<Menu.Item>
 								<Link passHref={undefined} href="/">
 									<Button
-										className="w-full p-2"
+										className="w-full p-2 text-sm"
 										rightIcon={
 											<ArrowLongRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
 										}
@@ -167,27 +133,24 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 				</Transition>
 			</Menu>
 			<div className="hidden h-full items-center sm:flex">
-				<Link passHref={undefined} href="/">
-					<Button>Home</Button>
+				<Link passHref={undefined} href={links[0].href}>
+					<Button className="text-sm">{links[0].displayName}</Button>
 				</Link>
-				<HorizontalDivider />
-				<Link passHref={undefined} href="/">
-					<Button>Product</Button>
-				</Link>
-				<HorizontalDivider />
-				<Link passHref={undefined} href="/">
-					<Button>Promo</Button>
-				</Link>
-				<HorizontalDivider />
-				<Link passHref={undefined} href="/">
-					<Button>Contact us</Button>
-				</Link>
+				{links.slice(1).map(({ displayName, href }) => (
+					<Fragment key={`${displayName}-${href}`}>
+						<HorizontalDivider />
+						<Link passHref={undefined} href={href}>
+							<Button className="text-sm">{displayName}</Button>
+						</Link>
+					</Fragment>
+				))}
 			</div>
 			<div className="hidden h-full items-center sm:flex">
 				<BellIcon className="h-5 w-5" />
 				<HorizontalDivider />
 				<Link passHref={undefined} href="/">
 					<Button
+						className="text-sm"
 						rightIcon={
 							<ArrowLongRightIcon className="ml-1 h-5 w-5 flex-shrink-0 transition-transform group-hover:translate-x-1" />
 						}

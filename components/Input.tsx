@@ -15,7 +15,7 @@ export default function Input({ label, name, className }: InputProps) {
 		<div className={className}>
 			<label
 				htmlFor={id}
-				className="block text-sm font-medium leading-6 text-gray-900"
+				className="block text-xs font-medium leading-6 text-gray-900"
 			>
 				{label}
 			</label>

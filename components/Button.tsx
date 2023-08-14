@@ -22,9 +22,9 @@ const Button = forwardRef<
 		<button
 			ref={forwardedRef}
 			className={classNames(
-				'group flex items-center gap-1 rounded-md text-sm font-medium',
+				'group flex items-center gap-1 rounded-md font-medium',
 				className
-			)}
+				)}
 			{...props}
 		>
 			{leftIcon}

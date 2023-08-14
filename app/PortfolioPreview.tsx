@@ -1,3 +1,4 @@
+import AccountCircle from '@/components/AccountCircle'
 import ViewProfileOverlay from './ViewProfileOverlay'
 
 import classNames from '@/utils/classnames'
@@ -33,18 +34,18 @@ export default async function PortfolioPreview({
 		<div className={classNames('w-full', className)}>
 			<ViewProfileOverlay
 				photographerId={photographerId}
-				className="relative h-48 w-full overflow-auto rounded-md @container"
+				className="relative h-48 w-full overflow-auto rounded-md @container/overlay"
 			>
-				<div className="grid h-full w-full grid-cols-3 gap-1 @md:grid-cols-4 @2xl:grid-cols-5">
+				<div className="grid h-full w-full grid-cols-3 gap-1 @md/overlay:grid-cols-4 @2xl/overlay:grid-cols-5">
 					<div className="relative col-span-2 h-full w-full bg-red-200"></div>
 					<div className="relative col-span-1 h-full w-full bg-green-200"></div>
-					<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md:block"></div>
-					<div className="relative col-span-1 hidden h-full w-full bg-purple-200 @2xl:block"></div>
+					<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md/overlay:block"></div>
+					<div className="relative col-span-1 hidden h-full w-full bg-purple-200 @2xl/overlay:block"></div>
 				</div>
 			</ViewProfileOverlay>
 			<div className="mt-2 flex items-center justify-between">
 				<div className="flex items-center space-x-2">
-					<div className="relative h-8 w-8 overflow-hidden rounded-full bg-gray-300"></div>
+					<AccountCircle />
 					<div>
 						<p className="text-sm font-medium">{name}</p>
 						<p className="text-xs">{location}</p>

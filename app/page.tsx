@@ -10,10 +10,10 @@ export default function Home() {
 				<div className="grid w-full grid-cols-[repeat(auto-fit,minmax(224px,1fr))] gap-3">
 					<Input label="Location" name="location" />
 					<Input label="Price" name="price" />
-					<Input label="Date and Time" name="time" />
+					<Input label="Date and time" name="time" />
 				</div>
 				<BadgeGroup
-					className="mt-4 flex space-x-3 overflow-x-auto"
+					className="mt-4 flex space-x-3 overflow-x-auto px-3 py-2"
 					items={[
 						'Indoor',
 						'Outdoor',
@@ -24,7 +24,7 @@ export default function Home() {
 					]}
 				/>
 				<p className="mt-2 text-xs font-medium">showing 91 results</p>
-				<div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(288px,1fr))] justify-items-center gap-3">
+				<div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] justify-items-center gap-3">
 					<PortfolioPreview
 						photographerId="1"
 						name="Bob Ross"
