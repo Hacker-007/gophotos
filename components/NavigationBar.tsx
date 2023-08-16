@@ -31,7 +31,7 @@ const links = [
 	},
 	{
 		displayName: 'Contracts',
-		href: '/contracts',
+		href: '/contracts/negotiations',
 		icon: <DocumentTextIcon className="mr-1 h-4 w-4" />,
 	},
 	{

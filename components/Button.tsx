@@ -4,11 +4,11 @@ import { ReactNode, forwardRef, ComponentPropsWithoutRef } from 'react'
 
 import classNames from '@/utils/classnames'
 
-type ButtonProps = {
+export type ButtonProps = {
 	leftIcon?: ReactNode
 	rightIcon?: ReactNode
 	className?: string
-	children: ReactNode
+	children?: ReactNode
 }
 
 const Button = forwardRef<

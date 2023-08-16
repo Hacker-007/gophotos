@@ -5,8 +5,8 @@ import RatingGraph from '@/components/RatingGraph'
 import Rating from '@/components/Rating'
 import Tooltip from '@/components/Tooltip'
 import Carousel from './Carousel'
-import RequestQuoteButton from './RequestQuoteButton'
 import AccountCircle from '@/components/AccountCircle'
+import RequestQuoteButton from './RequestQuoteButton'
 
 type PhotographerPortfolioProps = {
 	params: {
@@ -16,8 +16,8 @@ type PhotographerPortfolioProps = {
 
 export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 	return (
-		<div className="mt-5 grid h-full w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-[auto_1fr] lg:grid-cols-[1fr_auto_1fr]">
-			<div className="w-full max-w-xl lg:min-w-[30rem] space-y-4 md:col-span-1 md:col-start-1 md:row-start-1">
+		<div className="grid h-full w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-[auto_1fr] lg:grid-cols-[1fr_auto_1fr]">
+			<div className="w-full max-w-xl space-y-4 md:col-span-1 md:col-start-1 md:row-start-1 lg:min-w-[30rem]">
 				<div className="mb-2 h-80 w-full max-w-xl @container/carousel">
 					<Carousel />
 				</div>
@@ -29,46 +29,44 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 								<h3 className="text-sm font-medium">
 									Bob Ross
 								</h3>
-								<p className="text-xs">
-									Cambridge, MA
-								</p>
+								<p className="text-xs">Cambridge, MA</p>
 							</div>
 						</div>
 						<div className="flex flex-col text-right text-gray-500">
-							<div className="flex items-center text-sm justify-end">
+							<div className="flex items-center justify-end text-sm">
 								<StarIcon className="h-4 w-4 text-yellow-400" />
 								<p>4.6 (2.3k)</p>
 							</div>
-							<p className='text-xs'>hired 2.7k times</p>
+							<p className="text-xs">hired 2.7k times</p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className="w-full max-w-xl min-w-[15rem] md:max-w-md md:col-span-1 md:col-start-2 md:row-span-2 md:row-start-1 lg:col-start-3 lg:row-span-1 lg:max-w-sm lg:justify-self-start">
-				<div className="w-full md:sticky md:top-0 md:rounded-md md:border md:border-gray-300 md:p-3 @container/booking">
-					<div className='flex flex-col gap-2 @xs/booking:flex-row @xs/booking:justify-between'>
+			<div className="w-full min-w-[15rem] max-w-xl md:col-span-1 md:col-start-2 md:row-span-2 md:row-start-1 md:max-w-md lg:col-start-3 lg:row-span-1 lg:max-w-sm lg:justify-self-start">
+				<div className="w-full @container/booking md:sticky md:top-0 md:rounded-md md:border md:border-gray-300 md:p-3">
+					<div className="flex flex-col gap-2 @xs/booking:flex-row @xs/booking:justify-between">
 						<div>
-							<h3 className="text-sm font-medium">Booking date</h3>
+							<h3 className="text-sm font-medium">
+								Booking date
+							</h3>
 							<div>
-								<h4 className="text-sm">
-									September 14, 2023
-								</h4>
-								<h4 className="text-sm">
-									4:30 PM - 6:30 PM
-								</h4>
+								<h4 className="text-sm">September 14, 2023</h4>
+								<h4 className="text-sm">4:30 PM - 6:30 PM</h4>
 							</div>
 						</div>
 						<div>
-							<div className='flex items-center space-x-1 @xs/booking:justify-end'>
-							<h3 className="text-sm font-medium">Estimated price</h3>
-							<Tooltip className="rounded-md border border-gray-500 bg-white p-1 shadow-md">
+							<div className="flex items-center space-x-1 @xs/booking:justify-end">
+								<h3 className="text-sm font-medium">
+									Estimated price
+								</h3>
+								<Tooltip className="rounded-md border border-gray-500 bg-white p-1 shadow-md">
 									<p className="text-sm text-gray-600">
 										The estimate is calculated based on
 										previous events and rates.
 									</p>
 								</Tooltip>
 							</div>
-							<h4 className='font-semibold'>$200.00 - $500.00</h4>
+							<h4 className="font-semibold">$200.00 - $500.00</h4>
 						</div>
 					</div>
 					<RequestQuoteButton />
@@ -125,7 +123,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 					</ul>
 				</div>
 			</section>
-			<div className="grid w-full max-w-xl grid-cols-1 md:col-span-2 md:col-start-1 md:row-start-3 md:max-w-none md:justify-self-start lg:row-start-2 lg:col-span-3 lg:grid-cols-[auto_1fr]">
+			<div className="grid w-full max-w-xl grid-cols-1 md:col-span-2 md:col-start-1 md:row-start-3 md:max-w-none md:justify-self-start lg:col-span-3 lg:row-start-2 lg:grid-cols-[auto_1fr]">
 				<div className="max-w-xl md:col-span-1 md:col-start-1">
 					<div className="prose w-full prose-headings:text-sm">
 						<h3 className="font-medium">Reviews</h3>
@@ -146,13 +144,13 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 						</p>
 					</div>
 				</div>
-				<div className="lg:col-start-1 max-w-sm lg:w-96">
+				<div className="max-w-sm lg:col-start-1 lg:w-96">
 					<RatingGraph
 						className="w-full"
 						ratings={[4, 2, 4, 12, 78]}
 					/>
 				</div>
-				<ul className="mt-5 lg:mt-0 lg:ml-5 space-y-4">
+				<ul className="mt-5 space-y-4 lg:ml-5 lg:mt-0">
 					<li>
 						<div className="flex items-center gap-x-2">
 							<div className="h-8 w-8 rounded-full bg-gray-300"></div>

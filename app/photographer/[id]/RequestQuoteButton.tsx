@@ -1,39 +1,18 @@
 'use client'
 
-import Button from '@/components/Button'
-import Loader from '@/components/Loader'
-import classNames from '@/utils/classnames'
+import LoadingButton from '@/components/LoadingButton'
 
-import { useState } from 'react'
-import { LayoutGroup, motion } from 'framer-motion'
-
-type RequestQuoteButtonProps = {
-	className?: string
-}
-
-export default function RequestQuoteButton({
-	className,
-}: RequestQuoteButtonProps) {
-	const [isLoading, setIsLoading] = useState(false)
+export default function RequestQuoteButton() {
 	const sendQuoteRequest = async () => {
-		setIsLoading(true)
-		await new Promise(resolve => setTimeout(resolve, 3000))
-		setIsLoading(false)
+		await new Promise(resolve => setTimeout(resolve, 2000))
 	}
 
 	return (
-		<Button
-			className={classNames(
-				'mt-2 w-full justify-center border border-black p-2 text-sm hover:bg-gray-100',
-				className
-			)}
-			onClick={sendQuoteRequest}
-			disabled={isLoading}
+		<LoadingButton
+			handleClick={sendQuoteRequest}
+			className="mt-2 w-full justify-center border border-black p-2 text-sm hover:bg-gray-100"
 		>
-			<LayoutGroup>
-				<Loader isLoading={isLoading} />
-				<motion.span layout>Request quote</motion.span>
-			</LayoutGroup>
-		</Button>
+			Request quote
+		</LoadingButton>
 	)
 }

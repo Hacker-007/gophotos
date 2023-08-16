@@ -2,9 +2,13 @@ import { PencilIcon } from '@heroicons/react/24/solid'
 
 import AccountCircle from '@/components/AccountCircle'
 import Pill from '@/components/Pill'
-import ContractTabs from './ContractTabs'
+import ContractLinks from './ContractLinks'
 
-export default function ContractsPage() {
+export default function ContractsLayout({
+	children,
+}: {
+	children: React.ReactNode
+}) {
 	return (
 		<div className="flex h-full w-full flex-col">
 			<h2 className="font-semibold">Contracts</h2>
@@ -31,7 +35,7 @@ export default function ContractsPage() {
 							</div>
 							<div className="flex flex-col items-end justify-between">
 								<Pill
-									className='font-semibold'
+									className="font-semibold"
 									color="gray"
 									leftIcon={
 										<PencilIcon className="h-3.5 w-3.5" />
@@ -39,14 +43,18 @@ export default function ContractsPage() {
 								>
 									Negotiating
 								</Pill>
-								<p className="text-xs">3 days ago</p>
+								<p className="text-xs">1 day ago</p>
 							</div>
 						</div>
 					</div>
 				))}
 			</div>
 			<div className="mt-3 flex-grow">
-				<ContractTabs />
+				<div className="relative">
+					<ContractLinks />
+					<div className="absolute bottom-0 -z-10 w-full border-t border-t-gray-300" />
+				</div>
+				<div className="mt-3">{children}</div>
 			</div>
 		</div>
 	)
