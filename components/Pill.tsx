@@ -2,41 +2,42 @@ import classNames from '@/utils/classnames'
 
 import { ReactNode } from 'react'
 
-import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { PencilIcon } from '@heroicons/react/24/solid'
-
-const statusClasses = {
-	editing: {
+const colorClasses = {
+	gray: {
 		className: 'bg-gray-200',
-		icon: <PencilIcon className="h-3.5 w-3.5" />
 	},
-	completed: {
+	green: {
 		className: 'bg-green-100 text-green-800',
-		icon: <CheckIcon strokeWidth={3} className='w-3.5 h-3.5' />,
 	},
-	cancelled: {
+	red: {
 		className: 'bg-red-200 text-red-800',
-		icon: <XMarkIcon strokeWidth={3} className='w-3.5 h-3.5' />,
-	}
+	},
 }
 
 type PillProps = {
-	status: keyof typeof statusClasses
+	color: keyof typeof colorClasses
 	className?: string
-	children: ReactNode
+	leftIcon?: ReactNode
+	children?: ReactNode
 }
 
-export default function Pill({ status, className, children }: PillProps) {
-	const { className: statusClassName, icon: statusIcon } = statusClasses[status]
+export default function Pill({
+	color,
+	className,
+	leftIcon,
+	children,
+}: PillProps) {
+	const { className: colorClassName } = colorClasses[color]
+
 	return (
 		<div
 			className={classNames(
-				'flex items-center justify-between space-x-1 rounded-md px-2 py-1 text-xs font-semibold',
-				statusClassName,
+				'flex items-center justify-between space-x-1 rounded-md px-2 py-1 text-xs',
+				colorClassName,
 				className
 			)}
 		>
-			{statusIcon}
+			{leftIcon}
 			<span>{children}</span>
 		</div>
 	)

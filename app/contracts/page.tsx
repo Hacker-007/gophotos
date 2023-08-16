@@ -1,3 +1,5 @@
+import { PencilIcon } from '@heroicons/react/24/solid'
+
 import AccountCircle from '@/components/AccountCircle'
 import Pill from '@/components/Pill'
 import ContractTabs from './ContractTabs'
@@ -12,7 +14,7 @@ export default function ContractsPage() {
 				contracts
 			</p>
 			<div className="mt-3 flex space-x-4 overflow-x-auto">
-				{[...Array(5)].map(i => (
+				{[...Array(5)].map((_, i) => (
 					<div
 						key={i}
 						className="w-full flex-shrink-0 whitespace-nowrap rounded-md border border-gray-400 px-4 py-2"
@@ -28,7 +30,15 @@ export default function ContractsPage() {
 								</div>
 							</div>
 							<div className="flex flex-col items-end justify-between">
-								<Pill status="editing">Negotiating</Pill>
+								<Pill
+									className='font-semibold'
+									color="gray"
+									leftIcon={
+										<PencilIcon className="h-3.5 w-3.5" />
+									}
+								>
+									Negotiating
+								</Pill>
 								<p className="text-xs">3 days ago</p>
 							</div>
 						</div>

@@ -17,7 +17,6 @@ export default function RequestQuoteButton({
 	const [isLoading, setIsLoading] = useState(false)
 	const sendQuoteRequest = async () => {
 		setIsLoading(true)
-		console.log('sending quote request via client')
 		await new Promise(resolve => setTimeout(resolve, 3000))
 		setIsLoading(false)
 	}
@@ -29,6 +28,7 @@ export default function RequestQuoteButton({
 				className
 			)}
 			onClick={sendQuoteRequest}
+			disabled={isLoading}
 		>
 			<LayoutGroup>
 				<Loader isLoading={isLoading} />

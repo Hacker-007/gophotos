@@ -24,7 +24,7 @@ const Button = forwardRef<
 			className={classNames(
 				'group flex items-center gap-1 rounded-md font-medium',
 				className
-				)}
+			)}
 			{...props}
 		>
 			{leftIcon}

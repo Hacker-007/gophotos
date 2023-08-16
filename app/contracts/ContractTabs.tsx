@@ -9,14 +9,14 @@ const tabs = [
 		tabName: 'Negotiation History',
 		component: <NegotiationHistory />,
 	},
-	{
-		tabName: 'Chat',
-		component: <div>Test 2</div>,
-	},
-	{
-		tabName: 'Pictures',
-		component: <div>Test 3</div>,
-	},
+	// {
+	// 	tabName: 'Chat',
+	// 	component: <div>Test 2</div>,
+	// },
+	// {
+	// 	tabName: 'Pictures',
+	// 	component: <div>Test 3</div>,
+	// },
 ]
 
 export default function ContractTabs() {
@@ -31,7 +31,7 @@ export default function ContractTabs() {
 						>
 							{({ selected }) => (
 								<div className="w-full">
-									<div className="font-medium">{tabName}</div>
+									<div className="font-medium mb-1">{tabName}</div>
 									{selected && (
 										<motion.div
 											layoutId="selectedBar"

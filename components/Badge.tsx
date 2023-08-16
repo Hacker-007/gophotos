@@ -21,7 +21,7 @@ export default function Badge({
 		<button
 			onClick={handleClick}
 			className={classNames(
-				'inline-flex items-center rounded-md text-xs font-medium transition-colors duration-300',
+				'inline-flex items-center rounded-md text-xs font-medium transition-colors duration-300 px-3 py-2 border border-gray-300',
 				fill
 					? 'bg-black text-gray-50'
 					: 'bg-white text-gray-500',

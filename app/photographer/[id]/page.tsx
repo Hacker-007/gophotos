@@ -93,7 +93,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 					<h3 className="font-medium">Skills</h3>
 					<BadgeGroup
 						static
-						className="mt-1 flex gap-3 overflow-x-auto md:flex-wrap px-3 py-2"
+						className="mt-1 flex gap-3 overflow-x-auto md:flex-wrap"
 						items={[
 							'Indoor',
 							'Outdoor',

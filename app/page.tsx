@@ -13,7 +13,7 @@ export default function Home() {
 					<Input label="Date and time" name="time" />
 				</div>
 				<BadgeGroup
-					className="mt-4 flex space-x-3 overflow-x-auto px-3 py-2"
+					className="mt-4 flex space-x-3 overflow-x-auto"
 					items={[
 						'Indoor',
 						'Outdoor',
