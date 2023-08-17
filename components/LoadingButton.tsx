@@ -1,42 +1,27 @@
-'use client'
-
-import { useState } from 'react'
 import { LayoutGroup, motion } from 'framer-motion'
 
-import Loader, { LoaderProps } from '@/components/Loader'
-import Button, { ButtonProps } from '@/components/Button'
+import Button, { ButtonProps } from './Button'
+import Loader, { LoaderProps } from './Loader'
+import { ReactNode } from 'react'
 
 type LoadingButtonProps = {
-	handleClick: () => Promise<void>
-} & ButtonProps &
-	Pick<LoaderProps, 'color'>
+	isLoading: boolean
+	className?: string
+	loader: Omit<LoaderProps, 'isLoading'>
+	children?: ReactNode
+} & ButtonProps
 
 export default function LoadingButton({
-	handleClick,
+	isLoading,
+	loader,
 	className,
-	color,
 	children,
 	...props
 }: LoadingButtonProps) {
-	const [isLoading, setIsLoading] = useState(false)
-	const clickHandler = async () => {
-		setIsLoading(true)
-		await handleClick()
-		setIsLoading(false)
-	}
-
 	return (
-		<Button
-			className={className}
-			onClick={clickHandler}
-			disabled={isLoading}
-			{...props}
-		>
+		<Button className={className} disabled={isLoading} {...props}>
 			<LayoutGroup>
-				<Loader
-					color={color}
-					isLoading={isLoading}
-				/>
+				<Loader {...loader} isLoading={isLoading} />
 				<motion.div layout>{children}</motion.div>
 			</LayoutGroup>
 		</Button>

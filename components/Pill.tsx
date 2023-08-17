@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 const colorClasses = {
 	gray: {
-		className: 'bg-gray-50',
+		className: 'bg-gray-200',
 	},
 	green: {
 		className: 'bg-green-100 text-green-800',

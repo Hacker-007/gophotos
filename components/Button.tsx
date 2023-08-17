@@ -9,11 +9,11 @@ export type ButtonProps = {
 	rightIcon?: ReactNode
 	className?: string
 	children?: ReactNode
-}
+} & ComponentPropsWithoutRef<'button'>
 
 const Button = forwardRef<
 	HTMLButtonElement,
-	ButtonProps & ComponentPropsWithoutRef<'button'>
+	ButtonProps
 >(function Button(
 	{ leftIcon, rightIcon, className, children, ...props },
 	forwardedRef

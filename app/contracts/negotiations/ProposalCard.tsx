@@ -93,7 +93,7 @@ export default function ProposalCard() {
 						</TabsTrigger>
 						<TabsTrigger
 							value="counter-proposal"
-							className="w-full justify-center rounded-md border border-yellow-700 px-3 py-2 text-xs font-medium text-yellow-700"
+							className="w-full justify-center rounded-md border border-gray-400 px-3 py-2 text-xs font-medium text-black"
 						>
 							Counter
 						</TabsTrigger>

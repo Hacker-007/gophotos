@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 const colorClasses = {
 	black: 'border-black',
 	green: 'border-green-700',
-	yellow: 'border-yellow-700',
 	red: 'border-red-700',
 }
 

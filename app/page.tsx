@@ -10,6 +10,7 @@ export default function Home() {
 			<div className="w-full overflow-hidden">
 				<div className="grid w-full grid-cols-[repeat(auto-fit,minmax(224px,1fr))] gap-3">
 					<Input
+						className="pl-7"
 						icon={
 							<MagnifyingGlassIcon
 								strokeWidth={2}
@@ -20,6 +21,7 @@ export default function Home() {
 						name="location"
 					/>
 					<Input
+						className="pl-7"
 						icon={
 							<MagnifyingGlassIcon
 								strokeWidth={2}
@@ -30,6 +32,7 @@ export default function Home() {
 						name="price"
 					/>
 					<Input
+						className="pl-7"
 						icon={
 							<MagnifyingGlassIcon
 								strokeWidth={2}

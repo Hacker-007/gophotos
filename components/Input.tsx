@@ -1,29 +1,25 @@
 'use client'
 
 import classNames from '@/utils/classnames'
-import { ReactNode, useId } from 'react'
+import { ComponentPropsWithoutRef, ReactNode, forwardRef, useId } from 'react'
 
 type InputProps = {
 	label: string
 	name: string
 	icon: ReactNode
-	placeholder?: string
-	padding?: string
 	className?: string
-}
+} & ComponentPropsWithoutRef<'input'>
 
-export default function Input({
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input({
 	label,
 	name,
 	icon,
-	placeholder,
-	padding,
 	className,
-}: InputProps) {
+	...props
+}, ref) {
 	const id = useId()
-	const paddingClassName = padding ?? 'pl-7'
 	return (
-		<div className={className}>
+		<div>
 			<label
 				htmlFor={id}
 				className="block text-xs font-medium leading-6 text-gray-900"
@@ -35,13 +31,16 @@ export default function Input({
 					{icon}
 				</div>
 				<input
+					className={classNames("block h-8 w-full rounded-md border-0 bg-gray-50 pt-1.5 text-sm font-medium text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-inset focus:ring-black", className)}
 					type="text"
 					name={name}
 					id={id}
-					className={classNames("block h-8 w-full rounded-md border-0 bg-gray-50 pt-1.5 text-sm font-medium text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-black", paddingClassName)}
-					placeholder={placeholder}
+					ref={ref}
+					{...props}
 				/>
 			</div>
 		</div>
 	)
-}
+})
+
+export default Input

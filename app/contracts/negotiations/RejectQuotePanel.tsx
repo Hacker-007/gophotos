@@ -1,10 +1,15 @@
 'use client'
 
+import { useState } from 'react'
+
 import LoadingButton from '@/components/LoadingButton'
 
 export default function RejectQuotePanel() {
+	const [isLoading, setIsLoading] = useState(false)
 	const rejectQuote = async () => {
-		await new Promise(res => setTimeout(res, 2000))
+		setIsLoading(true)
+		await new Promise(resolve => setTimeout(resolve, 2000))
+		setIsLoading(false)
 	}
 
 	return (
@@ -16,9 +21,12 @@ export default function RejectQuotePanel() {
 				particular event.
 			</p>
 			<LoadingButton
-				handleClick={rejectQuote}
-				color="red"
 				className="mt-3 w-full justify-center border border-red-700 p-2 text-xs text-red-700 hover:bg-gray-100"
+				onClick={rejectQuote}
+				isLoading={isLoading}
+				loader={{
+					color: 'red',
+				}}
 			>
 				Confirm
 			</LoadingButton>

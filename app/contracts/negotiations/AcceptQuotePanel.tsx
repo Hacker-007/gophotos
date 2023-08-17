@@ -1,10 +1,15 @@
 'use client'
 
+import { useState } from 'react'
+
 import LoadingButton from '@/components/LoadingButton'
 
 export default function AcceptQuotePanel() {
+	const [isLoading, setIsLoading] = useState(false)
 	const acceptQuote = async () => {
-		await new Promise(res => setTimeout(res, 2000))
+		setIsLoading(true)
+		await new Promise(resolve => setTimeout(resolve, 2000))
+		setIsLoading(false)
 	}
 
 	return (
@@ -15,9 +20,12 @@ export default function AcceptQuotePanel() {
 				the full payment of $4510 following the completion of the event.
 			</p>
 			<LoadingButton
-				handleClick={acceptQuote}
-				color="green"
 				className="mt-3 w-full justify-center border border-green-700 p-2 text-xs text-green-700 hover:bg-gray-100"
+				onClick={acceptQuote}
+				isLoading={isLoading}
+				loader={{
+					color: 'green',
+				}}
 			>
 				Confirm
 			</LoadingButton>
