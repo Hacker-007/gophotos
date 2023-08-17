@@ -1,5 +1,9 @@
 'use client'
 
+import { CurrencyDollarIcon } from '@heroicons/react/24/outline'
+
+import Input from '@/components/Input'
+import Pill from '@/components/Pill'
 import LoadingButton from '@/components/LoadingButton'
 
 export default function CounterQuotePanel() {
@@ -8,15 +12,59 @@ export default function CounterQuotePanel() {
 	}
 
 	return (
-		<div className="rounded-md border border-green-700 bg-green-50 p-3">
-			<h3 className="text-sm font-medium">Are you sure?</h3>
-			<p className="mt-1 text-xs">
-				Countering quote
+		<div className="rounded-md border border-yellow-700 bg-gray-50 p-3">
+			<h3 className="text-sm font-medium">Countering quote</h3>
+			<p className="mt-1 text-xs text-gray-600">
+				This counter quote proposal will be sent to Bob Ross for
+				approval. If accepted, you acknowledge that you are responsible
+				for the payment terms agreed to upon the completion of the
+				event.
 			</p>
+			<Input
+				className="mt-1"
+				label="Proposed price"
+				name="price"
+				icon={<span>$</span>}
+				padding="pl-5"
+				placeholder="0"
+			/>
+			<div className="mt-2 space-y-3 rounded-md border border-gray-300 bg-white p-2">
+				<Pill
+					className="w-min whitespace-nowrap border border-purple-300 bg-purple-50 px-2 py-1 text-xs font-medium"
+					color="purple"
+					leftIcon={
+						<CurrencyDollarIcon className="h-4 w-4" />
+					}
+				>
+					Counter proposal
+				</Pill>
+				<div className="grid items-center">
+					<div className="col-start-1">
+						<h3 className="text-xs font-medium text-gray-500">
+							Proposed
+						</h3>
+						<p className="text-sm font-medium">$0</p>
+					</div>
+					<p className="col-start-2 font-medium text-gray-500"> + </p>
+					<div className="col-start-3">
+						<h3 className="text-xs font-medium text-gray-500">
+							Service fee
+						</h3>
+						<p className="text-sm font-medium">$0</p>
+					</div>
+					<p className="col-start-4 font-medium text-gray-500"> = </p>
+					<div className="col-start-5">
+						<h3 className="text-xs font-medium text-gray-500">
+							Total price
+						</h3>
+						<p className="text-sm font-medium">$0</p>
+					</div>
+				</div>
+			</div>
 			<LoadingButton
 				handleClick={counterQuote}
-				color="green"
-				className="mt-2 w-full justify-center border border-green-700 p-2 text-xs text-green-700 hover:bg-green-100"
+				color="yellow"
+				className="mt-3 w-full justify-center border border-yellow-700 p-2 text-xs text-yellow-700 hover:bg-gray-100"
 			>
 				Confirm
 			</LoadingButton>

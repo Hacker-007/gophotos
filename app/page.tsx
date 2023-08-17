@@ -2,15 +2,43 @@ import BadgeGroup from '@/components/BadgeGroup'
 import Input from '@/components/Input'
 
 import PortfolioPreview from './PortfolioPreview'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export default function Home() {
 	return (
 		<main>
 			<div className="w-full overflow-hidden">
 				<div className="grid w-full grid-cols-[repeat(auto-fit,minmax(224px,1fr))] gap-3">
-					<Input label="Location" name="location" />
-					<Input label="Price" name="price" />
-					<Input label="Date and time" name="time" />
+					<Input
+						icon={
+							<MagnifyingGlassIcon
+								strokeWidth={2}
+								className="h-4 w-4"
+							/>
+						}
+						label="Location"
+						name="location"
+					/>
+					<Input
+						icon={
+							<MagnifyingGlassIcon
+								strokeWidth={2}
+								className="h-4 w-4"
+							/>
+						}
+						label="Price"
+						name="price"
+					/>
+					<Input
+						icon={
+							<MagnifyingGlassIcon
+								strokeWidth={2}
+								className="h-4 w-4"
+							/>
+						}
+						label="Date and time"
+						name="time"
+					/>
 				</div>
 				<BadgeGroup
 					className="mt-4 flex space-x-3 overflow-x-auto"

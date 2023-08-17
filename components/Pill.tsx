@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 const colorClasses = {
 	gray: {
-		className: 'bg-gray-200',
+		className: 'bg-gray-50',
 	},
 	green: {
 		className: 'bg-green-100 text-green-800',
@@ -12,6 +12,9 @@ const colorClasses = {
 	red: {
 		className: 'bg-red-200 text-red-800',
 	},
+	purple: {
+		className: 'bg-purple-50 text-purple-800'
+	}
 }
 
 type PillProps = {

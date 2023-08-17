@@ -8,16 +8,16 @@ export default function AcceptQuotePanel() {
 	}
 
 	return (
-		<div className="rounded-md border border-green-700 bg-green-50 p-3">
+		<div className="rounded-md border border-green-700 bg-gray-50 p-3">
 			<h3 className="text-sm font-medium">Are you sure?</h3>
-			<p className="mt-1 text-xs">
+			<p className="mt-1 text-xs text-gray-600">
 				Accepting the quote acknowledges that you are responsible for
 				the full payment of $4510 following the completion of the event.
 			</p>
 			<LoadingButton
 				handleClick={acceptQuote}
 				color="green"
-				className="mt-2 w-full justify-center border border-green-700 p-2 text-xs text-green-700 hover:bg-green-100"
+				className="mt-3 w-full justify-center border border-green-700 p-2 text-xs text-green-700 hover:bg-gray-100"
 			>
 				Confirm
 			</LoadingButton>
