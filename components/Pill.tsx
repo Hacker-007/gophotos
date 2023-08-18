@@ -3,7 +3,10 @@ import classNames from '@/utils/classnames'
 import { ReactNode } from 'react'
 
 const colorClasses = {
-	gray: {
+	lightGray: {
+		className: 'bg-gray-50 text-gray-600',
+	},
+	darkGray: {
 		className: 'bg-gray-200',
 	},
 	green: {

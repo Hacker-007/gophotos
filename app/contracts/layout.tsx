@@ -36,7 +36,7 @@ export default function ContractsLayout({
 							<div className="flex flex-col items-end justify-between">
 								<Pill
 									className="font-semibold"
-									color="gray"
+									color="darkGray"
 									leftIcon={
 										<PencilIcon className="h-3.5 w-3.5" />
 									}
