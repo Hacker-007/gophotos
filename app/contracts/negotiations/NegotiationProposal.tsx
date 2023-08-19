@@ -7,24 +7,28 @@ import AccountCircle from '@/components/AccountCircle'
 type NegotiationProposalProps = {
 	prelude?: string
 	className?: string
+	children?: ReactNode
 } & NegotiationPricingProps
 
 export default function NegotiationProposal({
 	pill,
+	proposedPrice,
+	serviceFee,
 	prelude,
 	className,
+	children,
 }: NegotiationProposalProps) {
 	return (
 		<div
 			className={classNames(
-				'space-y-3 rounded-md border border-gray-300 bg-gray-50 p-3',
+				'rounded-md border border-gray-300 bg-gray-50 p-3',
 				className
 			)}
 		>
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-x-2">
 					<AccountCircle />
-					<div className="flex flex-col">
+					<div>
 						<h3 className="text-sm font-medium">Bob Ross</h3>
 						<p className="text-xs text-gray-500">
 							Aug 14, 2023 <span>&middot;</span> 10:25 AM
@@ -32,19 +36,29 @@ export default function NegotiationProposal({
 					</div>
 				</div>
 			</div>
-			{prelude && <p className="text-xs text-gray-600">{prelude}</p>}
-			<NegotiationPricing pill={pill} />
+			{prelude && <p className="mt-3 text-xs text-gray-600">{prelude}</p>}
+			<NegotiationPricing
+				className="mt-3"
+				pill={pill}
+				proposedPrice={proposedPrice}
+				serviceFee={serviceFee}
+			/>
+			{children}
 		</div>
 	)
 }
 
 type NegotiationPricingProps = {
 	pill: ReactNode
+	proposedPrice: number
+	serviceFee: number
 	className?: string
 }
 
 export function NegotiationPricing({
 	pill,
+	proposedPrice,
+	serviceFee,
 	className,
 }: NegotiationPricingProps) {
 	return (
@@ -60,21 +74,21 @@ export function NegotiationPricing({
 					<h3 className="text-xs font-medium text-gray-500">
 						Proposed
 					</h3>
-					<p className="text-sm font-medium">$4100</p>
+					<p className="text-sm font-medium">${proposedPrice}</p>
 				</div>
 				<p className="col-start-2 font-medium text-gray-500"> + </p>
 				<div className="col-start-3">
 					<h3 className="text-xs font-medium text-gray-500">
 						Service fee
 					</h3>
-					<p className="text-sm font-medium">$410</p>
+					<p className="text-sm font-medium">${serviceFee}</p>
 				</div>
 				<p className="col-start-4 font-medium text-gray-500"> = </p>
 				<div className="col-start-5">
-					<h3 className="text-xs font-medium text-gray-500">
-						Total price
-					</h3>
-					<p className="text-sm font-medium">$4510</p>
+					<h3 className="text-xs font-medium text-gray-500">Total</h3>
+					<p className="text-sm font-medium">
+						${proposedPrice + serviceFee}
+					</p>
 				</div>
 			</div>
 		</div>

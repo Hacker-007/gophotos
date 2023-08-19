@@ -60,7 +60,7 @@ export default function Home() {
 						photographerId="1"
 						name="Bob Ross"
 						location="Cambridge, MA"
-						hourlyRate="$150"
+						estimatedPriceRange={[150, 200]}
 						rating={4.7}
 						numberOfReviews={1027}
 					/>
@@ -68,7 +68,7 @@ export default function Home() {
 						photographerId="2"
 						name="Revanth Pothukuchi"
 						location="Bothell, WA"
-						hourlyRate="$1500"
+						estimatedPriceRange={[150, 200]}
 						rating={5.0}
 						numberOfReviews={4129}
 					/>
@@ -76,7 +76,7 @@ export default function Home() {
 						photographerId="3"
 						name="Qudus Shittu"
 						location="Cambridge, MA"
-						hourlyRate="$150"
+						estimatedPriceRange={[150, 200]}
 						rating={4.7}
 						numberOfReviews={1027}
 					/>
@@ -84,7 +84,7 @@ export default function Home() {
 						photographerId="4"
 						name="Bob Ross"
 						location="Cambridge, MA"
-						hourlyRate="$150"
+						estimatedPriceRange={[150, 200]}
 						rating={4.7}
 						numberOfReviews={1027}
 					/>

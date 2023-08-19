@@ -7,7 +7,7 @@ import NegotiationProposal from './NegotiationProposal'
 export default function NegotiationHistory() {
 	return (
 		<div className="space-y-3">
-			<NegotiationActions>
+			{/* <NegotiationActions>
 				<NegotiationProposal
 					className="mt-3"
 					prelude="You received a quote from Bob Ross for a photography event on
@@ -25,7 +25,8 @@ export default function NegotiationHistory() {
 						</Pill>
 					}
 				/>
-			</NegotiationActions>
+			</NegotiationActions> */}
+			{getCounteredNotification()}
 		</div>
 	)
 }
@@ -42,7 +43,40 @@ function getAcceptedNotification() {
 					Accepted quote
 				</Pill>
 			}
+			prelude="This proposal is now closed. Revanth Pothukuchi has accepted the responsibility for
+			the full payment of $4510 following the completion of the event."
+			proposedPrice={4100}
+			serviceFee={410}
 		/>
+	)
+}
+
+function getCounteredNotification() {
+	return (
+		<NegotiationProposal
+			pill={
+				<Pill
+					className="w-min whitespace-nowrap border border-purple-300 font-medium"
+					color="purple"
+					leftIcon={<CurrencyDollarIcon className="h-4 w-4" />}
+				>
+					Counter proposal
+				</Pill>
+			}
+			prelude="Revanth Pothukuchi has countered your proposal and has provided the following explanation:"
+			proposedPrice={2000}
+			serviceFee={200}
+		>
+			<div className="mt-2">
+				<label
+					htmlFor="explanation"
+					className="text-xs font-medium leading-6 text-gray-900"
+				>
+					Additional explanation
+				</label>
+				<p className="text-xs">An explanation</p>
+			</div>
+		</NegotiationProposal>
 	)
 }
 
@@ -58,6 +92,9 @@ function getRejectedNotification() {
 					Rejected quote
 				</Pill>
 			}
+			prelude="This proposal is now closed as Bob Ross rejected the latest proposal."
+			proposedPrice={4100}
+			serviceFee={410}
 		/>
 	)
 }

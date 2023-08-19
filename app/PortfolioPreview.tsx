@@ -7,7 +7,7 @@ type PortfolioPreviewProps = {
 	photographerId: string
 	name: string
 	location: string
-	hourlyRate: string
+	estimatedPriceRange: [number, number]
 	rating: number
 	numberOfReviews: number
 	className?: string
@@ -25,7 +25,7 @@ export default async function PortfolioPreview({
 	photographerId,
 	name,
 	location,
-	hourlyRate,
+	estimatedPriceRange: estimatedPrice,
 	rating,
 	numberOfReviews,
 	className,
@@ -53,8 +53,13 @@ export default async function PortfolioPreview({
 				</div>
 				<div>
 					<p className="text-right text-xs">
-						<span className="font-semibold">{hourlyRate}</span>
-						/hr
+						<span className="font-semibold">
+							${estimatedPrice[0]}
+						</span>{' '}
+						-{' '}
+						<span className="font-semibold">
+							${estimatedPrice[1]}
+						</span>
 					</p>
 					<p className="flex items-center justify-end text-xs font-medium">
 						<svg
