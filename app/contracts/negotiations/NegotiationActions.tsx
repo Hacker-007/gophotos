@@ -14,7 +14,7 @@ export default function NegotiationActions({
 	children,
 }: NegotiationActionsProps) {
 	return (
-		<Tabs activationMode='manual'>
+		<Tabs activationMode="manual">
 			<TabsContent value="accept-proposal">
 				<AcceptQuotePanel />
 			</TabsContent>
@@ -26,7 +26,7 @@ export default function NegotiationActions({
 			</TabsContent>
 			{children}
 			<TabsList asChild>
-				<div className="mt-2 flex justify-between space-x-2">
+				<div className="mt-2 flex max-w-md justify-between space-x-2">
 					<TabsTrigger
 						value="accept-proposal"
 						className="w-full justify-center rounded-md border border-green-700 px-3 py-2 text-xs font-medium text-green-700"

@@ -6,27 +6,35 @@ import NegotiationProposal from './NegotiationProposal'
 
 export default function NegotiationHistory() {
 	return (
-		<div className="space-y-3">
-			{/* <NegotiationActions>
-				<NegotiationProposal
-					className="mt-3"
-					prelude="You received a quote from Bob Ross for a photography event on
-				September 30, 2023. You can either accept the quote, provide a
-				counter quote, or cancel the negotiation."
-					pill={
-						<Pill
-							className="w-min whitespace-nowrap border border-gray-300 font-medium"
-							color="lightGray"
-							leftIcon={
-								<CurrencyDollarIcon className="text-gray h-4 w-4" />
-							}
-						>
-							Proposed quote
-						</Pill>
-					}
-				/>
-			</NegotiationActions> */}
-			{getCounteredNotification()}
+		<div className="grid max-w-6xl space-y-3 lg:max-h-[35rem] lg:overflow-y-auto lg:rounded-md lg:border lg:border-gray-400 lg:px-3 lg:py-3">
+			<div className="justify-self-center lg:justify-self-start">
+				<NegotiationActions>
+					<NegotiationProposal
+						prelude="You received a quote from Bob Ross for a photography event on
+					September 30, 2023. You can either accept the quote, provide a
+					counter quote, or cancel the negotiation."
+						pill={
+							<Pill
+								className="w-min whitespace-nowrap border border-gray-300 font-medium"
+								color="lightGray"
+								leftIcon={
+									<CurrencyDollarIcon className="text-gray h-4 w-4" />
+								}
+							>
+								Proposed quote
+							</Pill>
+						}
+						proposedPrice={3100}
+						serviceFee={310}
+					/>
+				</NegotiationActions>
+			</div>
+			<div className="justify-self-center lg:justify-self-end">
+				{getCounteredNotification()}
+			</div>
+			<div className="justify-self-center lg:justify-self-start">
+				{getCounteredNotification()}
+			</div>
 		</div>
 	)
 }

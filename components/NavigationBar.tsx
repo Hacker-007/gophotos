@@ -138,7 +138,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 				</Link>
 				{links.slice(1).map(({ displayName, href }) => (
 					<Fragment key={`${displayName}-${href}`}>
-						<HorizontalDivider />
+						<HorizontalDivider className="h-[20px]" />
 						<Link passHref={undefined} href={href}>
 							<Button className="text-sm">{displayName}</Button>
 						</Link>
@@ -147,7 +147,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 			</div>
 			<div className="hidden h-full items-center sm:flex">
 				<BellIcon className="h-5 w-5" />
-				<HorizontalDivider />
+				<HorizontalDivider className="h-[20px]" />
 				<Link passHref={undefined} href="/">
 					<Button
 						className="text-sm"

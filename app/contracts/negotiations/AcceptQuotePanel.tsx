@@ -13,7 +13,7 @@ export default function AcceptQuotePanel() {
 	}
 
 	return (
-		<div className="rounded-md border border-green-700 bg-gray-50 p-3">
+		<div className="rounded-md border border-green-700 bg-gray-50 p-3 max-w-md mb-3">
 			<h3 className="text-sm font-medium">Are you sure?</h3>
 			<p className="mt-1 text-xs text-gray-600">
 				Accepting the quote acknowledges that you are responsible for

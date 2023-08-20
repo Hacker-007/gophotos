@@ -21,7 +21,7 @@ export default function NegotiationProposal({
 	return (
 		<div
 			className={classNames(
-				'rounded-md border border-gray-300 bg-gray-50 p-3',
+				'rounded-md border border-gray-300 bg-gray-50 p-3 max-w-md',
 				className
 			)}
 		>
