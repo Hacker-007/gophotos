@@ -1,7 +1,9 @@
 'use client'
 
-import { HorizontalDivider } from './Divider'
-import Button from './Button'
+import classNames from '@/utils/classnames'
+
+import Link from 'next/link'
+import { Fragment, useState } from 'react'
 
 import {
 	ArrowLongRightIcon,
@@ -9,15 +11,23 @@ import {
 	BellIcon,
 	DocumentTextIcon,
 	EnvelopeIcon,
-	GiftIcon,
 	HomeIcon,
+	MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
-import { Menu, Transition } from '@headlessui/react'
 
-import Link from 'next/link'
-import { Fragment } from 'react'
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuPortal,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from '@/components/DropdownMenu'
 
-import classNames from '@/utils/classnames'
+import Button from './Button'
+import NavigationLink from './NavigationLink'
 
 type NavigationBarProps = {
 	className?: string
@@ -25,139 +35,144 @@ type NavigationBarProps = {
 
 const links = [
 	{
-		displayName: 'Home',
+		displayName: 'Photographers',
 		href: '/',
-		icon: <HomeIcon className="mr-1 h-4 w-4" />,
+		routeSegment: [null, 'photographer'],
+		icon: <HomeIcon strokeWidth={1.5} className="mr-1 h-4 w-4" />,
 	},
 	{
 		displayName: 'Contracts',
 		href: '/contracts/negotiations',
-		icon: <DocumentTextIcon className="mr-1 h-4 w-4" />,
-	},
-	{
-		displayName: 'Promo',
-		href: '/',
-		icon: <GiftIcon className="mr-1 h-4 w-4" />,
+		routeSegment: 'contracts',
+		icon: <DocumentTextIcon strokeWidth={1.5} className="mr-1 h-4 w-4" />,
 	},
 	{
 		displayName: 'Contact Us',
 		href: '/',
-		icon: <EnvelopeIcon className="mr-1 h-4 w-4" />,
+		routeSegment: 'contact',
+		icon: <EnvelopeIcon strokeWidth={1.5} className="mr-1 h-4 w-4" />,
 	},
 ]
 
 export default function NavigationBar({ className }: NavigationBarProps) {
+	const [selectedMenuItem, setSelectedMenuItem] = useState<
+		string | undefined
+	>(undefined)
 	return (
 		<nav
 			className={classNames(
-				'flex h-16 w-full items-center justify-between border-b border-b-gray-300',
+				'sticky top-0 z-10 flex h-14 w-full items-center justify-center border-b border-gray-300 bg-white shadow-sm',
 				className
 			)}
 		>
-			<Link
-				href="/"
-				passHref={undefined}
-				className="text-sm font-semibold"
-			>
-				GoPhotos<span className="text-xl">.</span>
-			</Link>
-			<Menu as="div" className="relative flex sm:hidden">
-				<Menu.Button>
-					<Bars3BottomRightIcon className="h-5 w-5" />
-				</Menu.Button>
-				<Transition
-					as={Fragment}
-					enter="transition ease-out duration-100"
-					enterFrom="transform opacity-0 scale-[.98]"
-					enterTo="transform opacity-100 scale-100"
-					leave="transition ease-in duration-75"
-					leaveFrom="transform opacity-100 scale-100"
-					leaveTo="transform opacity-0 scale-[.98]"
+			<div className="flex h-full w-full max-w-screen-xl items-center justify-between">
+				<Link
+					href="/"
+					passHref={undefined}
+					className="text-sm font-semibold"
 				>
-					<Menu.Items className="absolute right-0 z-10 mt-6 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-						<div className="p-1">
-							{links.map(({ displayName, href, icon }) => (
-								<Menu.Item key={`${displayName}-${href}`}>
-									{({ active }) => (
+					GoPhotos<span className="text-xl">.</span>
+				</Link>
+				<DropdownMenu>
+					<DropdownMenuTrigger className="flex sm:hidden" asChild>
+						<Bars3BottomRightIcon className="h-5 w-5" />
+					</DropdownMenuTrigger>
+					<DropdownMenuPortal>
+						<DropdownMenuContent
+							side="bottom"
+							align="end"
+							className="z-10 mt-3 w-56 origin-top-right rounded-md border border-gray-300 bg-white p-1 shadow-lg focus:outline-none"
+						>
+							<DropdownMenuRadioGroup
+								value={selectedMenuItem}
+								onValueChange={setSelectedMenuItem}
+							>
+								{links.map(({ displayName, href, icon }) => (
+									<DropdownMenuRadioItem
+										key={`${displayName}-${href}`}
+										value={`${displayName}-${href}`}
+										asChild
+										className="group focus:outline-none"
+									>
 										<Link passHref={undefined} href={href}>
 											<Button
-												className={classNames(
-													active
-														? 'bg-black text-white'
-														: 'text-gray-900',
-													'w-full p-2 text-sm'
-												)}
+												className="w-full p-2 text-sm font-medium text-gray-900 transition-colors duration-100 group-data-[highlighted]:bg-black group-data-[state=checked]:bg-black group-data-[highlighted]:text-white group-data-[state=checked]:text-white"
 												leftIcon={icon}
 											>
 												{displayName}
 											</Button>
 										</Link>
-									)}
-								</Menu.Item>
-							))}
-						</div>
-						<div className="p-1">
-							<Menu.Item>
-								{({ active }) => (
-									<Link passHref={undefined} href="/">
-										<Button
-											className={classNames(
-												active
-													? 'bg-black text-white'
-													: 'text-gray-900',
-												'w-full p-2 text-sm'
-											)}
-											leftIcon={
-												<BellIcon className="mr-1 h-4 w-4" />
-											}
-										>
-											Notifications
-										</Button>
-									</Link>
-								)}
-							</Menu.Item>
-							<Menu.Item>
+									</DropdownMenuRadioItem>
+								))}
+							</DropdownMenuRadioGroup>
+							<DropdownMenuSeparator className="my-3 w-full border-t border-t-gray-200" />
+							<DropdownMenuItem
+								asChild
+								className="group focus:outline-none"
+							>
 								<Link passHref={undefined} href="/">
 									<Button
-										className="w-full p-2 text-sm"
+										leftIcon={
+											<BellIcon className="mr-1 h-4 w-4" />
+										}
+										className="w-full p-2 text-sm font-medium text-gray-900 transition-colors duration-100 group-data-[highlighted]:bg-black group-data-[state=checked]:bg-black group-data-[highlighted]:text-white group-data-[state=checked]:text-white"
+									>
+										Notifications
+									</Button>
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem
+								asChild
+								className="group focus:outline-none"
+							>
+								<Link passHref={undefined} href="/">
+									<Button
+										className="w-full p-2 text-sm font-medium text-gray-900 transition-colors duration-100 group-data-[highlighted]:bg-black group-data-[state=checked]:bg-black group-data-[highlighted]:text-white group-data-[state=checked]:text-white"
 										rightIcon={
-											<ArrowLongRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+											<ArrowLongRightIcon
+												strokeWidth={2}
+												className="h-5 w-5 transition-transform group-hover:translate-x-1 group-data-[highlighted]:translate-x-1"
+											/>
 										}
 									>
 										Log in
 									</Button>
 								</Link>
-							</Menu.Item>
-						</div>
-					</Menu.Items>
-				</Transition>
-			</Menu>
-			<div className="hidden h-full items-center sm:flex">
-				<Link passHref={undefined} href={links[0].href}>
-					<Button className="text-sm">{links[0].displayName}</Button>
-				</Link>
-				{links.slice(1).map(({ displayName, href }) => (
-					<Fragment key={`${displayName}-${href}`}>
-						<HorizontalDivider className="h-[20px]" />
-						<Link passHref={undefined} href={href}>
-							<Button className="text-sm">{displayName}</Button>
-						</Link>
-					</Fragment>
-				))}
-			</div>
-			<div className="hidden h-full items-center sm:flex">
-				<BellIcon className="h-5 w-5" />
-				<HorizontalDivider className="h-[20px]" />
-				<Link passHref={undefined} href="/">
-					<Button
-						className="text-sm"
-						rightIcon={
-							<ArrowLongRightIcon className="ml-1 h-5 w-5 flex-shrink-0 transition-transform group-hover:translate-x-1" />
-						}
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenuPortal>
+				</DropdownMenu>
+				<div className="hidden h-full items-center gap-x-3 sm:flex">
+					{links.map(({ displayName, href, routeSegment }) => (
+						<NavigationLink
+							key={`${displayName}-${href}`}
+							href={href}
+							routeSegment={routeSegment}
+							layoutId="navigation-selected-link"
+							className="text-sm font-medium"
+							selectedBarClassName='-bottom-4'
+						>
+							{displayName}
+						</NavigationLink>
+					))}
+				</div>
+				<div className="hidden h-full items-center sm:flex">
+					<MagnifyingGlassIcon className="h-4 w-4" strokeWidth={2} />
+					<div className="mx-3 h-[20px] border-l border-gray-300" />
+					<Link
+						passHref={undefined}
+						href="/"
+						className="text-sm font-medium"
 					>
-						Log in
-					</Button>
-				</Link>
+						<Button
+							rightIcon={
+								<ArrowLongRightIcon className="ml-1 h-5 w-5 flex-shrink-0 transition-transform group-hover:translate-x-1" />
+							}
+						>
+							Log in
+						</Button>
+					</Link>
+				</div>
 			</div>
 		</nav>
 	)

@@ -7,7 +7,7 @@ import NegotiationProposal from './NegotiationProposal'
 export default function NegotiationHistory() {
 	return (
 		<div className="grid max-w-6xl space-y-3 lg:max-h-[35rem] lg:overflow-y-auto lg:rounded-md lg:border lg:border-gray-400 lg:px-3 lg:py-3">
-			<div className="justify-self-center lg:justify-self-start">
+			<div className="justify-self-center md:justify-self-start lg:justify-self-start">
 				<NegotiationActions>
 					<NegotiationProposal
 						prelude="You received a quote from Bob Ross for a photography event on
@@ -29,10 +29,10 @@ export default function NegotiationHistory() {
 					/>
 				</NegotiationActions>
 			</div>
-			<div className="justify-self-center lg:justify-self-end">
+			<div className="justify-self-center md:justify-self-start lg:justify-self-end">
 				{getCounteredNotification()}
 			</div>
-			<div className="justify-self-center lg:justify-self-start">
+			<div className="justify-self-center md:justify-self-start lg:justify-self-start">
 				{getCounteredNotification()}
 			</div>
 		</div>

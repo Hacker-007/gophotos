@@ -8,6 +8,7 @@ import { useState } from 'react'
 type BadgeGroupProps = {
 	items: string[]
 	static?: boolean
+	id?: string
 	className?: string
 	badgeClassName?: string
 }
@@ -15,6 +16,7 @@ type BadgeGroupProps = {
 export default function BadgeGroup({
 	items: initialItems,
 	static: isStatic,
+	id,
 	className,
 	badgeClassName,
 }: BadgeGroupProps) {
@@ -43,7 +45,7 @@ export default function BadgeGroup({
 	}
 
 	return (
-		<div className={className}>
+		<div className={className} id={id}>
 			{items.map(item => (
 				<Badge
 					fill={item.selected}

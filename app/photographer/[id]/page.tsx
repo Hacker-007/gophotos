@@ -16,8 +16,8 @@ type PhotographerPortfolioProps = {
 
 export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 	return (
-		<div className="grid h-full w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-[auto_1fr] lg:grid-cols-[1fr_auto_1fr]">
-			<div className="w-full max-w-xl space-y-4 md:col-span-1 md:col-start-1 md:row-start-1 lg:min-w-[30rem]">
+		<div className="grid h-full w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-[1fr_auto] ">
+			<div className="w-full max-w-xl space-y-4 md:col-span-1 md:col-start-1 md:row-start-1 ">
 				<div className="mb-2 h-80 w-full max-w-xl @container/carousel">
 					<Carousel />
 				</div>
@@ -42,16 +42,16 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 					</div>
 				</div>
 			</div>
-			<div className="w-full min-w-[15rem] max-w-xl md:col-span-1 md:col-start-2 md:row-span-2 md:row-start-1 md:max-w-md lg:col-start-3 lg:row-span-1 lg:max-w-sm lg:justify-self-start">
-				<div className="w-full @container/booking md:sticky md:top-0 md:rounded-md md:border md:border-gray-300 md:p-3">
+			<div className="w-full min-w-[15rem] max-w-xl md:col-span-1 md:col-start-2 md:row-span-2 md:row-start-1 md:max-w-md ">
+				<div className="w-full @container/booking md:sticky md:top-16 md:rounded-md md:border md:border-gray-300 md:p-3">
 					<div className="flex flex-col gap-2 @xs/booking:flex-row @xs/booking:justify-between">
 						<div>
 							<h3 className="text-sm font-medium">
 								Booking date
 							</h3>
 							<div>
-								<h4 className="text-sm">September 14, 2023</h4>
-								<h4 className="text-sm">4:30 PM - 6:30 PM</h4>
+								<p className="text-xs">September 14, 2023</p>
+								<p className="text-xs">4:30 PM - 6:30 PM</p>
 							</div>
 						</div>
 						<div>
@@ -72,8 +72,8 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 					<RequestQuoteButton />
 				</div>
 			</div>
-			<section className="flex w-full max-w-xl flex-col space-y-4 md:col-span-1 md:col-start-1 md:row-start-2 lg:col-start-2 lg:row-start-1">
-				<div className="prose prose-sm w-full prose-headings:text-sm">
+			<section className="flex w-full max-w-xl flex-col space-y-4 md:col-span-1 md:col-start-1 md:row-start-2 ">
+				<div className="prose w-full prose-headings:text-sm prose-p:text-xs prose-p:leading-6">
 					<h3 className="font-medium">About Photographer</h3>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -102,7 +102,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 						]}
 					/>
 				</div>
-				<div className="prose prose-sm w-full prose-headings:text-sm prose-ul:list-disc">
+				<div className="prose w-full prose-headings:text-sm prose-ul:list-disc prose-li:text-xs prose-li:leading-6">
 					<h3 className="font-medium">Job Expectations</h3>
 					<ul>
 						<li>Equipment will be brought by photographer</li>
@@ -123,7 +123,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 					</ul>
 				</div>
 			</section>
-			<div className="grid w-full max-w-xl grid-cols-1 md:col-span-2 md:col-start-1 md:row-start-3 md:max-w-none md:justify-self-start lg:col-span-3 lg:row-start-2 lg:grid-cols-[auto_1fr]">
+			<div className="grid w-full max-w-xl grid-cols-1 md:col-span-2 md:col-start-1 md:row-start-3 md:max-w-none md:justify-self-start ">
 				<div className="max-w-xl md:col-span-1 md:col-start-1">
 					<div className="prose w-full prose-headings:text-sm">
 						<h3 className="font-medium">Reviews</h3>
@@ -144,13 +144,13 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 						</p>
 					</div>
 				</div>
-				<div className="max-w-sm lg:col-start-1 lg:w-96">
+				<div className="max-w-sm ">
 					<RatingGraph
 						className="w-full"
 						ratings={[4, 2, 4, 12, 78]}
 					/>
 				</div>
-				<ul className="mt-5 space-y-4 lg:ml-5 lg:mt-0">
+				<ul className="mt-5 space-y-4 ">
 					<li>
 						<div className="flex items-center gap-x-2">
 							<div className="h-8 w-8 rounded-full bg-gray-300"></div>
@@ -164,7 +164,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 							</div>
 						</div>
 						<Rating rating={5} />
-						<p className="mt-1 text-xs">
+						<p className="mt-2 text-xs">
 							Lorem ipsum dolor sit amet consectetur adipisicing
 							elit. Possimus dolore vel impedit, harum dolorem
 							error sunt!
@@ -183,7 +183,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 							</div>
 						</div>
 						<Rating rating={4} />
-						<p className="mt-1 text-xs">
+						<p className="mt-2 text-xs">
 							Lorem ipsum dolor sit amet consectetur adipisicing
 							elit. Possimus dolore vel impedit, harum dolorem
 							error sunt!
@@ -202,7 +202,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 							</div>
 						</div>
 						<Rating rating={3} />
-						<p className="mt-1 text-xs">
+						<p className="mt-2 text-xs">
 							Lorem ipsum dolor sit amet consectetur adipisicing
 							elit. Possimus dolore vel impedit, harum dolorem
 							error sunt!
@@ -221,7 +221,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 							</div>
 						</div>
 						<Rating rating={3} />
-						<p className="mt-1 text-xs">
+						<p className="mt-2 text-xs">
 							Lorem ipsum dolor sit amet consectetur adipisicing
 							elit. Possimus dolore vel impedit, harum dolorem
 							error sunt!
@@ -240,7 +240,7 @@ export default function PhotographerPortfolio({}: PhotographerPortfolioProps) {
 							</div>
 						</div>
 						<Rating rating={3} />
-						<p className="mt-1 text-xs">
+						<p className="mt-2 text-xs">
 							Lorem ipsum dolor sit amet consectetur adipisicing
 							elit. Possimus dolore vel impedit, harum dolorem
 							error sunt!

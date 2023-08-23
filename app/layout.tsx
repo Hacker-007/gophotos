@@ -7,6 +7,7 @@ import classNames from '@/utils/classnames'
 
 const inter = Inter({
 	subsets: ['latin'],
+	preload: true,
 })
 
 export const metadata = {
@@ -25,12 +26,14 @@ export default function RootLayout({
 				<div
 					className={classNames(
 						inter.className,
-						'flex h-screen w-screen overflow-x-hidden flex-col'
+						'flex h-screen w-screen flex-col items-center overflow-x-hidden'
 					)}
 				>
-					<NavigationBar className="px-4 py-2 flex-shrink-0" />
-					<div className="mt-2 mb-4 flex-grow px-4">{children}</div>
-					<footer className="h-10 flex-shrink-0 px-4 text-xs text-gray-400">
+					<NavigationBar className="w-full flex-shrink-0 px-4 py-2" />
+					<div className="mb-4 mt-2 w-full max-w-screen-xl flex-grow px-4">
+						{children}
+					</div>
+					<footer className="h-10 w-full max-w-screen-xl flex-shrink-0 px-4 text-xs text-gray-400">
 						©️GoPhotos 2023
 					</footer>
 				</div>
