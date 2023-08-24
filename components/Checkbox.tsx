@@ -32,7 +32,7 @@ export default function Checkbox({ checked: isChecked, handleCheck, label, class
 				id={id}
 				checked={isChecked}
 				onCheckedChange={handleOnCheck}
-				className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-sm border border-gray-300 bg-white shadow-sm transition-colors duration-500 hover:bg-gray-100 data-[state=checked]:border-black"
+				className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-sm border border-gray-300 bg-white shadow-sm transition-colors duration-200 hover:bg-gray-100 data-[state=checked]:border-black"
 			>
 				<AnimatePresence initial={false}>
 					{isChecked && (
@@ -53,7 +53,7 @@ export default function Checkbox({ checked: isChecked, handleCheck, label, class
 									animate={{ pathLength: 1 }}
 									exit={{ pathLength: 0 }}
 									transition={{
-										duration: 0.5,
+										duration: 0.2,
 										ease: 'easeOut',
 									}}
 								/>

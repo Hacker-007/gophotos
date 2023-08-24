@@ -47,7 +47,7 @@ export default function CounterQuotePanel() {
 				<div className="mt-1">
 					<Input
 						className={classNames(
-							'pl-5 transition-colors duration-300 disabled:bg-gray-100',
+							'pl-5 transition-colors duration-200 disabled:bg-gray-100',
 							errors.price && 'ring-red-400 focus:ring-red-400'
 						)}
 						type="number"
@@ -88,7 +88,7 @@ export default function CounterQuotePanel() {
 					</label>
 					<textarea
 						id="explanation"
-						className="w-full rounded-md border-gray-300 p-1 text-xs transition-colors duration-300 focus:border-purple-200  disabled:bg-gray-100"
+						className="w-full rounded-md border-gray-300 p-1 text-xs transition-colors duration-200 focus:border-purple-200  disabled:bg-gray-100"
 						placeholder="Provide a brief explanation for your counter proposal."
 						rows={3}
 						disabled={isSubmitting}

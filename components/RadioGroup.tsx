@@ -36,21 +36,11 @@ export default function RadioGroup({
 					<RadioGroupItem
 						id={`radio-group-${id}-${item}`}
 						value={item}
-						className="h-4 w-4 rounded-full border border-gray-300 bg-white outline-none transition-colors duration-500 hover:bg-gray-100 data-[state=checked]:border-black"
+						className="h-4 w-4 rounded-full border border-gray-300 bg-white outline-none transition-colors duration-200 hover:bg-gray-100 data-[state=checked]:border-black"
 					>
 						<RadioGroupIndicator
-							asChild
 							className="relative flex h-full w-full items-center justify-center after:block after:h-2 after:w-2 after:rounded-full after:bg-black after:content-['']"
-						>
-							<motion.div
-								layoutId={`radio-group-${id}-indicator`}
-								transition={{
-									layout: {
-										duration: 0.5,
-									},
-								}}
-							/>
-						</RadioGroupIndicator>
+						/>
 					</RadioGroupItem>
 					<label
 						htmlFor={`radio-group-${id}-${item}`}

@@ -96,7 +96,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 									>
 										<Link passHref={undefined} href={href}>
 											<Button
-												className="w-full p-2 text-sm font-medium text-gray-900 transition-colors duration-100 group-data-[highlighted]:bg-black group-data-[state=checked]:bg-black group-data-[highlighted]:text-white group-data-[state=checked]:text-white"
+												className="w-full p-2 text-sm font-medium text-gray-900 transition-colors duration-200 group-data-[highlighted]:bg-black group-data-[state=checked]:bg-black group-data-[highlighted]:text-white group-data-[state=checked]:text-white"
 												leftIcon={icon}
 											>
 												{displayName}
@@ -115,7 +115,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 										leftIcon={
 											<BellIcon className="mr-1 h-4 w-4" />
 										}
-										className="w-full p-2 text-sm font-medium text-gray-900 transition-colors duration-100 group-data-[highlighted]:bg-black group-data-[state=checked]:bg-black group-data-[highlighted]:text-white group-data-[state=checked]:text-white"
+										className="w-full p-2 text-sm font-medium text-gray-900 transition-colors duration-200 group-data-[highlighted]:bg-black group-data-[state=checked]:bg-black group-data-[highlighted]:text-white group-data-[state=checked]:text-white"
 									>
 										Notifications
 									</Button>
@@ -127,7 +127,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 							>
 								<Link passHref={undefined} href="/">
 									<Button
-										className="w-full p-2 text-sm font-medium text-gray-900 transition-colors duration-100 group-data-[highlighted]:bg-black group-data-[state=checked]:bg-black group-data-[highlighted]:text-white group-data-[state=checked]:text-white"
+										className="w-full p-2 text-sm font-medium text-gray-900 transition-colors duration-200 group-data-[highlighted]:bg-black group-data-[state=checked]:bg-black group-data-[highlighted]:text-white group-data-[state=checked]:text-white"
 										rightIcon={
 											<ArrowLongRightIcon
 												strokeWidth={2}

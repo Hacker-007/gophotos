@@ -15,6 +15,7 @@ import classNames from '@/utils/classnames'
 import Checkbox from '@/components/Checkbox'
 import Rating from '@/components/Rating'
 import RadioGroup from '@/components/RadioGroup'
+import Dialog, { DialogClose } from '@/components/Dialog'
 
 type FiltersProps = {
 	className?: string
@@ -22,31 +23,31 @@ type FiltersProps = {
 }
 
 type SelectedFilter = {
-	specialties: string[]
+	photographerSkills: string[]
 	ratings: Array<1 | 2 | 3 | 4 | 5>
-	reviewCount: string
+	numberOfReviews: string
 }
 
 export default function Filters({ className, children }: FiltersProps) {
 	const [selectedFilters, setSelectedFilters] = useState<SelectedFilter>({
-		specialties: [],
+		photographerSkills: [],
 		ratings: [],
-		reviewCount: 'Any',
+		numberOfReviews: 'Any',
 	})
 
 	const resetAll = () => {
 		setSelectedFilters({
-			specialties: [],
+			photographerSkills: [],
 			ratings: [],
-			reviewCount: 'Any',
+			numberOfReviews: 'Any',
 		})
 	}
 
 	return (
 		<div className={classNames('@container/filters', className)}>
-			<div className="grid gap-2 @6xl/filters:grid-cols-[20rem_1fr]">
-				<div className="col-span-1 col-start-1 grid grid-cols-1 gap-3 @md/filters:grid-cols-3 @3xl/filters:grid-cols-4 @6xl/filters:col-start-2">
-					<div className="@md/filters:col-span-1">
+			<div className="@6xl/filters:grid-cols-[20rem_1fr] grid gap-2">
+				<div className="col-span-1 col-start-1 grid grid-cols-1 gap-3 @md/filters:grid-cols-3 @6xl/filters:col-start-2">
+					<div className="col-span-2 @md/filters:col-span-1">
 						<label
 							htmlFor="location-filter"
 							className="text-xs font-medium leading-6 text-gray-900"
@@ -63,7 +64,7 @@ export default function Filters({ className, children }: FiltersProps) {
 							className="w-full"
 						/>
 					</div>
-					<div className="@md/filters:col-span-1">
+					<div className="col-span-2 @md/filters:col-span-1">
 						<label
 							htmlFor="price-filter"
 							className="text-xs font-medium leading-6 text-gray-900"
@@ -80,42 +81,44 @@ export default function Filters({ className, children }: FiltersProps) {
 							className="w-full"
 						/>
 					</div>
-					<div className="@md/filters:col-span-1">
-						<label
-							htmlFor="time-filter"
-							className="text-xs font-medium leading-6 text-gray-900"
-						>
-							Date and time
-						</label>
-						<Select
-							id="time-filter"
-							items={[
-								{ value: 'Test', display: 'Test' },
-								{ value: 'Test - 2', display: 'Test - 2' },
-							]}
-							placeholder="Select a city"
-							className="w-full"
-						/>
-					</div>
 					<Button
 						leftIcon={<MagnifyingGlassIcon className="h-4 w-4" />}
-						className="w-full justify-center bg-black px-3 py-2 text-xs text-white @md/filters:col-span-1 @md/filters:col-start-3 @3xl/filters:col-start-4 @3xl/filters:row-start-1 @3xl:place-self-end"
+						className="col-span-2 w-full justify-center bg-black px-3 py-2 text-xs text-white @md/filters:col-span-1 @md/filters:place-self-end"
 					>
 						Search
 					</Button>
-					<Button
-						leftIcon={
-							<AdjustmentsVerticalIcon className="h-4 w-4" />
+					<Dialog
+						trigger={
+							<Button
+								leftIcon={
+									<AdjustmentsVerticalIcon className="h-4 w-4" />
+								}
+								className="@6xl/filters: col-span-1 col-start-2 row-start-4 w-full justify-center self-end border border-gray-300 px-3 py-2 text-xs @md/filters:col-start-1 @md/filters:row-start-2 @xl/filters:w-40 @xl/filters:justify-self-start"
+							>
+								More filters
+							</Button>
 						}
-						className="w-full justify-center border border-gray-300 px-3 py-2 text-xs @md/filters:col-span-1 @md/filters:col-start-1 @md/filters:row-start-2 @xl/filters:w-40 @3xl/filters:place-self-start @6xl/filters:hidden"
 					>
-						More filters
-					</Button>
-					<div className="hidden items-center space-x-2 @4xl/filters:col-start-4 @4xl/filters:flex">
+						<div className="h-full w-full rounded-sm bg-white">
+							<AdditionalFilters
+								resetAll={resetAll}
+								selectedFilters={selectedFilters}
+								setSelectedFilters={setSelectedFilters}
+							/>
+							<DialogClose className="w-full p-2">
+								<div className="flex w-full items-center justify-center gap-x-1 rounded-md bg-black px-3 py-2 text-xs font-medium text-white">
+									<MagnifyingGlassIcon className="h-4 w-4" />
+									<p>Search</p>
+								</div>
+							</DialogClose>
+						</div>
+					</Dialog>
+					<div className="col-span-1 col-start-1 flex flex-col items-start gap-1 place-self-start @sm/filters:flex-row @sm/filters:items-center @md/filters:col-span-2 @md/filters:justify-self-end @6xl/filters:col-span-1 @6xl/filters:col-start-3">
 						<p className="whitespace-nowrap text-xs text-gray-600">
 							Sort by
 						</p>
 						<Select
+							className="w-min min-w-[10rem]"
 							items={[
 								{
 									value: 'price:descending',
@@ -154,12 +157,11 @@ export default function Filters({ className, children }: FiltersProps) {
 									),
 								},
 							]}
-							className="w-full"
 						/>
 					</div>
 				</div>
 				<AdditionalFilters
-					className="hidden h-min w-80 rounded-md border border-gray-300 @6xl/filters:block"
+					className="@6xl/filters:block hidden h-min w-80 rounded-md border border-gray-300"
 					resetAll={resetAll}
 					selectedFilters={selectedFilters}
 					setSelectedFilters={setSelectedFilters}
@@ -197,8 +199,8 @@ function AdditionalFilters({
 			<div className="w-full border-t border-gray-300" />
 			<div className="space-y-2 px-3 py-2">
 				<div>
-					<p className="text-sm font-medium">Specialities</p>
-					<div className="mt-1 grid grid-cols-[repeat(auto-fit,minmax(5rem,1fr))] gap-1">
+					<p className="text-sm font-medium">Skills</p>
+					<div className="mt-1 grid grid-cols-[repeat(auto-fit,minmax(6rem,1fr))] gap-1">
 						{[
 							'Indoor',
 							'Outdoor',
@@ -206,28 +208,28 @@ function AdditionalFilters({
 							'Dim Lights',
 							'Group',
 							'Headshot',
-						].map(specialty => (
+						].map(photographerSkill => (
 							<Checkbox
 								className="space-x-1.5 whitespace-nowrap text-xs"
-								key={specialty}
-								label={specialty}
-								checked={selectedFilters.specialties.includes(
-									specialty
+								key={photographerSkill}
+								label={photographerSkill}
+								checked={selectedFilters.photographerSkills.includes(
+									photographerSkill
 								)}
 								handleCheck={checkedState => {
 									if (checkedState !== 'indeterminate') {
 										setSelectedFilters(filters => {
 											return {
 												...filters,
-												specialties: checkedState
+												photographerSkills: checkedState
 													? [
-															...filters.specialties,
-															specialty,
+															...filters.photographerSkills,
+															photographerSkill,
 													  ]
-													: filters.specialties.filter(
+													: filters.photographerSkills.filter(
 															item =>
 																item !==
-																specialty
+																photographerSkill
 													  ),
 											}
 										})
@@ -279,10 +281,10 @@ function AdditionalFilters({
 				</div>
 				<div className="w-full border-t border-gray-300" />
 				<div>
-					<p className="text-sm font-medium">Reviews</p>
+					<p className="text-sm font-medium">Number of Reviews</p>
 					<RadioGroup
 						className="mt-1 gap-1"
-						selectedValue={selectedFilters.reviewCount}
+						selectedValue={selectedFilters.numberOfReviews}
 						items={[
 							'Any',
 							'0 - 100',
@@ -295,7 +297,7 @@ function AdditionalFilters({
 						handleValue={count =>
 							setSelectedFilters(filters => ({
 								...filters,
-								reviewCount: count,
+								numberOfReviews: count,
 							}))
 						}
 					/>
