@@ -49,7 +49,7 @@ export default function BadgeGroup({
 			{items.map(item => (
 				<Badge
 					fill={item.selected}
-					handleClick={() => toggleItem(item.value)}
+					onClick={() => toggleItem(item.value)}
 					className={classNames(
 						'whitespace-nowrap',
 						isStatic && 'cursor-default',

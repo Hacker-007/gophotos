@@ -7,22 +7,34 @@ import {
 	CheckboxIndicator,
 	CheckedState,
 	Checkbox as RadixCheckbox,
+	CheckboxProps as RadixCheckboxProps,
 } from '@radix-ui/react-checkbox'
 import { AnimatePresence, motion } from 'framer-motion'
 
 type CheckboxProps = {
-	checked: boolean
-	handleCheck: (checkedState: CheckedState) => void
+	defaultChecked: boolean
 	label?: ReactNode
+	onCheck?: (checkedState: CheckedState) => void
 	className?: string
-}
+} & RadixCheckboxProps
 
-export default function Checkbox({ checked: isChecked, handleCheck, label, className }: CheckboxProps) {
+export default function Checkbox({
+	defaultChecked,
+	name,
+	label,
+	onCheck,
+	className,
+	...props
+}: CheckboxProps) {
 	const id = useId()
+	const [isChecked, setIsChecked] = useState(defaultChecked)
 
 	const handleOnCheck = (checkedState: CheckedState) => {
 		if (checkedState !== 'indeterminate') {
-			handleCheck(checkedState)
+			setIsChecked(checkedState)
+			if (onCheck) {
+				onCheck(checkedState)
+			}
 		}
 	}
 
@@ -30,9 +42,11 @@ export default function Checkbox({ checked: isChecked, handleCheck, label, class
 		<div className={classNames('flex items-center', className)}>
 			<RadixCheckbox
 				id={id}
+				name={name}
 				checked={isChecked}
 				onCheckedChange={handleOnCheck}
 				className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-sm border border-gray-300 bg-white shadow-sm transition-colors duration-200 hover:bg-gray-100 data-[state=checked]:border-black"
+				{...props}
 			>
 				<AnimatePresence initial={false}>
 					{isChecked && (
@@ -62,7 +76,9 @@ export default function Checkbox({ checked: isChecked, handleCheck, label, class
 					)}
 				</AnimatePresence>
 			</RadixCheckbox>
-			<label htmlFor={id}>{label}</label>
+			<label htmlFor={id}>
+				{label}
+			</label>
 		</div>
 	)
 }

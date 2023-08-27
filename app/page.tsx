@@ -1,24 +1,27 @@
 import PortfolioPreview from './PortfolioPreview'
-import Filters from './Filters'
+import SearchFilters from './SearchFilters'
 
-export default function Home() {
+type HomeProps = {
+	searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default function Home({ searchParams }: HomeProps) {
 	return (
 		<main>
-			<Filters className="w-full overflow-hidden">
-				<div className="grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] justify-items-center gap-3">
-					{[...new Array(25)].map((_, idx) => (
-						<PortfolioPreview
-							key={idx}
-							photographerId={`${idx}`}
-							name="Bob Ross"
-							location="Cambridge, MA"
-							estimatedPriceRange={[150, 200]}
-							rating={4.7}
-							numberOfReviews={1027}
-						/>
-					))}
-				</div>
-			</Filters>
+			<SearchFilters className="w-full overflow-hidden" />
+			<div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] justify-items-center gap-3">
+				{[...new Array(25)].map((_, idx) => (
+					<PortfolioPreview
+						key={idx}
+						photographerId={`${idx}`}
+						name="Bob Ross"
+						location="Cambridge, MA"
+						estimatedPriceRange={[150, 200]}
+						rating={4.7}
+						numberOfReviews={1027}
+					/>
+				))}
+			</div>
 		</main>
 	)
 }
