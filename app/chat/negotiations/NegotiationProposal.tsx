@@ -21,24 +21,12 @@ export default function NegotiationProposal({
 	return (
 		<div
 			className={classNames(
-				'rounded-md border border-gray-300 bg-gray-50 p-3 max-w-md',
+				'rounded-md border border-gray-300 bg-gray-50 p-3 space-y-3 max-w-md',
 				className
 			)}
 		>
-			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-x-2">
-					<AccountCircle />
-					<div>
-						<h3 className="text-sm font-medium">Bob Ross</h3>
-						<p className="text-xs text-gray-500">
-							Aug 14, 2023 <span>&middot;</span> 10:25 AM
-						</p>
-					</div>
-				</div>
-			</div>
-			{prelude && <p className="mt-3 text-xs text-gray-600">{prelude}</p>}
+			{prelude && <p className="text-xs text-gray-600">{prelude}</p>}
 			<NegotiationPricing
-				className="mt-3"
 				pill={pill}
 				proposedPrice={proposedPrice}
 				serviceFee={serviceFee}

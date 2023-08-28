@@ -7,10 +7,10 @@ type HomeProps = {
 
 export default function Home({ searchParams }: HomeProps) {
 	return (
-		<main>
+		<main className='mb-2'>
 			<SearchFilters className="w-full overflow-hidden" />
 			<div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] justify-items-center gap-3">
-				{[...new Array(25)].map((_, idx) => (
+				{[...new Array(10)].map((_, idx) => (
 					<PortfolioPreview
 						key={idx}
 						photographerId={`${idx}`}

@@ -7,7 +7,7 @@ const colorClasses = {
 		className: 'bg-gray-50 text-gray-600',
 	},
 	darkGray: {
-		className: 'bg-gray-200',
+		className: 'bg-gray-300 text-gray-800',
 	},
 	green: {
 		className: 'bg-green-100 text-green-800',

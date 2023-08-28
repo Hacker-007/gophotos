@@ -3,14 +3,13 @@
 import classNames from '@/utils/classnames'
 
 import Link from 'next/link'
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 
 import {
 	ArrowLongRightIcon,
 	Bars3BottomRightIcon,
 	BellIcon,
 	DocumentTextIcon,
-	EnvelopeIcon,
 	HomeIcon,
 	MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
@@ -41,16 +40,10 @@ const links = [
 		icon: <HomeIcon strokeWidth={1.5} className="mr-1 h-4 w-4" />,
 	},
 	{
-		displayName: 'Contracts',
-		href: '/contracts/negotiations',
-		routeSegment: 'contracts',
+		displayName: 'Conversations',
+		href: '/chat',
+		routeSegment: 'chat',
 		icon: <DocumentTextIcon strokeWidth={1.5} className="mr-1 h-4 w-4" />,
-	},
-	{
-		displayName: 'Contact Us',
-		href: '/',
-		routeSegment: 'contact',
-		icon: <EnvelopeIcon strokeWidth={1.5} className="mr-1 h-4 w-4" />,
 	},
 ]
 
@@ -65,7 +58,7 @@ export default function NavigationBar({ className }: NavigationBarProps) {
 				className
 			)}
 		>
-			<div className="flex h-full w-full max-w-screen-xl items-center justify-between">
+			<div className="flex h-full w-full max-w-screen-2xl items-center justify-between">
 				<Link
 					href="/"
 					passHref={undefined}

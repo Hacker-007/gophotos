@@ -33,18 +33,13 @@ export default function ViewProfileOverlay({
 		<div className={classNames('group', className)}>
 			<Dialog>
 				<DialogTrigger asChild>
-					<div
-						// href={`/photographer/${photographerId}`}
-						// target='_blank'
-						// rel='noopener noreferrer'
-						className="absolute inset-0 z-10 m-auto flex cursor-pointer items-center justify-center bg-black/10 text-sm font-medium opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-					>
+					<div className="absolute inset-0 z-10 m-auto flex cursor-pointer items-center justify-center bg-black/50 text-sm font-medium text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
 						View Profile
 					</div>
 				</DialogTrigger>
 				<DialogPortal>
 					<DialogOverlay className="fixed inset-0 bg-black/20" />
-					<DialogContent className="fixed left-0 top-14 h-full max-h-full w-full max-w-screen-lg md:-translate-x-1/2 md:-translate-y-1/2 overflow-y-auto bg-white md:left-1/2 md:top-1/2 md:h-4/5">
+					<DialogContent className="fixed left-0 top-14 h-full max-h-full w-full max-w-screen-lg overflow-y-auto bg-white md:left-1/2 md:top-1/2 md:h-4/5 md:-translate-x-1/2 md:-translate-y-1/2">
 						<div className="h-full w-full rounded-md bg-white p-4">
 							<div className="grid h-full w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-[1fr_auto] ">
 								<div className="w-full space-y-4 @container/carousel md:col-span-1 md:col-start-1 md:row-start-1 ">
@@ -76,9 +71,9 @@ export default function ViewProfileOverlay({
 										</div>
 									</div>
 								</div>
-								<div className="w-full min-w-[15rem] md:min-w-[20rem] md:col-span-1 md:col-start-2 md:row-span-2 md:row-start-1 md:max-w-md">
+								<div className="w-full min-w-[15rem] md:col-span-1 md:col-start-2 md:row-span-2 md:row-start-1 md:min-w-[20rem] md:max-w-md">
 									<div className="w-full @container/booking md:sticky md:top-0 md:rounded-md md:border md:border-gray-300 md:p-3">
-										<div className="flex flex-row gap-2 justify-between">
+										<div className="flex flex-row justify-between gap-2">
 											<div>
 												<h3 className="text-sm font-medium">
 													Booking date
@@ -93,7 +88,7 @@ export default function ViewProfileOverlay({
 												</div>
 											</div>
 											<div>
-												<div className="flex items-center space-x-1 justify-end">
+												<div className="flex items-center justify-end space-x-1">
 													<h3 className="text-sm font-medium">
 														Estimated price
 													</h3>

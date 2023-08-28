@@ -33,7 +33,7 @@ export default function CounterQuotePanel() {
 	}
 
 	return (
-		<div className="rounded-md border  bg-gray-50 p-3 max-w-md mb-3">
+		<div className="rounded-md border  bg-gray-50 p-3 max-w-md mt-3">
 			<form onSubmit={handleSubmit(counterQuote)}>
 				<div>
 					<h3 className="text-sm font-medium">Countering quote</h3>

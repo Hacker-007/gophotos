@@ -30,10 +30,10 @@ export default function RootLayout({
 					)}
 				>
 					<NavigationBar className="w-full flex-shrink-0 px-4 py-2" />
-					<div className="mb-4 mt-2 w-full max-w-screen-xl flex-grow px-4">
+					<div className="mt-2 w-full max-w-screen-2xl flex-grow px-4">
 						{children}
 					</div>
-					<footer className="h-10 w-full max-w-screen-xl flex-shrink-0 px-4 text-xs text-gray-400">
+					<footer className="py-2 border-t border-gray-200 h-10 w-full max-w-screen-2xl flex-shrink-0 px-4 text-xs text-gray-400">
 						©️GoPhotos 2023
 					</footer>
 				</div>
