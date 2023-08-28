@@ -4,6 +4,7 @@ import { StarIcon } from '@heroicons/react/24/solid'
 
 import AccountCircle from '@/components/AccountCircle'
 import ViewProfileOverlay from './ViewProfileOverlay'
+import Image from 'next/image'
 
 type PortfolioPreviewProps = {
 	photographerId: string
@@ -39,10 +40,30 @@ export default async function PortfolioPreview({
 				className="relative h-48 w-full overflow-auto rounded-md @container/overlay"
 			>
 				<div className="grid h-full w-full grid-cols-3 gap-1 @md/overlay:grid-cols-4 @2xl/overlay:grid-cols-5">
-					<div className="relative col-span-2 h-full w-full bg-red-200"></div>
-					<div className="relative col-span-1 h-full w-full bg-green-200"></div>
-					<div className="relative col-span-1 hidden h-full w-full bg-blue-200 @md/overlay:block"></div>
-					<div className="relative col-span-1 hidden h-full w-full bg-purple-200 @2xl/overlay:block"></div>
+					<div className="relative col-span-2 h-full w-full overflow-hidden bg-gray-200">
+						<Image
+							alt="bob-ross-1"
+							src="/images/Graduation Celebration.jpg"
+							fill
+							className="object-cover"
+						/>
+					</div>
+					<div className="relative col-span-1 h-full w-full overflow-hidden bg-gray-200">
+						<Image
+							alt="bob-ross-2"
+							src="/images/Birthday.jpg"
+							fill
+							className="object-cover"
+						/>
+					</div>
+					<div className="relative col-span-1 hidden h-full w-full overflow-hidden bg-gray-200 @md/overlay:block">
+						<Image
+							alt="bob-ross-3"
+							src="/images/Headshot.jpg"
+							fill
+							className="object-cover"
+						/>
+					</div>
 				</div>
 			</ViewProfileOverlay>
 			<div className="mt-2 flex items-center justify-between">
@@ -64,7 +85,7 @@ export default async function PortfolioPreview({
 						</span>
 					</p>
 					<p className="flex items-center justify-end text-xs font-medium">
-						<StarIcon className='w-4 h-4 text-yellow-400' />
+						<StarIcon className="h-4 w-4 text-yellow-400" />
 						{formatRating(rating)} ({numberOfReviews})
 					</p>
 				</div>

@@ -46,7 +46,7 @@ export default function MoreFiltersButton({
 					className="col-span-1 col-start-2 row-start-5 w-full justify-center self-end border border-gray-300 px-3 py-2 text-xs @md/filters:col-start-1 @md/filters:row-start-2 @xl/filters:w-40 @xl/filters:justify-self-start"
 					leftIcon={<AdjustmentsVerticalIcon className="h-4 w-4" />}
 				>
-					More filters
+					Filters
 				</Button>
 			</DialogTrigger>
 			<DialogPortal>

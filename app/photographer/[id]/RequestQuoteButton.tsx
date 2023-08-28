@@ -50,12 +50,17 @@ export default function RequestQuoteButton() {
 							<textarea
 								id="job-description"
 								name="jobDescription"
-								className="mt-1 rounded-md border border-gray-400 focus:border-black focus:outline-none focus:ring-0"
+								className="mt-1 rounded-md border border-gray-400 text-sm focus:border-black focus:outline-none focus:ring-0"
 							/>
 						</div>
-						<Button className="mt-2 w-full justify-center bg-black p-2 text-sm text-white hover:bg-gray-900">
+						<LoadingButton
+							className="mt-2 w-full justify-center bg-black p-2 text-sm text-white hover:bg-gray-900"
+							isLoading={isLoading}
+							loader={{ color: 'white' }}
+							onClick={sendQuoteRequest}
+						>
 							Send request
-						</Button>
+						</LoadingButton>
 					</div>
 				</PopoverContent>
 			</PopoverPortal>
