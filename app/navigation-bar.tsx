@@ -13,12 +13,12 @@ import classNames from "@/utils/classnames";
 
 export default function NavigationBar() {
   return (
-    <nav className="flex h-16 items-center justify-between bg-primary px-3">
+    <nav className="lg:p-4 flex h-16 items-center justify-between bg-primary px-3">
       <div className="flex items-center gap-3">
         <h1 className="font-medium">GoPhotos</h1>
         <NavigationLink href="/">Home</NavigationLink>
       </div>
-      <Button className="flex items-center gap-x-1 rounded-md bg-accent px-3 py-2 text-sm font-medium text-secondary">
+      <Button className="flex items-center gap-x-1 rounded-md hover:border hover:border-accent hover:text-accent px-3 py-2 text-sm font-medium">
         <span>Login</span>
         <ArrowLongRightIcon className="h-5 w-5" />
       </Button>

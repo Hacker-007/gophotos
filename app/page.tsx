@@ -1,49 +1,57 @@
-import { Inter } from "next/font/google";
+import { Inter } from 'next/font/google'
 
-import classNames from "@/utils/classnames";
+import classNames from '@/utils/classnames'
 
-import AdditionalFilters from "./additional-filters";
-import SortBy from "./sort-by";
-import PaginationControls from "./pagination-controls";
-import PortfolioPreview from "./portfolio-preview";
+import AdditionalFilters from './additional-filters'
+import SortBy from './sort-by'
+import PaginationControls from './pagination-controls'
+import PortfolioPreview from './portfolio-preview'
 
 const inter = Inter({
-  subsets: ["latin"],
-  preload: true,
-});
+	subsets: ['latin'],
+	preload: true,
+})
 
 type HomeProps = {
-  searchParams: { [key: string]: string | string | undefined };
-};
+	searchParams: { [key: string]: string | string | undefined }
+}
 
-export default function Home({}: HomeProps) {
-  return (
-    <main>
-      <div className="flex w-full justify-between px-3 py-2">
-        <div className="flex flex-col justify-end">
-          <AdditionalFilters />
-        </div>
-        <SortBy />
-      </div>
-      <div
-        className={classNames(
-          inter.className,
-          "grid w-full grid-cols-1 gap-4 px-3 py-2"
-        )}
-      >
-        {[...Array(5)].map((_, idx) => (
-          <PortfolioPreview
-            key={idx}
-            photographerId={`${idx}`}
-            name="Bob Ross"
-            location="Cambridge, MA"
-            estimatedPriceRange={[150, 200]}
-            rating={4.7}
-            numberOfReviews={1027}
-          />
-        ))}
-      </div>
-      <PaginationControls className="px-3 py-2" />
-    </main>
-  );
+export default async function Home({}: HomeProps) {
+	const result = await fetch(
+		'http://localhost:8080/api/v1/photographer'
+	).then(res => res.json())
+
+	const portfolios = result.data
+	return (
+		<main className="grid px-3 py-2 xl:grid-cols-[auto_1fr] gap-4 lg:px-4">
+			<AdditionalFilters />
+			<div className="col-start-2 row-start-1">
+				<SortBy />
+			</div>
+			<div
+				className={classNames(
+					inter.className,
+					'col-span-2 grid w-full grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4 xl:row-start-2 xl:col-span-1'
+				)}
+			>
+				{portfolios.map((portfolio: any) => (
+					<PortfolioPreview
+						key={portfolio.publicId}
+						photographerId={portfolio.publicId}
+						name={portfolio.name}
+						location={portfolio.location}
+						estimatedPriceRange={[
+							portfolio.hourlyPriceLow,
+							portfolio.hourlyPriceHigh,
+						]}
+						rating={portfolio.rating}
+						numberOfReviews={1027}
+						profilePictureUrl={portfolio.profilePictureUrl}
+						portfolioUrls={portfolio.portfolioUrls}
+					/>
+				))}
+			</div>
+			<PaginationControls className="col-span-2 xl:col-start-2 xl:col-span-1" />
+		</main>
+	)
 }

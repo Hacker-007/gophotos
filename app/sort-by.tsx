@@ -11,7 +11,7 @@ import Select from "@/components/select";
 
 const sortByFilters = [
   {
-    value: "rating,descending",
+    value: "rating,desc",
     display: (
       <div className="flex items-center gap-1 whitespace-nowrap text-sm">
         <ArrowTrendingDownIcon className="h-4 w-4" />
@@ -20,7 +20,7 @@ const sortByFilters = [
     ),
   },
   {
-    value: "rating,ascending",
+    value: "rating,asc",
     display: (
       <div className="flex items-center gap-1 whitespace-nowrap text-sm">
         <ArrowTrendingUpIcon className="h-4 w-4" />
@@ -29,7 +29,7 @@ const sortByFilters = [
     ),
   },
   {
-    value: "price,ascending",
+    value: "price,asc",
     display: (
       <div className="flex items-center gap-1 whitespace-nowrap text-sm">
         <ArrowTrendingUpIcon className="h-4 w-4" />
@@ -38,7 +38,7 @@ const sortByFilters = [
     ),
   },
   {
-    value: "price,descending",
+    value: "price,desc",
     display: (
       <div className="flex items-center gap-1 whitespace-nowrap text-sm">
         <ArrowTrendingDownIcon className="h-4 w-4" />
