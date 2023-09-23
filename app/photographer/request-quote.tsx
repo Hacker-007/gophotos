@@ -68,7 +68,7 @@ function RequestQuoteContent() {
 						Name
 					</label>
 					<input
-						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+						className="w-full rounded-md px-2 py-1"
 						id="name"
 						type="text"
 					/>
@@ -78,7 +78,7 @@ function RequestQuoteContent() {
 						Email
 					</label>
 					<input
-						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+						className="w-full rounded-md px-2 py-1"
 						id="email"
 						type="email"
 					/>
@@ -88,7 +88,7 @@ function RequestQuoteContent() {
 						Date of Event
 					</label>
 					<input
-						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+						className="w-full rounded-md px-2 py-1"
 						id="eventDate"
 						type="date"
 					/>
@@ -101,7 +101,7 @@ function RequestQuoteContent() {
 						Phone number
 					</label>
 					<input
-						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+						className="w-full rounded-md px-2 py-1"
 						id="phoneNumber"
 						type="tel"
 					/>
@@ -111,7 +111,7 @@ function RequestQuoteContent() {
 					Organization / University
 				</label>
 				<input
-					className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+					className="w-full rounded-md px-2 py-1"
 					id="organization"
 					type="text"
 				/>
@@ -124,7 +124,7 @@ function RequestQuoteContent() {
 					Description of event
 				</label>
 				<textarea
-					className="w-full text-sm rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+					className="w-full text-sm rounded-md px-2 py-1"
 					id="eventDescription"
 				/>
 			</div>

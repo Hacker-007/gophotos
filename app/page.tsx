@@ -23,7 +23,7 @@ export default async function Home({}: HomeProps) {
 
 	const portfolios = result.data
 	return (
-		<main className="grid px-3 py-2 xl:grid-cols-[auto_1fr] gap-4 lg:px-4">
+		<main className="max-w-[100rem] w-full grid px-3 py-2 xl:grid-cols-[auto_1fr] gap-4 lg:px-4">
 			<AdditionalFilters />
 			<div className="col-start-2 row-start-1">
 				<SortBy />

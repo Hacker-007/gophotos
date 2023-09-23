@@ -41,7 +41,7 @@ export default function PortfolioPreview({
 		useState(false)
 
 	return (
-		<div className="w-full rounded-md ">
+		<div className="w-full rounded-md">
 			<Carousel
         		imageUrls={portfolioUrls}
 				showViewProfileButton

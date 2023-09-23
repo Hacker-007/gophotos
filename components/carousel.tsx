@@ -116,7 +116,7 @@ export default function Carousel({
 			{showViewProfileButton && (
 				<div className="absolute bottom-2 hidden w-full justify-center px-2 group-hover:flex">
 					<button
-						className="rounded-md border border-white/30 bg-white px-3 py-2 text-sm font-medium text-black shadow-lg hover:bg-white/30"
+						className="rounded-md border border-white/30 bg-white px-3 py-2 text-sm font-medium text-black shadow-lg hover:bg-gray-100"
 						onClick={onViewProfileClick}
 					>
 						View profile
