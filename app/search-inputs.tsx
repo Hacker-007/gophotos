@@ -40,7 +40,7 @@ export default function SearchInputs() {
 					<input
 						className="w-full border-0 px-3 py-2 text-gray-800 placeholder:text-gray-600 focus:ring-0"
 						type="number"
-						min={0}
+						min={1}
 						value={getQueryValue('hours')}
 						onChange={e =>
 							updateQueryParameter('hours', _ => +e.target.value)
@@ -59,10 +59,14 @@ export default function SearchInputs() {
 					max={2000}
 					step={25}
 					minStepsBetweenThumbs={4}
-					value={getQueryValue('price')}
-					onValueChange={range =>
-						updateQueryParameter('price', _ => range)
-					}
+					value={[
+						getQueryValue('price[low]'),
+						getQueryValue('price[high]'),
+					]}
+					onValueChange={range => {
+						updateQueryParameter('price[low]', _ => range[0])
+						updateQueryParameter('price[high]', _ => range[1])
+					}}
 				>
 					{([from, to]) => (
 						<div className="flex gap-2">

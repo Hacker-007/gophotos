@@ -5,10 +5,9 @@ import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 
 import Link from 'next/link'
 
-import SyncedSearchFilterProvider from '@/context/synced-search-filter-context'
-import NavigationBar from './navigation-bar'
-import SearchInputs from './search-inputs'
 import classNames from '@/utils/classnames'
+
+import NavigationBar from './navigation-bar'
 
 const spaceGrotesk = SpaceGrotesk({
 	subsets: ['latin'],
@@ -31,39 +30,11 @@ export default function RootLayout({
 				<div
 					className={classNames(
 						spaceGrotesk.className,
-						'@container/global'
+						'@container/global flex flex-col h-screen w-screen overflow-y-auto'
 					)}
 				>
 					<NavigationBar />
-					<SyncedSearchFilterProvider
-						defaultItems={{
-							location: 'Cambridge, MA',
-							hours: 2,
-							price: [100, 500],
-							sortBy: 'rating,descending',
-						}}
-					>
-						<div className="w-full bg-primary grid grid-rows-1 justify-items-center">
-							<header className="lg:px-4 w-full max-w-[100rem] space-y-2 px-3 pb-4">
-								<div>
-									<h2 className="text-lg font-medium">
-										Heading about GoPhotos
-									</h2>
-									<h3 className="text-sm text-gray-600">
-										Subheading about GoPhotos that
-										elaborates what the main heading says.
-										This can be long as well.
-									</h3>
-								</div>
-								<div className="rounded-md border border-gray-400 p-2">
-									<SearchInputs />
-								</div>
-							</header>
-						</div>
-						<div className="w-full grid justify-items-center">
-							{children}
-						</div>
-					</SyncedSearchFilterProvider>
+					{children}
 					<div className="w-full bg-primary grid justify-items-center">
 						<footer className="max-w-[100rem] w-full lg:px-4 px-3 py-10">
 							<h1 className="font-medium">GoPhotos</h1>

@@ -3,7 +3,7 @@
 import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 
 import classNames from '@/utils/classnames'
-import { useEffect, useState } from 'react'
+import { ReactNode, useState } from 'react'
 import Image from 'next/image'
 
 const spaceGrotesk = SpaceGrotesk({
@@ -13,16 +13,14 @@ const spaceGrotesk = SpaceGrotesk({
 
 type CarouselProps = {
 	imageUrls: string[]
-	showViewProfileButton?: boolean
-	onViewProfileClick?: () => void
 	className?: string
+	children?: ReactNode
 }
 
 export default function Carousel({
 	imageUrls,
-	showViewProfileButton,
-	onViewProfileClick,
 	className,
+	children,
 }: CarouselProps) {
 	const [imageIndex, setImageIndex] = useState(0)
 
@@ -44,7 +42,6 @@ export default function Carousel({
 					src={imageUrls[imageIndex]}
 					fill
 					sizes="100vw"
-					// className='object-contain'
 				/>
 			</div>
 			<button
@@ -113,16 +110,7 @@ export default function Carousel({
 					/>
 				</svg>
 			</button>
-			{showViewProfileButton && (
-				<div className="absolute bottom-2 hidden w-full justify-center px-2 group-hover:flex">
-					<button
-						className="rounded-md border border-white/30 bg-white px-3 py-2 text-sm font-medium text-black shadow-lg hover:bg-gray-100"
-						onClick={onViewProfileClick}
-					>
-						View profile
-					</button>
-				</div>
-			)}
+			{children}
 		</div>
 	)
 }

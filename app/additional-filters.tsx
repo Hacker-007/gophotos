@@ -12,6 +12,7 @@ import { Dialog, Disclosure } from '@/components/headless-ui'
 
 import Button from '@/components/button'
 import BadgeGroup from '@/components/badge-group'
+import { useSyncedSearchFilters } from '@/context/synced-search-filter-context'
 
 export default function AdditionalFilters() {
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -48,7 +49,7 @@ export default function AdditionalFilters() {
 			</Dialog>
 			<div className="hidden xl:block row-start-2 col-start-1 w-80">
 				<h3 className="text-lg font-medium">Filters</h3>
-				<FilterContent className="flex flex-col gap-2" />
+				<FilterContent className="mt-5 flex flex-col gap-2" />
 			</div>
 		</>
 	)
@@ -59,8 +60,10 @@ type FilterContentProps = {
 }
 
 function FilterContent({ className }: FilterContentProps) {
+	const { getQueryValue, updateURL } = useSyncedSearchFilters()
+
 	return (
-		<div className="mt-5 flex flex-col gap-2">
+		<div className={className}>
 			<Disclosure defaultOpen>
 				<Disclosure.Button className="flex w-full items-center justify-between">
 					{({ open }) => (
@@ -77,6 +80,10 @@ function FilterContent({ className }: FilterContentProps) {
 				<Disclosure.Panel className="w-full">
 					<BadgeGroup
 						items={['MIT', 'Harvard', 'Boston University']}
+						defaultItems={getQueryValue('schools[]')}
+						onChange={items => {
+							updateURL('schools[]', () => items)
+						}}
 					/>
 				</Disclosure.Panel>
 			</Disclosure>
@@ -105,10 +112,14 @@ function FilterContent({ className }: FilterContentProps) {
 							'Test 6',
 							'Test 7',
 						]}
+						defaultItems={getQueryValue('skills[]')}
+						onChange={items => {
+							updateURL('skills[]', () => items)
+						}}
 					/>
 				</Disclosure.Panel>
 			</Disclosure>
-			<div className="h-[1px] w-full space-y-1 bg-gray-200" />
+			{/* <div className="h-[1px] w-full space-y-1 bg-gray-200" />
 			<Disclosure defaultOpen>
 				<Disclosure.Button className="flex w-full items-center justify-between">
 					{({ open }) => (
@@ -123,9 +134,15 @@ function FilterContent({ className }: FilterContentProps) {
 					)}
 				</Disclosure.Button>
 				<Disclosure.Panel className="w-full">
-					<BadgeGroup items={['Test 1', 'Test 2', 'Test 3']} />
+					<BadgeGroup
+						items={['NEW', '1', '2', '3', '4', '5']}
+						defaultItems={getQueryValue('ratings[]')}
+						onChange={items => {
+							updateURL('ratings[]', () => items)
+						}}
+					/>
 				</Disclosure.Panel>
-			</Disclosure>
+			</Disclosure> */}
 		</div>
 	)
 }
