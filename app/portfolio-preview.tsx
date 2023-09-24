@@ -1,16 +1,12 @@
-// 'use client'
-
-// import { useState } from 'react'
-
 import { StarIcon } from '@heroicons/react/24/solid'
 
 import AccountCircle from '@/components/account-circle'
 import Carousel from '@/components/carousel'
-// import PhotographerProfile from './photographer-profile'
 import Link from 'next/link'
 
 type PortfolioPreviewProps = {
 	photographerId: string
+	hours: number
 	name: string
 	location: string
 	estimatedPriceRange: [number, number]
@@ -30,6 +26,7 @@ function formatRating(rating: number) {
 
 export default function PortfolioPreview({
 	photographerId,
+	hours,
 	name,
 	location,
 	estimatedPriceRange,
@@ -38,16 +35,13 @@ export default function PortfolioPreview({
 	profilePictureUrl,
 	portfolioUrls,
 }: PortfolioPreviewProps) {
-	// const [isPhotographerInformationOpen, setIsPhotographerInformationOpen] =
-	// 	useState(false)
-
 	return (
 		<div className="w-full rounded-md">
 			<Carousel imageUrls={portfolioUrls}>
 				<div className="absolute bottom-2 hidden w-full justify-center px-2 group-hover:flex">
 					<Link
 						className="rounded-md border border-white/30 bg-white px-3 py-2 text-sm font-medium text-black shadow-lg hover:bg-gray-100"
-						href={`/photographer/${photographerId}`}
+						href={`/photographer/${photographerId}?hours=${hours}`}
 					>
 						View profile
 					</Link>
@@ -73,18 +67,6 @@ export default function PortfolioPreview({
 					</p>
 				</div>
 			</div>
-			{/* <PhotographerProfile
-				isOpen={isPhotographerInformationOpen}
-				close={() => setIsPhotographerInformationOpen(false)}
-				photographerId={photographerId}
-				name={name}
-				location={location}
-				estimatedPriceRange={estimatedPriceRange}
-				rating={rating}
-				numberOfReviews={numberOfReviews}
-				profilePictureUrl={profilePictureUrl}
-				portfolioUrls={portfolioUrls}
-			/> */}
 		</div>
 	)
 }

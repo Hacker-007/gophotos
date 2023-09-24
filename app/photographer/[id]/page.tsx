@@ -22,7 +22,7 @@ async function getData(
 	id: string,
 	hours: number
 ): Promise<PhotographerProfile & PhotographerAbout & PhotographerReviews> {
-	return fetch(`${process.env.SERVER_HOST}/api/v1/photographers/${id}`).then(
+	return fetch(`${process.env.SERVER_HOST}/v1/photographers/${id}`).then(
 		res => res.json()
 	)
 }
@@ -34,32 +34,6 @@ export default async function PhotographerPortfolioPage({
 	params: { id: string }
 	searchParams: { [key: string]: string | string[] | undefined }
 }) {
-	// const {
-	// 	id: photographerId,
-	// 	name,
-	// 	location,
-	// 	hourlyPriceLow,
-	// 	hourlyPriceHigh,
-	// 	rating,
-	// 	numberOfReviews,
-	// 	profilePictureUrl,
-	// 	portfolioUrls,
-	// } = {
-	// 	id: 20,
-	// 	name: 'User 19',
-	// 	profilePictureUrl:
-	// 		'https://photographer-profile-pictures.s3.us-east-2.amazonaws.com/wK7udZxBnDjyD0J-KOmp2o5avBJ0MxK.png',
-	// 	location: 'Cambridge, MA',
-	// 	hourlyPriceLow: 19,
-	// 	hourlyPriceHigh: 29,
-	// 	rating: 19,
-	// 	numberOfReviews: 2172,
-	// 	portfolioUrls: [
-	// 		'https://photographer-portfolios.s3.us-east-1.amazonaws.com/wK7udZxBnDjyD0J-KOmp2o5avBJ0MxK.png',
-	// 	],
-	// }
-
-	// const estimatedPriceRange = [hourlyPriceLow, hourlyPriceHigh]
 	const photographerProfile = await getData(
 		params.id,
 		+(searchParams.hours ?? '1')

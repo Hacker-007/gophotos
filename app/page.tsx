@@ -34,7 +34,7 @@ async function getData(searchParams: {
 
 	const queryString = queryParams.toString()
 	return fetch(
-		`${process.env.SERVER_HOST}/api/v1/photographers?${queryString}`
+		`${process.env.SERVER_HOST}/v1/photographers?${queryString}`
 	).then(res => res.json())
 }
 
@@ -82,13 +82,15 @@ export default async function HomePage({ searchParams }: HomeProps) {
 						className={classNames(
 							inter.className,
 							'col-span-2 grid w-full gap-4 xl:row-start-2 xl:col-span-1',
-							portfolios.length !== 0 && 'grid-cols-[repeat(auto-fill,minmax(16rem,1fr))]'
+							portfolios.length !== 0 &&
+								'grid-cols-[repeat(auto-fill,minmax(16rem,1fr))]'
 						)}
 					>
 						{portfolios.map(portfolio => (
 							<PortfolioPreview
 								key={portfolio.id}
 								photographerId={portfolio.id}
+								hours={+(searchParams['hours'] ?? 1)}
 								name={portfolio.name}
 								location={portfolio.location}
 								estimatedPriceRange={
@@ -101,7 +103,7 @@ export default async function HomePage({ searchParams }: HomeProps) {
 							/>
 						))}
 						{portfolios.length === 0 && (
-							<div className='justify-self-center'>
+							<div className="justify-self-center">
 								<p className="text-sm font-medium">
 									No results found.
 								</p>
@@ -111,10 +113,12 @@ export default async function HomePage({ searchParams }: HomeProps) {
 							</div>
 						)}
 					</div>
-					{portfolios.length !== 0 && <PaginationControls
-						pageCount={pagination.pageCount}
-						className="col-span-2 xl:col-start-2 xl:col-span-1"
-					/>}
+					{portfolios.length !== 0 && (
+						<PaginationControls
+							pageCount={pagination.pageCount}
+							className="col-span-2 xl:col-start-2 xl:col-span-1"
+						/>
+					)}
 				</main>
 			</div>
 		</SyncedSearchFilterProvider>
