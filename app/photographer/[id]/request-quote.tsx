@@ -2,7 +2,7 @@
 
 import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 import { ChevronLeftIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline'
 
@@ -14,7 +14,7 @@ const spaceGrotesk = SpaceGrotesk({
 	preload: true,
 })
 
-export default function RequestQuote() {
+export default function RequestQuote({ id }: { id: string }) {
 	const [isRequestQuoteFormOpen, setIsRequestQuoteFormOpen] = useState(false)
 
 	return (
@@ -49,20 +49,34 @@ export default function RequestQuote() {
 								send an initial quote request.
 							</p>
 						</div>
-						<RequestQuoteContent />
+						<RequestQuoteContent id={id} />
 					</div>
 				</Dialog.Panel>
 			</Dialog>
 			<div className="hidden sm:block w-full">
-				<RequestQuoteContent />
+				<RequestQuoteContent id={id} />
 			</div>
 		</>
 	)
 }
 
-function RequestQuoteContent() {
+function RequestQuoteContent({ id }: { id: string }) {
+	const handleSubmission = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		const formValues = {
+			name: (e.target as any).name,
+			email: (e.target as any).email,
+			eventDate: (e.target as any).eventDate,
+			phoneNumber: (e.target as any).phoneNumber,
+			organization: (e.target as any).organization,
+			eventDescription: (e.target as any).eventDescription,
+		}
+
+		console.log(formValues)
+	}
+
 	return (
-		<form className="grid gap-2 mt-2 @container/quote">
+		<form className="grid gap-2 mt-2 @container/quote" onSubmit={handleSubmission}>
 				<div className='@md/quote:col-start-1 @md/quote:col-span-1 @md/quote:row-start-1'>
 					<label className="text-sm font-medium" htmlFor="name">
 						Name
@@ -70,6 +84,7 @@ function RequestQuoteContent() {
 					<input
 						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
 						id="name"
+						name='name'
 						type="text"
 					/>
 				</div>
@@ -80,6 +95,7 @@ function RequestQuoteContent() {
 					<input
 						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
 						id="email"
+						name='email'
 						type="email"
 					/>
 				</div>
@@ -90,6 +106,7 @@ function RequestQuoteContent() {
 					<input
 						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
 						id="eventDate"
+						name='eventDate'
 						type="date"
 					/>
 				</div>
@@ -103,6 +120,7 @@ function RequestQuoteContent() {
 					<input
 						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
 						id="phoneNumber"
+						name='phoneNumber'
 						type="tel"
 					/>
 				</div>
@@ -113,6 +131,7 @@ function RequestQuoteContent() {
 				<input
 					className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
 					id="organization"
+					name='organization'
 					type="text"
 				/>
 			</div>
@@ -126,6 +145,7 @@ function RequestQuoteContent() {
 				<textarea
 					className="w-full text-sm rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
 					id="eventDescription"
+					name='eventDescription'
 				/>
 			</div>
 			<Button

@@ -34,7 +34,7 @@ async function getData(searchParams: {
 
 	const queryString = queryParams.toString()
 	return fetch(
-		`http://localhost:8080/api/v1/photographers?${queryString}`
+		`${process.env.SERVER_HOST}/api/v1/photographers?${queryString}`
 	).then(res => res.json())
 }
 
