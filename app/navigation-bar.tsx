@@ -2,27 +2,43 @@
 
 import { ReactNode } from 'react'
 
-import Link from 'next/link'
+import classNames from '@/utils/classnames'
 import { usePathname } from 'next/navigation'
 
 import { ArrowLongRightIcon } from '@heroicons/react/24/outline'
 
-import Button from '@/components/button'
+import Link from 'next/link'
 
-import classNames from '@/utils/classnames'
+import {
+	SignInButton,
+	SignedIn,
+	SignedOut,
+	UserButton,
+} from '@clerk/nextjs'
 
 export default function NavigationBar() {
 	return (
 		<div className="h-16 bg-primary grid grid-rows-1">
-			<nav className="max-w-[100rem] w-full lg:p-4 justify-self-center flex items-center justify-between px-3">
+			<nav className="max-w-[100rem] w-full lg:p-4 py-4 justify-self-center flex items-center justify-between px-3">
 				<div className="flex items-center gap-3">
 					<h1 className="font-medium">GoPhotos</h1>
-					<NavigationLink href="/">Home</NavigationLink>
+					{/* <NavigationLink href="/">Home</NavigationLink> */}
 				</div>
-				<Button className="flex items-center gap-x-1 rounded-md border border-transparent hover:border-accent hover:text-accent px-3 py-2 text-sm font-medium">
-					<span>Login</span>
-					<ArrowLongRightIcon className="h-5 w-5" />
-				</Button>
+				<SignedIn>
+					<UserButton
+						afterSignOutUrl="/"
+						afterSwitchSessionUrl="/"
+						afterMultiSessionSingleSignOutUrl="/"
+					/>
+				</SignedIn>
+				<SignedOut>
+					<SignInButton>
+						<div className="flex cursor-pointer items-center gap-x-1 rounded-md border border-transparent hover:border-accent hover:text-accent px-3 py-2 text-sm font-medium">
+							<p>Login</p>
+							<ArrowLongRightIcon className="h-5 w-5" />
+						</div>
+					</SignInButton>
+				</SignedOut>
 			</nav>
 		</div>
 	)

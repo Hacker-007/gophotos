@@ -13,11 +13,11 @@ export default function SearchInputs() {
 		useSyncedSearchFilters()
 
 	return (
-		<div className="grid grid-rows-[auto_auto_auto_1fr] @3xl/global:grid-rows-[auto_auto] @3xl/global:grid-cols-2 @5xl/global:grid-cols-3 gap-2 h-full">
-			<div className="">
+		<div className="grid grid-rows-[auto_auto_auto_1fr] @sm/filters:grid-rows-[auto_auto_auto] @sm/filters:grid-cols-2 @xl/filters:grid-rows-[auto_auto] @xl/filters:grid-cols-2 @3xl/filters:grid-cols-[minmax(auto,15rem)_minmax(auto,15rem)_1fr] @6xl/filters:grid-rows-1 @6xl/filters:grid-cols-[minmax(auto,15rem)_minmax(auto,15rem)_auto_auto] gap-2 h-full">
+			<div className="@sm/filters:grid-row-1 @sm/filters:col-start-1">
 				<label className="text-xs font-medium">Location</label>
 				<Combobox
-					className="relative w-full rounded-md bg-white px-3 py-2.5 h-full text-left text-sm data-[open=true]:ring-2 data-[open=true]:ring-accent focus:ring-2 focus:ring-accent focus:outline-none"
+					className="relative w-full rounded-md @3xl/filters:h-16 bg-white px-3 py-2.5 h-full text-left text-sm data-[open=true]:ring-2 data-[open=true]:ring-accent focus:ring-2 focus:ring-accent focus:outline-none"
 					keyFn={location => location}
 					displayFn={location => location}
 					defaultItem={getQueryValue('location')}
@@ -34,9 +34,9 @@ export default function SearchInputs() {
 					)}
 				</Combobox>
 			</div>
-			<div className="">
+			<div className="@sm/filters:grid-row-1 @sm/filters:col-start-2">
 				<label className="text-xs font-medium">Hours</label>
-				<div className="relative flex w-full items-center overflow-hidden rounded-md bg-white text-left text-sm focus-within:ring-2 focus-within:ring-accent">
+				<div className="relative flex w-full @3xl/filters:h-16 items-center overflow-hidden rounded-md bg-white text-left text-sm focus-within:ring-2 focus-within:ring-accent">
 					<input
 						className="w-full border-0 px-3 py-2 text-gray-800 placeholder:text-gray-600 focus:ring-0"
 						type="number"
@@ -51,7 +51,7 @@ export default function SearchInputs() {
 					</span>
 				</div>
 			</div>
-			<div className="@5xl/global:col-span-full @5xl/global:row-start-2">
+			<div className="@sm/filters:row-start-2 @sm/filters:col-span-2 @xl/filters:row-start-2 @xl/filters:col-start-1 @xl/filters:col-span-1 @3xl/filters:col-start-3 @3xl/filters:row-start-1">
 				<label className="text-xs font-medium">Price</label>
 				<RangeSlider
 					className="w-full px-3 py-2 focus:ring-2 focus:ring-accent"
@@ -86,9 +86,9 @@ export default function SearchInputs() {
 					)}
 				</RangeSlider>
 			</div>
-			<div className="mt-4 self-end @5xl/global:col-start-3 @5xl/global:row-start-1">
+			<div className="@3xl/filters:col-span-3 @sm/filters:col-span-2 @xl/filters:col-start-2 @xl/filters:col-span-1 mt-4 self-end @6xl/filters:col-start-4 @6xl/filters:col-span-1 @6xl/filters:row-start-1">
 				<Button
-					className="flex w-full items-center hover:bg-accent/90 @3xl/global:h-16 @5xl/global:h-min justify-center gap-1 rounded-md bg-accent px-2 py-1 @3xl/global:py-2 font-medium text-secondary"
+					className="flex w-full items-center hover:bg-accent/90 justify-center gap-1 rounded-md bg-accent px-2 py-1 @xl/filters:h-16 font-medium @3xl/filters:h-min @6xl/filters:h-16 text-secondary"
 					onClick={batchUpdateURL}
 				>
 					<MagnifyingGlassIcon strokeWidth={2} className="h-5 w-5" />

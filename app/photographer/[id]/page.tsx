@@ -22,9 +22,9 @@ async function getData(
 	id: string,
 	hours: number
 ): Promise<PhotographerProfile & PhotographerAbout & PhotographerReviews> {
-	return fetch(`${process.env.SERVER_HOST}/v1/photographers/${id}`).then(
-		res => res.json()
-	)
+	return fetch(`${process.env.SERVER_HOST}/v1/photographers/${id}`)
+		.then(res => res.json())
+		.then(res => res.data)
 }
 
 export default async function PhotographerPortfolioPage({
@@ -64,7 +64,7 @@ export default async function PhotographerPortfolioPage({
 							<div>
 								<p className="flex items-center justify-end gap-1 font-medium">
 									<StarIcon className="h-4 w-4 text-yellow-400" />
-									{photographerProfile.rating}
+									{photographerProfile.overallRating}
 								</p>
 								<p className="flex items-center justify-end gap-1 text-sm">
 									hired{' '}
@@ -111,7 +111,7 @@ export default async function PhotographerPortfolioPage({
 						<div className="flex items-center">
 							<StarIcon className="h-4 w-4 text-yellow-400" />
 							<h4 className="text-2xl font-medium">
-								{photographerProfile.rating}
+								{photographerProfile.overallRating}
 								<span className="text-sm text-gray-600">
 									{' '}
 									/ 5.0

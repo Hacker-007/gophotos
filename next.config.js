@@ -13,6 +13,11 @@ const nextConfig = {
 				hostname: 'photographer-portfolios.s3.us-east-1.amazonaws.com',
 				port: '',
 			},
+			{
+				protocol: 'http',
+				hostname: 'localhost',
+				port: '8080',
+			},
 		],
 	},
 }

@@ -43,13 +43,27 @@ export const SyncedSearchFilterContext =
 		{} as SyncedSearchFilterContextValue
 	)
 
+export function useSyncedSearchFilters() {
+	return useContext(SyncedSearchFilterContext)
+}
+
+function getURLParameter<K extends keyof SyncedSearchFilters>(
+	urlSearchParam: URLSearchParams,
+	key: K,
+	mapper: (value: [string, ...string[]]) => SyncedSearchFilters[K]
+) {
+	const values = urlSearchParam.getAll(key as string)
+	if (values.length === 0) {
+		return undefined
+	}
+
+	const firstItem = values.pop()!
+	return mapper([firstItem, ...values])
+}
+
 type SyncedSearchFilterProviderProps = {
 	defaultItems: SyncedSearchFilters
 	children?: ReactNode
-}
-
-export function useSyncedSearchFilters() {
-	return useContext(SyncedSearchFilterContext)
 }
 
 export default function SyncedSearchFilterProvider({
@@ -59,7 +73,52 @@ export default function SyncedSearchFilterProvider({
 	const router = useRouter()
 	const pathname = usePathname()
 	const searchParams = useSearchParams()!
-	const [items, setItems] = useState(defaultItems)
+	const initialValues: SyncedSearchFilters = {
+		location:
+			getURLParameter(
+				searchParams,
+				'location',
+				([location]) => location
+			) ?? defaultItems.location,
+		hours:
+			getURLParameter(searchParams, 'hours', ([hours]) => +hours) ??
+			defaultItems.hours,
+		'price[low]':
+			getURLParameter(searchParams, 'price[low]', ([low]) => +low) ??
+			defaultItems['price[low]'],
+		'price[high]':
+			getURLParameter(
+				searchParams,
+				'price[high]',
+				([high]) => +high
+			) ?? defaultItems['price[high]'],
+		'schools[]':
+			getURLParameter(searchParams, 'schools[]', schools => schools) ??
+			defaultItems['schools[]'],
+		'skills[]':
+			getURLParameter(searchParams, 'skills[]', skills => skills) ??
+			defaultItems['skills[]'],
+		'ratings[]':
+			getURLParameter(searchParams, 'ratings[]', ratings => ratings) ??
+			defaultItems['ratings[]'],
+		sort:
+			getURLParameter(
+				searchParams,
+				'sort',
+				([sort]) => sort as 'rating' | 'price'
+			) ?? defaultItems.sort,
+		order:
+			getURLParameter(
+				searchParams,
+				'order',
+				([order]) => order as 'asc' | 'desc'
+			) ?? defaultItems.order,
+		page:
+			getURLParameter(searchParams, 'page', ([page]) => +page) ??
+			defaultItems.page,
+	}
+
+	const [items, setItems] = useState(initialValues)
 
 	const getQueryValue = <K extends keyof SyncedSearchFilters>(key: K) => {
 		return items[key]
@@ -84,16 +143,16 @@ export default function SyncedSearchFilterProvider({
 	) => {
 		setItems(items => ({
 			...items,
-			[key]: updateFn(items[key])
+			[key]: updateFn(items[key]),
 		}))
-		
+
 		const queryParams = updateURLParameter(
 			new URLSearchParams(Array.from(searchParams.entries())),
 			key,
 			updateFn(items[key])
 		)
 
-		router.push(pathname + '?' + queryParams.toString())
+		router.push(pathname + '?' + queryParams.toString(), { scroll: false })
 	}
 
 	const batchUpdateURL = () => {
@@ -106,7 +165,7 @@ export default function SyncedSearchFilterProvider({
 			queryParams = updateURLParameter(queryParams, key, items[key])
 		}
 
-		router.push(pathname + '?' + queryParams.toString())
+		router.push(pathname + '?' + queryParams.toString(), { scroll: false })
 	}
 
 	useEffect(() => {

@@ -47,9 +47,11 @@ export default function AdditionalFilters() {
 					<FilterContent className="mt-5 flex flex-col gap-2" />
 				</Dialog.Panel>
 			</Dialog>
-			<div className="hidden xl:block row-start-2 col-start-1 w-80">
-				<h3 className="text-lg font-medium">Filters</h3>
-				<FilterContent className="mt-5 flex flex-col gap-2" />
+			<div className="hidden xl:block row-start-2 h-full col-start-1 w-[19rem]">
+				<div className="sticky top-10 h-min w-full">
+					<h3 className="text-lg font-medium">Filters</h3>
+					<FilterContent className="mt-5 flex flex-col gap-2" />
+				</div>
 			</div>
 		</>
 	)
@@ -79,7 +81,12 @@ function FilterContent({ className }: FilterContentProps) {
 				</Disclosure.Button>
 				<Disclosure.Panel className="w-full">
 					<BadgeGroup
-						items={['MIT', 'Harvard', 'Boston University']}
+						items={[
+							'MIT',
+							'Harvard',
+							'Boston University',
+							'Northeastern',
+						]}
 						defaultItems={getQueryValue('schools[]')}
 						onChange={items => {
 							updateURL('schools[]', () => items)
@@ -104,13 +111,17 @@ function FilterContent({ className }: FilterContentProps) {
 				<Disclosure.Panel className="w-full">
 					<BadgeGroup
 						items={[
-							'Test 1',
-							'Test 2',
-							'Test 3',
-							'Test 4',
-							'Test 5',
-							'Test 6',
-							'Test 7',
+							'Portrait',
+							'Candid',
+							'Corporate / University',
+							'Sports',
+							'Journalism',
+							'Graduation',
+							'Headshots',
+							'Concert',
+							'Fasion',
+							'Outdoor',
+							'Videography',
 						]}
 						defaultItems={getQueryValue('skills[]')}
 						onChange={items => {

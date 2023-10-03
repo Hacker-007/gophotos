@@ -1,7 +1,6 @@
 'use client'
 
 import classNames from '@/utils/classnames'
-
 import { useSyncedSearchFilters } from '@/context/synced-search-filter-context'
 
 import {
@@ -12,16 +11,17 @@ import {
 import Button from '@/components/button'
 
 type PaginationControlsProps = {
-	pageCount: number
+	currentPage: number
+	maxPageCount: number
 	className?: string
 }
 
 export default function PaginationControls({
-	pageCount,
+	currentPage,
+	maxPageCount,
 	className,
 }: PaginationControlsProps) {
-	const { getQueryValue, updateURL } = useSyncedSearchFilters()
-	const currentPage = getQueryValue('page')
+	const { updateURL } = useSyncedSearchFilters()
 
 	return (
 		<div className={classNames('grid grid-cols-3 grid-rows-1', className)}>
@@ -37,13 +37,13 @@ export default function PaginationControls({
 			</Button>
 			<p className="text-sm place-self-center col-start-2">
 				<span className="font-medium">{currentPage}</span> of{' '}
-				<span className="font-medium">{pageCount}</span>
+				<span className="font-medium">{maxPageCount}</span>
 			</p>
 			<Button
 				onClick={() => updateURL('page', _ => currentPage + 1)}
 				className={classNames(
 					'col-start-3 justify-self-end self-center flex items-center gap-1 rounded-md px-2 py-1 text-sm text-black hover:bg-accent hover:text-secondary',
-					currentPage >= pageCount - 1 && 'hidden'
+					currentPage >= maxPageCount && 'hidden'
 				)}
 			>
 				<span>Next</span>
