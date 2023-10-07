@@ -21,6 +21,7 @@ type SyncedSearchFilters = {
 	sort: 'rating' | 'price'
 	order: 'asc' | 'desc'
 	page: number
+	photographer?: string
 }
 
 export type SyncedSearchFilterContextValue = {

@@ -12,21 +12,26 @@ const inter = Inter({
 	preload: true,
 })
 
-async function getData(searchParams: {
-	[key: string]: string | string[] | undefined
-}): Promise<{
+type APIResult = {
 	data: PhotographerProfile[]
 	pagination: { currentPage: number; pageCount: number }
-}> {
+}
+
+async function getData(searchParams: {
+	[key: string]: string | string[] | undefined
+}): Promise<APIResult> {
 	let queryParams = new URLSearchParams()
 	for (let key in searchParams) {
 		queryParams = updateURLParameter(queryParams, key, searchParams[key])
 	}
 
 	const queryString = queryParams.toString()
-	return fetch(`${process.env.SERVER_HOST}/v1/photographers?${queryString}`, {
-		cache: 'default',
-	}).then(res => res.json())
+	return Promise.all([
+		fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers?${queryString}`
+		).then(res => res.json()),
+		new Promise(res => setTimeout(res, 1000)),
+	]).then(data => data[0])
 }
 
 type PaginationControlsProps = {
@@ -54,7 +59,7 @@ export default async function PhotographerResults({
 					<PortfolioPreview
 						key={portfolio.id}
 						photographerId={portfolio.id}
-						hours={+(searchParams['hours'] ?? 1)}
+						hours={+(searchParams['hours'] || 1)}
 						name={portfolio.name}
 						location={portfolio.location}
 						estimatedPriceRange={portfolio.estimatedPriceRange}
@@ -73,11 +78,13 @@ export default async function PhotographerResults({
 					</div>
 				)}
 			</div>
-			<PaginationControls
-				className="col-span-2 xl:col-start-2 xl:col-span-1"
-				currentPage={pagination.currentPage}
-				maxPageCount={pagination.pageCount}
-			/>
+			{portfolios.length !== 0 && (
+				<PaginationControls
+					className="col-span-2 xl:col-start-2 xl:col-span-1"
+					currentPage={pagination.currentPage}
+					maxPageCount={pagination.pageCount}
+				/>
+			)}
 		</>
 	)
 }

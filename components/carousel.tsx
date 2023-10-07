@@ -27,7 +27,7 @@ export default function Carousel({
 	return (
 		<div
 			className={classNames(
-				'group relative aspect-square border border-gray-200 w-full overflow-hidden rounded-md',
+				'group relative border border-gray-200 w-full overflow-hidden rounded-md',
 				spaceGrotesk.className,
 				className,
 			)}

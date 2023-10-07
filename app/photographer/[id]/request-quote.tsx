@@ -2,19 +2,26 @@
 
 import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 import { ChevronLeftIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline'
 
 import { Dialog } from '@/components/headless-ui'
 import Button from '@/components/button'
+import { useUser } from '@clerk/nextjs'
 
 const spaceGrotesk = SpaceGrotesk({
 	subsets: ['latin'],
 	preload: true,
 })
 
-export default function RequestQuote({ id }: { id: string }) {
+export default function RequestQuote({
+	id,
+	hours,
+}: {
+	id: string
+	hours: number
+}) {
 	const [isRequestQuoteFormOpen, setIsRequestQuoteFormOpen] = useState(false)
 
 	return (
@@ -49,93 +56,135 @@ export default function RequestQuote({ id }: { id: string }) {
 								send an initial quote request.
 							</p>
 						</div>
-						<RequestQuoteContent id={id} />
+						<RequestQuoteContent id={id} hours={hours} />
 					</div>
 				</Dialog.Panel>
 			</Dialog>
 			<div className="hidden sm:block w-full">
-				<RequestQuoteContent id={id} />
+				<RequestQuoteContent id={id} hours={hours} />
 			</div>
 		</>
 	)
 }
 
-function RequestQuoteContent({ id }: { id: string }) {
-	const handleSubmission = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-		const formValues = {
-			name: (e.target as any).name,
-			email: (e.target as any).email,
-			eventDate: (e.target as any).eventDate,
-			phoneNumber: (e.target as any).phoneNumber,
-			organization: (e.target as any).organization,
-			eventDescription: (e.target as any).eventDescription,
-		}
+function RequestQuoteContent({ id, hours }: { id: string; hours: number }) {
+	const { user } = useUser()
+	const [formValues, setFormValues] = useState({
+		name: user?.fullName ?? '',
+		email: user?.emailAddresses.at(0)?.emailAddress ?? '',
+		eventDate: '',
+		phoneNumber: user?.phoneNumbers.at(0)?.phoneNumber ?? '',
+		organization: '',
+		eventDescription: '',
+	})
 
-		console.log(formValues)
+	const updateValue = <K extends keyof typeof formValues>(
+		key: K,
+		e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		setFormValues(currentValues => ({
+			...currentValues,
+			[key]: e.target.value,
+		}))
+	}
+
+	const handleSubmission = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		const result = await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/quote`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					photographerId: id,
+					hours,
+					name: formValues.name,
+					email: formValues.email,
+					eventDate: formValues.eventDate,
+					phoneNumber: formValues.phoneNumber,
+					organization: formValues.organization,
+					eventDescription: formValues.eventDescription,
+				}),
+			}
+		)
+
+		const data = await result.json()
+		console.log(data)
 	}
 
 	return (
-		<form className="grid gap-2 mt-2 @container/quote" onSubmit={handleSubmission}>
-				<div className='@md/quote:col-start-1 @md/quote:col-span-1 @md/quote:row-start-1'>
-					<label className="text-sm font-medium" htmlFor="name">
-						Name
-					</label>
-					<input
-						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
-						id="name"
-						name='name'
-						type="text"
-					/>
-				</div>
-				<div className='@md/quote:col-start-2 @md/quote:col-span-1 @md/quote:row-start-1'>
-					<label className="text-sm font-medium" htmlFor="email">
-						Email
-					</label>
-					<input
-						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
-						id="email"
-						name='email'
-						type="email"
-					/>
-				</div>
-				<div className='@md/quote:col-start-1 @md/quote:col-span-1 @md/quote:row-start-2'>
-					<label className="text-sm font-medium" htmlFor="eventDate">
-						Date of Event
-					</label>
-					<input
-						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
-						id="eventDate"
-						name='eventDate'
-						type="date"
-					/>
-				</div>
-				<div className='@md/quote:col-start-2 @md/quote:col-span-1 @md/quote:row-start-2'>
-					<label
-						className="text-sm font-medium"
-						htmlFor="phoneNumber"
-					>
-						Phone number
-					</label>
-					<input
-						className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
-						id="phoneNumber"
-						name='phoneNumber'
-						type="tel"
-					/>
-				</div>
-			<div className='@md/quote:col-span-2 @md/quote:row-start-3'>
+		<form
+			className="grid gap-2 mt-2 @container/quote"
+			onSubmit={handleSubmission}
+		>
+			<div className="@md/quote:col-start-1 @md/quote:col-span-1 @md/quote:row-start-1">
+				<label className="text-sm font-medium" htmlFor="name">
+					Name
+				</label>
+				<input
+					className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+					id="name"
+					name="name"
+					type="text"
+					value={formValues.name}
+					onChange={e => updateValue('name', e)}
+				/>
+			</div>
+			<div className="@md/quote:col-start-2 @md/quote:col-span-1 @md/quote:row-start-1">
+				<label className="text-sm font-medium" htmlFor="email">
+					Email
+				</label>
+				<input
+					className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+					id="email"
+					name="email"
+					type="email"
+					value={formValues.email}
+					onChange={e => updateValue('email', e)}
+				/>
+			</div>
+			<div className="@md/quote:col-start-1 @md/quote:col-span-1 @md/quote:row-start-2">
+				<label className="text-sm font-medium" htmlFor="eventDate">
+					Date of Event
+				</label>
+				<input
+					className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+					id="eventDate"
+					name="eventDate"
+					type="date"
+					value={formValues.eventDate}
+					onChange={e => updateValue('eventDate', e)}
+				/>
+			</div>
+			<div className="@md/quote:col-start-2 @md/quote:col-span-1 @md/quote:row-start-2">
+				<label className="text-sm font-medium" htmlFor="phoneNumber">
+					Phone number
+				</label>
+				<input
+					className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
+					id="phoneNumber"
+					name="phoneNumber"
+					type="tel"
+					value={formValues.phoneNumber}
+					onChange={e => updateValue('phoneNumber', e)}
+				/>
+			</div>
+			<div className="@md/quote:col-span-2 @md/quote:row-start-3">
 				<label className="text-sm font-medium" htmlFor="organization">
 					Organization / University
 				</label>
 				<input
 					className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
 					id="organization"
-					name='organization'
+					name="organization"
 					type="text"
+					value={formValues.organization}
+					onChange={e => updateValue('organization', e)}
 				/>
 			</div>
-			<div className='@md/quote:col-span-2 @md/quote:row-start-4'>
+			<div className="@md/quote:col-span-2 @md/quote:row-start-4">
 				<label
 					className="text-sm font-medium"
 					htmlFor="eventDescription"
@@ -145,7 +194,9 @@ function RequestQuoteContent({ id }: { id: string }) {
 				<textarea
 					className="w-full text-sm rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:border-none focus:ring-accent"
 					id="eventDescription"
-					name='eventDescription'
+					name="eventDescription"
+					value={formValues.eventDescription}
+					onChange={e => updateValue('eventDescription', e)}
 				/>
 			</div>
 			<Button

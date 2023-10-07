@@ -3,6 +3,10 @@ export function updateURLParameter(
 	key: string,
 	value: any
 ) {
+	if (value === undefined) {
+		return urlSearchParam
+	}
+	
 	urlSearchParam.delete(key)
 	if (Array.isArray(value)) {
 		for (const item of value) {

@@ -9,19 +9,16 @@ import { ArrowLongRightIcon } from '@heroicons/react/24/outline'
 
 import Link from 'next/link'
 
-import {
-	SignInButton,
-	SignedIn,
-	SignedOut,
-	UserButton,
-} from '@clerk/nextjs'
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
 export default function NavigationBar() {
 	return (
 		<div className="h-16 bg-primary grid grid-rows-1">
 			<nav className="max-w-[100rem] w-full lg:p-4 py-4 justify-self-center flex items-center justify-between px-3">
 				<div className="flex items-center gap-3">
-					<h1 className="font-medium">GoPhotos</h1>
+					<Link className="font-medium" href="/">
+						GoPhotos
+					</Link>
 					{/* <NavigationLink href="/">Home</NavigationLink> */}
 				</div>
 				<SignedIn>

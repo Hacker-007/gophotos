@@ -1,7 +1,7 @@
 'use client'
 
 import { StarIcon } from '@heroicons/react/24/solid'
-import useWindowDimensions from './hooks/useWindowDimensions'
+import useWindowDimensions from '../hooks/useWindowDimensions'
 
 export default function PhotographerResultsLoader() {
 	const minPortfolioPreviewWidth = 256
@@ -10,8 +10,6 @@ export default function PhotographerResultsLoader() {
 	const columnCount = Math.floor(
 		(width + gapWidth) / (minPortfolioPreviewWidth + gapWidth)
 	)
-
-	console.log(columnCount)
 
 	return (
 		<div className="col-span-2 grid w-full gap-4 xl:row-start-2 xl:col-span-1 grid-cols-[repeat(auto-fill,minmax(16rem,1fr))]">

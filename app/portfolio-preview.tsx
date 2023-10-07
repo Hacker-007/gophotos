@@ -17,7 +17,7 @@ type PortfolioPreviewProps = {
 }
 
 function formatRating(rating: number) {
-	if (Number.isInteger(rating)) {
+	if (Number.isInteger(rating) && rating != 0) {
 		return `${rating}.0`
 	} else {
 		return `${rating}`
@@ -37,7 +37,7 @@ export default function PortfolioPreview({
 }: PortfolioPreviewProps) {
 	return (
 		<div className="w-full rounded-md">
-			<Carousel imageUrls={portfolioUrls}>
+			<Carousel className="aspect-square" imageUrls={portfolioUrls}>
 				<div className="absolute bottom-2 hidden w-full justify-center px-2 group-hover:flex">
 					<Link
 						className="rounded-md border border-white/30 bg-white px-3 py-2 text-sm font-medium text-black shadow-lg hover:bg-gray-100"

@@ -18,11 +18,21 @@ const spaceGrotesk = SpaceGrotesk({
 	preload: true,
 })
 
+function formatRating(rating: number) {
+	if (Number.isInteger(rating) && rating != 0) {
+		return `${rating}.0`
+	} else {
+		return `${rating}`
+	}
+}
+
 async function getData(
 	id: string,
 	hours: number
 ): Promise<PhotographerProfile & PhotographerAbout & PhotographerReviews> {
-	return fetch(`${process.env.SERVER_HOST}/v1/photographers/${id}`)
+	return fetch(
+		`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers/${id}?hours=${hours}`
+	)
 		.then(res => res.json())
 		.then(res => res.data)
 }
@@ -34,18 +44,17 @@ export default async function PhotographerPortfolioPage({
 	params: { id: string }
 	searchParams: { [key: string]: string | string[] | undefined }
 }) {
-	const photographerProfile = await getData(
-		params.id,
-		+(searchParams.hours ?? '1')
-	)
+	const hours = +(searchParams.hours ?? '1')
+	const photographerProfile = await getData(params.id, hours)
 
 	return (
 		<div className="w-full grid justify-items-center px-3 py-4">
-			<div className="max-w-[100rem] w-full justify-self-center">
-				<div className="grid gap-4 sm:grid-cols-[1fr_auto] md:grid-cols-[30rem_1fr] lg:grid-cols-[30rem_12rem_1fr] xl:grid-cols-[35rem_20rem_1fr]">
-					<div className="sm:col-start-1 sm:row-start-1 max-w-3xl">
+			<div className="max-w-[90rem] w-full justify-self-center">
+				<div className="grid gap-4 sm:grid-rows-[auto_1fr] sm:grid-cols-[1fr_auto] md:grid-cols-[35rem_1fr] lg:grid-cols-[45rem_1fr] xl:grid-cols-[55rem_1fr]">
+					<div className="h-min sm:col-start-1 w-full sm:row-start-1 sm:row-span-1">
 						<Carousel
 							imageUrls={photographerProfile.portfolioUrls}
+							className="aspect-[3/2]"
 						/>
 						<div className="mt-2 flex justify-between">
 							<div className="flex items-center space-x-2">
@@ -64,7 +73,9 @@ export default async function PhotographerPortfolioPage({
 							<div>
 								<p className="flex items-center justify-end gap-1 font-medium">
 									<StarIcon className="h-4 w-4 text-yellow-400" />
-									{photographerProfile.overallRating}
+									{formatRating(
+										photographerProfile.overallRating
+									)}
 								</p>
 								<p className="flex items-center justify-end gap-1 text-sm">
 									hired{' '}
@@ -76,7 +87,7 @@ export default async function PhotographerPortfolioPage({
 							</div>
 						</div>
 					</div>
-					<div className="sm:col-start-2 sm:w-56 lg:col-start-3 md:w-full h-min sm:row-start-1 sm:flex-col flex sm:items-start items-center justify-between rounded-md border border-gray-200 p-2">
+					<div className="sm:col-start-2 sm:w-56 md:w-full h-min sm:row-start-1 sm:flex-col flex sm:items-start items-center justify-between rounded-md border border-gray-200 p-2 sm:row-span-2">
 						<div>
 							<p className="md:text-base text-sm font-medium">
 								Estimated price
@@ -86,9 +97,12 @@ export default async function PhotographerPortfolioPage({
 								${photographerProfile.estimatedPriceRange[1]}
 							</p>
 						</div>
-						<RequestQuote id={photographerProfile.id} />
+						<RequestQuote
+							id={photographerProfile.id}
+							hours={hours}
+						/>
 					</div>
-					<div className="lg:col-start-2 flex flex-col gap-2">
+					<div className="lg:col-start-1 flex flex-col gap-2 sm:row-start-2 sm:row-span-1">
 						<div>
 							<h3 className="text-sm font-medium">About</h3>
 							<p className="mt-1 text-sm text-gray-600">
@@ -105,13 +119,15 @@ export default async function PhotographerPortfolioPage({
 						</div>
 					</div>
 				</div>
-				<div className="rounded-md mt-4">
+				<div className="mt-4">
 					<h3 className="text-sm font-medium">Reviews and ratings</h3>
 					<div>
 						<div className="flex items-center">
 							<StarIcon className="h-4 w-4 text-yellow-400" />
 							<h4 className="text-2xl font-medium">
-								{photographerProfile.overallRating}
+								{formatRating(
+									photographerProfile.overallRating
+								)}
 								<span className="text-sm text-gray-600">
 									{' '}
 									/ 5.0
@@ -122,34 +138,36 @@ export default async function PhotographerPortfolioPage({
 							{photographerProfile.numberOfReviews} reviews
 						</p>
 					</div>
-					<div className="grid grid-cols-2 gap-2 max-w-lg lg:gap-4">
-						{photographerProfile.categoryRatings.map(
-							({ label, rating }) => (
-								<div key={label}>
-									<h4 className="text-sm font-medium">
-										{label}
-									</h4>
-									<FillableLine
-										className="mt-1"
-										value={rating}
-										maxValue={5}
-									/>
-								</div>
-							)
-						)}
+					<div className="grid grid-cols-1 md:grid-cols-[20rem_1fr] lg:grid-cols-[30rem_1fr] gap-4 md:gap-10 w-full">
+						<div className="grid grid-cols-2 gap-2 lg:gap-4">
+							{photographerProfile.categoryRatings.map(
+								({ label, rating }) => (
+									<div key={label}>
+										<h4 className="text-sm font-medium">
+											{label}
+										</h4>
+										<FillableLine
+											className="mt-1"
+											value={rating}
+											maxValue={5}
+										/>
+									</div>
+								)
+							)}
+						</div>
+						<div className="grid md:grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] md:mt-[1.375rem] gap-4">
+							{photographerProfile.reviews.map((review, idx) => (
+								<Rating
+									profilePictureUrl={review.profilePictureUrl}
+									name={review.name}
+									date={review.date}
+									rating={review.rating}
+									review={review.review}
+									key={idx}
+								/>
+							))}
+						</div>
 					</div>
-				</div>
-				<div className="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4 mt-4">
-					{photographerProfile.reviews.map((review, idx) => (
-						<Rating
-							profilePictureUrl={review.profilePictureUrl}
-							name={review.name}
-							date={review.date}
-							rating={review.rating}
-							review={review.review}
-							key={idx}
-						/>
-					))}
 				</div>
 			</div>
 		</div>
@@ -182,7 +200,7 @@ function Rating({
 				<div className="flex items-center">
 					<StarIcon className="h-4 w-4 text-yellow-400" />
 					<h4 className="font-medium">
-						{rating}
+						{formatRating(rating)}
 						<span className="text-gray-600"> / 5.0</span>
 					</h4>
 				</div>
