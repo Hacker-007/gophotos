@@ -12,6 +12,7 @@ import {
 	PhotographerProfile,
 	PhotographerReviews,
 } from '@/utils/types'
+import classNames from '@/utils/classnames'
 
 const spaceGrotesk = SpaceGrotesk({
 	subsets: ['latin'],
@@ -31,7 +32,10 @@ async function getData(
 	hours: number
 ): Promise<PhotographerProfile & PhotographerAbout & PhotographerReviews> {
 	return fetch(
-		`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers/${id}?hours=${hours}`
+		`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers/${id}?hours=${hours}`,
+		{
+			cache: 'no-cache'
+		}
 	)
 		.then(res => res.json())
 		.then(res => res.data)
@@ -48,7 +52,12 @@ export default async function PhotographerPortfolioPage({
 	const photographerProfile = await getData(params.id, hours)
 
 	return (
-		<div className="w-full grid justify-items-center px-3 py-4">
+		<div
+			className={classNames(
+				'w-full grid justify-items-center px-3 py-4',
+				spaceGrotesk.className
+			)}
+		>
 			<div className="max-w-[90rem] w-full justify-self-center">
 				<div className="grid gap-4 sm:grid-rows-[auto_1fr] sm:grid-cols-[1fr_auto] md:grid-cols-[35rem_1fr] lg:grid-cols-[45rem_1fr] xl:grid-cols-[55rem_1fr]">
 					<div className="h-min sm:col-start-1 w-full sm:row-start-1 sm:row-span-1">

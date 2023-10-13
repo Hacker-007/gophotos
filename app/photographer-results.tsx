@@ -28,7 +28,10 @@ async function getData(searchParams: {
 	const queryString = queryParams.toString()
 	return Promise.all([
 		fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers?${queryString}`
+			`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers?${queryString}`,
+			{
+				cache: 'no-cache'
+			}
 		).then(res => res.json()),
 		new Promise(res => setTimeout(res, 1000)),
 	]).then(data => data[0])

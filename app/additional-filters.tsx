@@ -82,10 +82,10 @@ function FilterContent({ className }: FilterContentProps) {
 				<Disclosure.Panel className="w-full">
 					<BadgeGroup
 						items={[
-							'MIT',
-							'Harvard',
+							'Massachusetts Institute of Technology',
 							'Boston University',
-							'Northeastern',
+							'University of San Franscisco',
+							'University of Southern California'
 						]}
 						defaultItems={getQueryValue('schools[]')}
 						onChange={items => {
