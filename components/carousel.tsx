@@ -3,7 +3,7 @@
 import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 
 import classNames from '@/utils/classnames'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import Image from 'next/image'
 
 const spaceGrotesk = SpaceGrotesk({
@@ -12,24 +12,29 @@ const spaceGrotesk = SpaceGrotesk({
 })
 
 type CarouselProps = {
-	imageUrls: string[]
+	imageUrls: any
+	sizes?: string
 	className?: string
 	children?: ReactNode
 }
 
 export default function Carousel({
 	imageUrls,
+	sizes,
 	className,
 	children,
 }: CarouselProps) {
 	const [imageIndex, setImageIndex] = useState(0)
+	useEffect(() => {
+		console.log(imageUrls[imageIndex])
+	}, [imageIndex])
 
 	return (
 		<div
 			className={classNames(
 				'group relative border border-gray-200 w-full overflow-hidden rounded-md',
 				spaceGrotesk.className,
-				className,
+				className
 			)}
 		>
 			<div
@@ -37,12 +42,17 @@ export default function Carousel({
 					'flex h-full w-full justify-center relative overflow-hidden'
 				)}
 			>
-				<Image
-					alt="Portfolio Image"
-					src={imageUrls[imageIndex]}
-					fill
-					sizes="100vw"
-				/>
+				{imageIndex < imageUrls.length && (
+					<Image
+						alt="Portfolio Image"
+						src={imageUrls[imageIndex].url}
+						placeholder="blur"
+						blurDataURL={imageUrls[imageIndex].placeholder}
+						fill
+						sizes={sizes ?? '100vw'}
+						className='object-contain'
+					/>
+				)}
 			</div>
 			<button
 				onClick={() => setImageIndex(index => index - 1)}

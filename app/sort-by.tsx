@@ -11,33 +11,9 @@ import {
 import Select from '@/components/select'
 
 const sortByFilters: Array<{
-	value: { sort: 'rating' | 'price'; order: 'asc' | 'desc' }
+	value: { sort: 'price'; order: 'asc' | 'desc' }
 	display: ReactNode
 }> = [
-	{
-		value: {
-			sort: 'rating',
-			order: 'desc',
-		},
-		display: (
-			<div className="flex items-center gap-1 whitespace-nowrap text-sm">
-				<ArrowTrendingDownIcon className="h-4 w-4" />
-				rating
-			</div>
-		),
-	},
-	{
-		value: {
-			sort: 'rating',
-			order: 'asc',
-		},
-		display: (
-			<div className="flex items-center gap-1 whitespace-nowrap text-sm">
-				<ArrowTrendingUpIcon className="h-4 w-4" />
-				rating
-			</div>
-		),
-	},
 	{
 		value: {
 			sort: 'price',
@@ -79,7 +55,7 @@ export default function SortBy() {
 	}, [item])
 
 	const handleOnChange = (value: {
-		sort: 'rating' | 'price'
+		sort: 'price'
 		order: 'asc' | 'desc'
 	}) => {
 		updateQueryParameter('sort', _ => value.sort)

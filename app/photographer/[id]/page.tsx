@@ -34,7 +34,7 @@ async function getData(
 	return fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers/${id}?hours=${hours}`,
 		{
-			cache: 'no-cache'
+			cache: 'no-cache',
 		}
 	)
 		.then(res => res.json())
@@ -54,7 +54,7 @@ export default async function PhotographerPortfolioPage({
 	return (
 		<div
 			className={classNames(
-				'w-full grid justify-items-center px-3 py-4',
+				'w-full grid justify-items-center px-3 py-4 flex-grow',
 				spaceGrotesk.className
 			)}
 		>
@@ -63,6 +63,7 @@ export default async function PhotographerPortfolioPage({
 					<div className="h-min sm:col-start-1 w-full sm:row-start-1 sm:row-span-1">
 						<Carousel
 							imageUrls={photographerProfile.portfolioUrls}
+							sizes='(max-width: 640px) 100vw, (max-width: 768px) 500w, (max-width: 1024px) 560w, (max-width: 1280px) 720w, 880w'
 							className="aspect-[3/2]"
 						/>
 						<div className="mt-2 flex justify-between">
@@ -80,12 +81,23 @@ export default async function PhotographerPortfolioPage({
 								</div>
 							</div>
 							<div>
-								<p className="flex items-center justify-end gap-1 font-medium">
-									<StarIcon className="h-4 w-4 text-yellow-400" />
-									{formatRating(
-										photographerProfile.overallRating
-									)}
-								</p>
+								{photographerProfile.numberOfReviews < 10 ? (
+									<div className="flex items-center justify-end">
+										<p className="text-sm uppercase px-2 bg-accent text-secondary w-min rounded-sm">
+											new
+										</p>
+									</div>
+								) : (
+									<p className="flex items-center justify-end gap-1 font-medium">
+										<StarIcon className="h-4 w-4 text-yellow-400" />
+										{formatRating(
+											photographerProfile.rating
+										)}{' '}
+										&middot;{' '}
+										{photographerProfile.numberOfReviews}{' '}
+										reviews
+									</p>
+								)}
 								<p className="flex items-center justify-end gap-1 text-sm">
 									hired{' '}
 									<span className="font-medium">
@@ -128,56 +140,71 @@ export default async function PhotographerPortfolioPage({
 						</div>
 					</div>
 				</div>
-				<div className="mt-4">
-					<h3 className="text-sm font-medium">Reviews and ratings</h3>
-					<div>
-						<div className="flex items-center">
-							<StarIcon className="h-4 w-4 text-yellow-400" />
-							<h4 className="text-2xl font-medium">
-								{formatRating(
-									photographerProfile.overallRating
+				{photographerProfile.numberOfReviews >= 10 ? (
+					<div className="mt-4">
+						<h3 className="text-sm font-medium">
+							Reviews and ratings
+						</h3>
+						<div>
+							<div className="flex items-center">
+								<StarIcon className="h-4 w-4 text-yellow-400" />
+								<h4 className="text-2xl font-medium">
+									{formatRating(photographerProfile.rating)}
+									<span className="text-sm text-gray-600">
+										{' '}
+										/ 5.0
+									</span>
+								</h4>
+							</div>
+							<p className="mb-2 text-xs text-gray-500">
+								{photographerProfile.numberOfReviews} reviews
+							</p>
+						</div>
+						<div className="grid grid-cols-1 md:grid-cols-[20rem_1fr] lg:grid-cols-[30rem_1fr] gap-4 md:gap-10 w-full">
+							<div className="grid grid-cols-2 gap-2 lg:gap-4">
+								{photographerProfile.categoryRatings.map(
+									({ label, rating }) => (
+										<div key={label}>
+											<h4 className="text-sm font-medium">
+												{label}
+											</h4>
+											<FillableLine
+												className="mt-1"
+												value={rating}
+												maxValue={5}
+											/>
+										</div>
+									)
 								)}
-								<span className="text-sm text-gray-600">
-									{' '}
-									/ 5.0
-								</span>
-							</h4>
-						</div>
-						<p className="mb-2 text-xs text-gray-500">
-							{photographerProfile.numberOfReviews} reviews
-						</p>
-					</div>
-					<div className="grid grid-cols-1 md:grid-cols-[20rem_1fr] lg:grid-cols-[30rem_1fr] gap-4 md:gap-10 w-full">
-						<div className="grid grid-cols-2 gap-2 lg:gap-4">
-							{photographerProfile.categoryRatings.map(
-								({ label, rating }) => (
-									<div key={label}>
-										<h4 className="text-sm font-medium">
-											{label}
-										</h4>
-										<FillableLine
-											className="mt-1"
-											value={rating}
-											maxValue={5}
+							</div>
+							<div className="grid md:grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] md:mt-[1.375rem] gap-4">
+								{photographerProfile.reviews.map(
+									(review, idx) => (
+										<Rating
+											profilePictureUrl={
+												review.profilePictureUrl
+											}
+											name={review.name}
+											date={review.date}
+											rating={review.rating}
+											review={review.review}
+											key={idx}
 										/>
-									</div>
-								)
-							)}
-						</div>
-						<div className="grid md:grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] md:mt-[1.375rem] gap-4">
-							{photographerProfile.reviews.map((review, idx) => (
-								<Rating
-									profilePictureUrl={review.profilePictureUrl}
-									name={review.name}
-									date={review.date}
-									rating={review.rating}
-									review={review.review}
-									key={idx}
-								/>
-							))}
+									)
+								)}
+							</div>
 						</div>
 					</div>
-				</div>
+				) : (
+					<div className="mt-4">
+						<h3 className="text-sm font-medium">
+							Reviews and ratings
+						</h3>
+						<div>
+							<p>Some sort of content to show that we don&apos;t have enough ratings</p>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	)

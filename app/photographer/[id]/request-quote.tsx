@@ -90,7 +90,7 @@ function RequestQuoteContent({ id, hours }: { id: string; hours: number }) {
 
 	const handleSubmission = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		const result = await fetch(
+		await fetch(
 			`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/quote`,
 			{
 				method: 'POST',
@@ -109,9 +109,6 @@ function RequestQuoteContent({ id, hours }: { id: string; hours: number }) {
 				}),
 			}
 		)
-
-		const data = await result.json()
-		console.log(data)
 	}
 
 	return (

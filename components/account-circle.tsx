@@ -6,10 +6,7 @@ type AccountCircleProps = {
 	className?: string
 }
 
-export default function AccountCircle({
-	src,
-	className,
-}: AccountCircleProps) {
+export default function AccountCircle({ src, className }: AccountCircleProps) {
 	return (
 		<div
 			className={classNames(
@@ -17,12 +14,8 @@ export default function AccountCircle({
 				className
 			)}
 		>
-      <Image
-        src={src}
-        alt='Profile picture'
-        fill
-        sizes='2rem'
-      />
-      </div>
+			{/* <img className="absolute" src={src} alt="Profile picture" /> */}
+			<Image src={src} alt="Profile picture" fill sizes="2rem" />
+		</div>
 	)
 }

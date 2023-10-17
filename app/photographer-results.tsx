@@ -55,7 +55,7 @@ export default async function PhotographerResults({
 					inter.className,
 					'col-span-2 grid w-full gap-4 xl:row-start-2 xl:col-span-1',
 					portfolios.length !== 0 &&
-						'grid-cols-[repeat(auto-fill,minmax(16rem,1fr))]'
+						'grid-cols-[repeat(auto-fill,minmax(20rem,1fr))]'
 				)}
 			>
 				{portfolios.map(portfolio => (

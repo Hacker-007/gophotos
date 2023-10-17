@@ -23,7 +23,7 @@ export default function HomePage({ searchParams }: HomeProps) {
 	return (
 		<SyncedSearchFilterProvider
 			defaultItems={{
-				location: 'Cambridge, MA',
+				location: 'Boston, MA',
 				hours: 2,
 				'price[low]': 100,
 				'price[high]': 500,

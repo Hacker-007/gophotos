@@ -130,30 +130,6 @@ function FilterContent({ className }: FilterContentProps) {
 					/>
 				</Disclosure.Panel>
 			</Disclosure>
-			{/* <div className="h-[1px] w-full space-y-1 bg-gray-200" />
-			<Disclosure defaultOpen>
-				<Disclosure.Button className="flex w-full items-center justify-between">
-					{({ open }) => (
-						<>
-							<span className="text-sm font-medium">Ratings</span>
-							{open ? (
-								<ChevronUpIcon className="h-4 w-4 text-gray-600" />
-							) : (
-								<ChevronDownIcon className="h-4 w-4 text-gray-600" />
-							)}
-						</>
-					)}
-				</Disclosure.Button>
-				<Disclosure.Panel className="w-full">
-					<BadgeGroup
-						items={['NEW', '1', '2', '3', '4', '5']}
-						defaultItems={getQueryValue('ratings[]')}
-						onChange={items => {
-							updateURL('ratings[]', () => items)
-						}}
-					/>
-				</Disclosure.Panel>
-			</Disclosure> */}
 		</div>
 	)
 }

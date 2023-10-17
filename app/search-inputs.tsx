@@ -24,7 +24,11 @@ export default function SearchInputs() {
 					onChange={location =>
 						updateQueryParameter('location', _ => location)
 					}
-					items={['Cambridge, MA', 'Seattle, WA']}
+					items={[
+						'Boston, MA',
+						'Los Angeles, CA',
+						'San Francisco, CA',
+					]}
 				>
 					{location => (
 						<div className="flex items-center">

@@ -88,12 +88,20 @@ export default function RootLayout({
 								<div className="grid gap-4 w-96 justify-self-end">
 									<div className="flex flex-col col-start-1 space-y-1">
 										<h3 className="font-medium">Legal</h3>
-										<Link href="/" className="text-sm">
+										<a href="/Terms of Service.pdf"
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-sm">
 											Terms of Service
-										</Link>
-										<Link href="/" className="text-sm">
+										</a>
+										<a
+											href="/Privacy Policy.pdf"
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-sm"
+										>
 											Privacy Policy
-										</Link>
+										</a>
 									</div>
 									<div className="flex flex-col space-y-1 col-start-2">
 										<h3 className="font-medium">Contact</h3>
