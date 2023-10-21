@@ -1,14 +1,13 @@
 'use client'
 
 import 'swiper/css'
-import 'swiper/css/navigation'
 
 import { ReactNode } from 'react'
 import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 import Image from 'next/image'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Keyboard } from 'swiper/modules'
+import { Navigation } from 'swiper/modules'
 
 import classNames from '@/utils/classnames'
 
@@ -32,16 +31,12 @@ export default function Carousel({
 }: CarouselProps) {
 	return (
 		<Swiper
+			modules={[Navigation]}
 			loop={true}
 			navigation={{
 				prevEl: '#carousel-prev',
 				nextEl: '#carousel-next',
 			}}
-			mousewheel={true}
-			keyboard={{
-				enabled: true,
-			}}
-			modules={[Navigation, Keyboard]}
 			className={classNames(
 				'group border border-gray-200 w-full relative overflow-hidden rounded-md',
 				spaceGrotesk.className,
