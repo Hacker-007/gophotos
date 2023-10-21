@@ -14,7 +14,6 @@ export default function AccountCircle({ src, className }: AccountCircleProps) {
 				className
 			)}
 		>
-			{/* <img className="absolute" src={src} alt="Profile picture" /> */}
 			<Image src={src} alt="Profile picture" fill sizes="2rem" />
 		</div>
 	)

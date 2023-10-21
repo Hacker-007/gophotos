@@ -4,7 +4,7 @@ import { StarIcon } from '@heroicons/react/24/solid'
 import useWindowDimensions from '../hooks/useWindowDimensions'
 
 export default function PhotographerResultsLoader() {
-	const minPortfolioPreviewWidth = 256
+	const minPortfolioPreviewWidth = 320
 	const gapWidth = 16
 	const width = useWindowDimensions().width || 5
 	const columnCount = Math.floor(
@@ -12,7 +12,7 @@ export default function PhotographerResultsLoader() {
 	)
 
 	return (
-		<div className="col-span-2 grid w-full gap-4 xl:row-start-2 xl:col-span-1 grid-cols-[repeat(auto-fill,minmax(16rem,1fr))]">
+		<div className="col-span-2 grid w-full gap-4 xl:row-start-2 xl:col-span-1 grid-cols-[repeat(auto-fill,minmax(20rem,1fr))]">
 			{[...Array(5 * columnCount)].map((_, idx) => (
 				<div
 					key={idx}
@@ -21,7 +21,7 @@ export default function PhotographerResultsLoader() {
 						animationDelay: `${300 * (idx % columnCount)}ms`,
 					}}
 				>
-					<div className="w-full aspect-square bg-gray-200 rounded-md" />
+					<div className="w-full aspect-[3/2] bg-gray-200 rounded-md" />
 					<div className="mt-2 flex items-center justify-between">
 						<div className="flex items-center space-x-2">
 							<div className="h-8 w-8 rounded-full border border-gray-300 bg-gray-300" />

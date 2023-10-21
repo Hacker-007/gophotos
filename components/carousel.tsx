@@ -1,10 +1,16 @@
 'use client'
 
+import 'swiper/css'
+import 'swiper/css/navigation'
+
+import { ReactNode } from 'react'
 import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
+import Image from 'next/image'
+
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Keyboard } from 'swiper/modules'
 
 import classNames from '@/utils/classnames'
-import { ReactNode, useEffect, useState } from 'react'
-import Image from 'next/image'
 
 const spaceGrotesk = SpaceGrotesk({
 	subsets: ['latin'],
@@ -12,7 +18,7 @@ const spaceGrotesk = SpaceGrotesk({
 })
 
 type CarouselProps = {
-	imageUrls: any
+	imageUrls: any[]
 	sizes?: string
 	className?: string
 	children?: ReactNode
@@ -24,39 +30,42 @@ export default function Carousel({
 	className,
 	children,
 }: CarouselProps) {
-	const [imageIndex, setImageIndex] = useState(0)
-	useEffect(() => {
-		console.log(imageUrls[imageIndex])
-	}, [imageIndex])
-
 	return (
-		<div
+		<Swiper
+			loop={true}
+			navigation={{
+				prevEl: '#carousel-prev',
+				nextEl: '#carousel-next',
+			}}
+			mousewheel={true}
+			keyboard={{
+				enabled: true,
+			}}
+			modules={[Navigation, Keyboard]}
 			className={classNames(
-				'group relative border border-gray-200 w-full overflow-hidden rounded-md',
+				'group border border-gray-200 w-full relative overflow-hidden rounded-md',
 				spaceGrotesk.className,
 				className
 			)}
 		>
-			<div
-				className={classNames(
-					'flex h-full w-full justify-center relative overflow-hidden'
-				)}
-			>
-				{imageIndex < imageUrls.length && (
+			{imageUrls.map(imageUrl => (
+				<SwiperSlide
+					key={imageUrl.url}
+					className="flex h-full w-full justify-center relative overflow-hidden"
+				>
 					<Image
 						alt="Portfolio Image"
-						src={imageUrls[imageIndex].url}
+						src={imageUrl.url}
 						placeholder="blur"
-						blurDataURL={imageUrls[imageIndex].placeholder}
+						blurDataURL={imageUrl.placeholder}
 						fill
 						sizes={sizes ?? '100vw'}
-						className='object-contain'
+						className="object-contain"
 					/>
-				)}
-			</div>
+				</SwiperSlide>
+			))}
 			<button
-				onClick={() => setImageIndex(index => index - 1)}
-				disabled={imageIndex === 0}
+				id="carousel-prev"
 				className="absolute left-1 z-20 shadow-lg top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white p-2 hover:bg-gray-100 disabled:hidden group-hover:[&:not(:disabled)]:flex"
 			>
 				<svg
@@ -88,8 +97,7 @@ export default function Carousel({
 				</svg>
 			</button>
 			<button
-				onClick={() => setImageIndex(index => index + 1)}
-				disabled={imageIndex === imageUrls.length - 1}
+				id="carousel-next"
 				className="absolute right-1 shadow-lg z-20 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white p-2 hover:bg-gray-100 disabled:hidden group-hover:[&:not(:disabled)]:flex"
 			>
 				<svg
@@ -121,6 +129,6 @@ export default function Carousel({
 				</svg>
 			</button>
 			{children}
-		</div>
+		</Swiper>
 	)
 }

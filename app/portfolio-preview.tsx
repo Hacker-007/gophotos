@@ -37,8 +37,12 @@ export default function PortfolioPreview({
 }: PortfolioPreviewProps) {
 	return (
 		<div className="w-full rounded-md">
-			<Carousel className="aspect-[3/2]" imageUrls={portfolioUrls} sizes='400w'>
-				<div className="absolute bottom-2 hidden w-full justify-center px-2 group-hover:flex">
+			<Carousel
+				className="aspect-[3/2]"
+				imageUrls={portfolioUrls}
+				sizes="700w"
+			>
+				<div className="absolute bottom-2 hidden w-full justify-center px-2 group-hover:flex z-10">
 					<Link
 						className="rounded-md border border-white/30 bg-white px-3 py-2 text-sm font-medium text-black shadow-lg hover:bg-gray-100"
 						href={`/photographer/${photographerId}?hours=${hours}`}
@@ -55,7 +59,7 @@ export default function PortfolioPreview({
 						<p className="text-xs">{location}</p>
 					</div>
 				</div>
-				<div className='w-24'>
+				<div className="w-24">
 					<p className="text-right text-sm font-semibold">
 						<span>${estimatedPriceRange[0]}</span> -{' '}
 						<span>${estimatedPriceRange[1]}</span>
