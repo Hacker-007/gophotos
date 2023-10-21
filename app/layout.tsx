@@ -39,8 +39,8 @@ export default function RootLayout({
 						<NavigationBar />
 						{children}
 						<div className="w-full bg-primary grid justify-items-center">
-							<footer className="max-w-[100rem] grid grid-cols-2 w-full lg:px-4 px-3 py-4">
-								<div>
+							<footer className="@container/footer max-w-[100rem] grid grid-cols-[auto_1fr] gap-4 w-full lg:px-4 px-3 py-4">
+								<div className="col-start-1 row-start-1">
 									<h1 className="font-medium">GoPhotos</h1>
 									<p className="text-xs text-gray-600">
 										Another subheading that talks about
@@ -85,13 +85,15 @@ export default function RootLayout({
 										</Link>
 									</div>
 								</div>
-								<div className="grid gap-4 w-96 justify-self-end">
+								<div className="col-start-1 @2xl/footer:col-start-2 row-start-2 @2xl/footer:row-start-1 grid gap-4 w-96 justify-self-end">
 									<div className="flex flex-col col-start-1 space-y-1">
 										<h3 className="font-medium">Legal</h3>
-										<a href="/Terms of Service.pdf"
+										<a
+											href="/Terms of Service.pdf"
 											target="_blank"
 											rel="noopener noreferrer"
-											className="text-sm">
+											className="text-sm"
+										>
 											Terms of Service
 										</a>
 										<a
