@@ -30,35 +30,39 @@ export default function Carousel({
 	children,
 }: CarouselProps) {
 	return (
-		<Swiper
-			modules={[Navigation]}
-			loop={true}
-			navigation={{
-				prevEl: '#carousel-prev',
-				nextEl: '#carousel-next',
-			}}
+		<div
 			className={classNames(
-				'group border border-gray-200 w-full relative overflow-hidden rounded-md',
-				spaceGrotesk.className,
-				className
+				'overflow-hidden rounded-md border border-gray-200 group relative',
+				className,
+				spaceGrotesk.className
 			)}
 		>
-			{imageUrls.map(imageUrl => (
-				<SwiperSlide
-					key={imageUrl.url}
-					className="flex h-full w-full justify-center relative overflow-hidden"
-				>
-					<Image
-						alt="Portfolio Image"
-						src={imageUrl.url}
-						placeholder="blur"
-						blurDataURL={imageUrl.placeholder}
-						fill
-						sizes={sizes ?? '100vw'}
-						className="object-contain"
-					/>
-				</SwiperSlide>
-			))}
+			<Swiper
+				className="h-full w-full"
+				modules={[Navigation]}
+				loop={true}
+				navigation={{
+					prevEl: '#carousel-prev',
+					nextEl: '#carousel-next',
+				}}
+			>
+				{imageUrls.map(imageUrl => (
+					<SwiperSlide
+						key={imageUrl.url}
+						className="flex !h-full !w-full justify-center relative overflow-hidden"
+					>
+						<Image
+							alt="Portfolio Image"
+							src={imageUrl.url}
+							placeholder="blur"
+							blurDataURL={imageUrl.placeholder}
+							fill
+							sizes={sizes ?? '100vw'}
+							className="object-contain"
+						/>
+					</SwiperSlide>
+				))}
+			</Swiper>
 			<button
 				id="carousel-prev"
 				className="absolute left-1 z-20 shadow-lg top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white p-2 hover:bg-gray-100 disabled:hidden group-hover:[&:not(:disabled)]:flex"
@@ -124,6 +128,6 @@ export default function Carousel({
 				</svg>
 			</button>
 			{children}
-		</Swiper>
+		</div>
 	)
 }

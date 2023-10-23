@@ -60,11 +60,11 @@ export default async function PhotographerPortfolioPage({
 		>
 			<div className="max-w-[90rem] w-full justify-self-center">
 				<div className="grid gap-4 sm:grid-rows-[auto_1fr] sm:grid-cols-[1fr_auto] md:grid-cols-[35rem_1fr] lg:grid-cols-[45rem_1fr] xl:grid-cols-[55rem_1fr]">
-					<div className="h-min sm:col-start-1 w-full sm:row-start-1 sm:row-span-1">
+					<div className="h-min col-start-1 w-full sm:row-start-1 sm:row-span-1">
 						<Carousel
 							imageUrls={photographerProfile.portfolioUrls}
 							sizes='(max-width: 640px) 100vw, (max-width: 768px) 500w, (max-width: 1024px) 560w, (max-width: 1280px) 720w, 880w'
-							className="aspect-[3/2]"
+							className="aspect-[3/2] w-full"
 						/>
 						<div className="mt-2 flex justify-between">
 							<div className="flex items-center space-x-2">
