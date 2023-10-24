@@ -59,11 +59,11 @@ export default async function PhotographerPortfolioPage({
 			)}
 		>
 			<div className="max-w-[90rem] w-full justify-self-center">
-				<div className="grid gap-4 sm:grid-rows-[auto_1fr] sm:grid-cols-[1fr_auto] md:grid-cols-[35rem_1fr] lg:grid-cols-[45rem_1fr] xl:grid-cols-[55rem_1fr]">
+				<div className="grid gap-4 grid-cols-1 max-w-full sm:grid-rows-[auto_1fr] sm:grid-cols-[minmax(1fr,34rem)_auto] md:grid-cols-[34rem_1fr] lg:grid-cols-[45rem_1fr] xl:grid-cols-[55rem_1fr]">
 					<div className="h-min col-start-1 w-full sm:row-start-1 sm:row-span-1">
 						<Carousel
 							imageUrls={photographerProfile.portfolioUrls}
-							sizes='(max-width: 640px) 100vw, (max-width: 768px) 500w, (max-width: 1024px) 560w, (max-width: 1280px) 720w, 880w'
+							sizes="(max-width: 640px) 100vw, (max-width: 768px) 500w, (max-width: 1024px) 560w, (max-width: 1280px) 720w, 880w"
 							className="aspect-[3/2] w-full"
 						/>
 						<div className="mt-2 flex justify-between">
@@ -113,7 +113,12 @@ export default async function PhotographerPortfolioPage({
 							<p className="md:text-base text-sm font-medium">
 								Estimated price
 							</p>
-							<p className="text-lg md:text-xl xl:text-2xl font-semibold">
+							<p className="text-xs text-gray-600">
+								This estimate is based on {hours} hours of{' '}
+								{photographerProfile.name}&apos;s average hourly price
+								range.
+							</p>
+							<p className="mt-1 text-lg md:text-xl xl:text-2xl font-semibold">
 								${photographerProfile.estimatedPriceRange[0]} -
 								${photographerProfile.estimatedPriceRange[1]}
 							</p>
@@ -201,7 +206,10 @@ export default async function PhotographerPortfolioPage({
 							Reviews and ratings
 						</h3>
 						<div>
-							<p>Some sort of content to show that we don&apos;t have enough ratings</p>
+							<p>
+								Some sort of content to show that we don&apos;t
+								have enough ratings
+							</p>
 						</div>
 					</div>
 				)}

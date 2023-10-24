@@ -1,13 +1,15 @@
 'use client'
 
 import 'swiper/css'
+import 'swiper/css/pagination'
 
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 import Image from 'next/image'
 
+import { Swiper as SwiperType } from 'swiper/types'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Pagination } from 'swiper/modules'
 
 import classNames from '@/utils/classnames'
 
@@ -29,6 +31,14 @@ export default function Carousel({
 	className,
 	children,
 }: CarouselProps) {
+	const swiperRef = useRef<SwiperType>()
+	const [imageIndex, setImageIndex] = useState(0)
+	useEffect(() => {
+		swiperRef.current?.on('realIndexChange', swiper => {
+			setImageIndex(swiper.realIndex)
+		})
+	}, [])
+
 	return (
 		<div
 			className={classNames(
@@ -37,19 +47,23 @@ export default function Carousel({
 				spaceGrotesk.className
 			)}
 		>
+			<div className="z-20 shadow-lg hidden px-2 py-1 text-sm group-hover:flex items-center justify-center top-1 right-1 absolute rounded-full bg-white/70">
+				<p>
+					{imageIndex + 1} of {imageUrls.length}
+				</p>
+			</div>
 			<Swiper
-				className="h-full w-full"
-				modules={[Navigation]}
+				className="w-full h-full"
+				modules={[Navigation, Pagination]}
 				loop={true}
-				navigation={{
-					prevEl: '#carousel-prev',
-					nextEl: '#carousel-next',
+				onBeforeInit={swiper => {
+					swiperRef.current = swiper
 				}}
 			>
 				{imageUrls.map(imageUrl => (
 					<SwiperSlide
 						key={imageUrl.url}
-						className="flex !h-full !w-full justify-center relative overflow-hidden"
+						className="flex !h-full justify-center relative overflow-hidden"
 					>
 						<Image
 							alt="Portfolio Image"
@@ -64,8 +78,8 @@ export default function Carousel({
 				))}
 			</Swiper>
 			<button
-				id="carousel-prev"
-				className="absolute left-1 z-20 shadow-lg top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white p-2 hover:bg-gray-100 disabled:hidden group-hover:[&:not(:disabled)]:flex"
+				className="absolute left-1 shadow-lg z-20 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white p-2 hover:bg-gray-100 disabled:hidden group-hover:[&:not(:disabled)]:flex"
+				onClick={() => swiperRef.current?.slidePrev()}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -96,8 +110,8 @@ export default function Carousel({
 				</svg>
 			</button>
 			<button
-				id="carousel-next"
 				className="absolute right-1 shadow-lg z-20 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white p-2 hover:bg-gray-100 disabled:hidden group-hover:[&:not(:disabled)]:flex"
+				onClick={() => swiperRef.current?.slideNext()}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

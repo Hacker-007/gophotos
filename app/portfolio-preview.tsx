@@ -38,7 +38,7 @@ export default function PortfolioPreview({
 	return (
 		<div className="w-full rounded-md">
 			<Carousel
-				className="aspect-[3/2]"
+				className="aspect-[3/2] z-0"
 				imageUrls={portfolioUrls}
 				sizes="700w"
 			>

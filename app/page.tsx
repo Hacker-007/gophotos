@@ -35,7 +35,7 @@ export default function HomePage({ searchParams }: HomeProps) {
 				page: 1,
 			}}
 		>
-			<div className="w-full bg-primary grid grid-rows-1 justify-items-center">
+			<div className="w-full z-10 bg-primary grid grid-rows-1 justify-items-center">
 				<header className="lg:px-4 w-full max-w-[100rem] space-y-2 px-3 pb-4">
 					<div>
 						<h2 className="text-lg font-medium">

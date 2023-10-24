@@ -17,7 +17,7 @@ export default function SearchInputs() {
 			<div className="@sm/filters:grid-row-1 @sm/filters:col-start-1">
 				<label className="text-xs font-medium">Location</label>
 				<Combobox
-					className="relative w-full rounded-md @3xl/filters:h-16 bg-white px-3 py-2.5 h-full text-left text-sm data-[open=true]:ring-2 data-[open=true]:ring-accent focus:ring-2 focus:ring-accent focus:outline-none"
+					className="w-full rounded-md @3xl/filters:h-16 bg-white px-3 py-2.5 h-full text-left text-sm data-[open=true]:ring-2 data-[open=true]:ring-accent focus:ring-2 focus:ring-accent focus:outline-none"
 					keyFn={location => location}
 					displayFn={location => location}
 					defaultItem={getQueryValue('location')}
@@ -31,9 +31,9 @@ export default function SearchInputs() {
 					]}
 				>
 					{location => (
-						<div className="flex items-center">
-							<MapPinIcon className="absolute left-2 h-4 w-4" />
-							<p className="pl-5">{location}</p>
+						<div className="gap-2 flex items-center">
+							<MapPinIcon className="h-4 w-4" />
+							<p>{location}</p>
 						</div>
 					)}
 				</Combobox>
@@ -42,7 +42,7 @@ export default function SearchInputs() {
 				<label className="text-xs font-medium">Hours</label>
 				<div className="relative flex w-full @3xl/filters:h-16 items-center overflow-hidden rounded-md bg-white text-left text-sm focus-within:ring-2 focus-within:ring-accent">
 					<input
-						className="w-full border-0 px-3 py-2 text-gray-800 placeholder:text-gray-600 focus:ring-0"
+						className="w-full no-arrow-input border-0 px-3 py-2 text-gray-800 placeholder:text-gray-600 focus:ring-0"
 						type="number"
 						min={1}
 						value={getQueryValue('hours')}

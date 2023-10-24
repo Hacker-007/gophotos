@@ -73,7 +73,7 @@ export default function SortBy() {
 		<div className="flex flex-col items-end">
 			<span className="text-xs text-gray-600">Sort by</span>
 			<Select
-				className="relative mt-1 min-w-[7rem] whitespace-nowrap rounded-md border border-gray-600 px-2 py-1 text-left"
+				className="relative z-0 mt-1 min-w-[7rem] whitespace-nowrap rounded-md border border-gray-600 px-2 py-1 text-left"
 				keyFn={sortFilter =>
 					`${sortFilter.value.sort}${sortFilter.value.order}`
 				}

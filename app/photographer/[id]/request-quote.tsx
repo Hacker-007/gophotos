@@ -145,7 +145,7 @@ function RequestQuoteContent({ id, hours }: { id: string; hours: number }) {
 					onChange={e => updateValue('email', e)}
 				/>
 			</div>
-			<div className="@md/quote:col-start-1 @md/quote:col-span-1 @md/quote:row-start-2">
+			<div className="@md/quote:col-start-1 @md/quote:col-span-2 @md/quote:row-start-2">
 				<label className="text-sm font-medium" htmlFor="eventDate">
 					Date of Event
 				</label>
@@ -158,7 +158,7 @@ function RequestQuoteContent({ id, hours }: { id: string; hours: number }) {
 					onChange={e => updateValue('eventDate', e)}
 				/>
 			</div>
-			<div className="@md/quote:col-start-2 @md/quote:col-span-1 @md/quote:row-start-2">
+			<div className="@md/quote:col-start-1 @md/quote:col-span-1 @md/quote:row-start-3">
 				<label className="text-sm font-medium" htmlFor="eventDate">
 					Start time of Event
 				</label>
@@ -171,7 +171,20 @@ function RequestQuoteContent({ id, hours }: { id: string; hours: number }) {
 					onChange={e => updateValue('eventTime', e)}
 				/>
 			</div>
-			<div className="@md/quote:col-span-1 @md/quote:row-start-3">
+			<div className="@md/quote:col-start-2 @md/quote:col-span-1 @md/quote:row-start-3">
+				<label className="text-sm font-medium" htmlFor="hours">
+					Hours
+				</label>
+				<input
+					className="w-full border border-gray-500 bg-gray-100 rounded-md px-2 py-1 focus:ring-accent focus:border-accent"
+					id="hours"
+					name="hours"
+					type="int"
+					value={hours}
+					disabled
+				/>
+			</div>
+			<div className="@md/quote:col-span-1 @md/quote:row-start-4">
 				<label className="text-sm font-medium" htmlFor="phoneNumber">
 					Phone number
 				</label>
@@ -184,7 +197,7 @@ function RequestQuoteContent({ id, hours }: { id: string; hours: number }) {
 					onChange={e => updateValue('phoneNumber', e)}
 				/>
 			</div>
-			<div className="@md/quote:col-span-1 @md/quote:row-start-3">
+			<div className="@md/quote:col-span-1 @md/quote:row-start-4">
 				<label className="text-sm font-medium" htmlFor="organization">
 					Organization / University
 				</label>
@@ -197,7 +210,7 @@ function RequestQuoteContent({ id, hours }: { id: string; hours: number }) {
 					onChange={e => updateValue('organization', e)}
 				/>
 			</div>
-			<div className="@md/quote:col-span-2 @md/quote:row-start-4">
+			<div className="@md/quote:col-span-2 @md/quote:row-start-5">
 				<label
 					className="text-sm font-medium"
 					htmlFor="eventDescription"
@@ -210,9 +223,10 @@ function RequestQuoteContent({ id, hours }: { id: string; hours: number }) {
 					name="eventDescription"
 					value={formValues.eventDescription}
 					onChange={e => updateValue('eventDescription', e)}
+					placeholder="Please be as specific as possible regarding the details of the event to receive the most accurate quote."
 				/>
 			</div>
-			<div className="@md/quote:col-span-2 @md/quote:row-start-5 relative">
+			<div className="@md/quote:col-span-2 @md/quote:row-start-6 relative">
 				<Button
 					className="flex w-full items-center justify-center gap-2 rounded-md hover:bg-accent/90 bg-accent px-3 py-2 font-medium text-secondary"
 					type="submit"
