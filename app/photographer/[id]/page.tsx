@@ -131,7 +131,7 @@ export default async function PhotographerPortfolioPage({
 					<div className="lg:col-start-1 flex flex-col gap-2 sm:row-start-2 sm:row-span-1">
 						<div>
 							<h3 className="text-sm font-medium">About</h3>
-							<p className="mt-1 text-sm text-gray-600">
+							<p className="mt-1 text-gray-800">
 								{photographerProfile.about}
 							</p>
 						</div>

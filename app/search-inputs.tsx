@@ -2,15 +2,32 @@
 
 import { MagnifyingGlassIcon, MapPinIcon } from '@heroicons/react/24/outline'
 
+import { useEffect, useState } from 'react'
 import { useSyncedSearchFilters } from '@/context/synced-search-filter-context'
 
 import Button from '@/components/button'
 import Combobox from '@/components/combobox'
 import RangeSlider from '@/components/range-slider'
+import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 
 export default function SearchInputs() {
 	const { getQueryValue, updateQueryParameter, batchUpdateURL } =
 		useSyncedSearchFilters()
+	const [hours, setHours] = useState(`${getQueryValue('hours')}`)
+	const [debouncedHours] = useDebouncedValue(hours, 300)
+
+	useEffect(() => {
+		let parsedHours = Number.parseFloat(debouncedHours)
+		console.log(parsedHours)
+		if (Number.isNaN(parsedHours)) {
+			setHours('0')
+			return
+		}
+
+		parsedHours = Math.max(parsedHours, 0)
+		setHours(`${parsedHours}`)
+		updateQueryParameter('hours', _ => parsedHours)
+	}, [debouncedHours])
 
 	return (
 		<div className="grid grid-rows-[auto_auto_auto_1fr] @sm/filters:grid-rows-[auto_auto_auto] @sm/filters:grid-cols-2 @xl/filters:grid-rows-[auto_auto] @xl/filters:grid-cols-2 @3xl/filters:grid-cols-[minmax(auto,15rem)_minmax(auto,15rem)_1fr] @6xl/filters:grid-rows-1 @6xl/filters:grid-cols-[minmax(auto,15rem)_minmax(auto,15rem)_auto_auto] gap-2 h-full">
@@ -44,11 +61,8 @@ export default function SearchInputs() {
 					<input
 						className="w-full no-arrow-input border-0 px-3 py-2 text-gray-800 placeholder:text-gray-600 focus:ring-0"
 						type="number"
-						min={1}
-						value={getQueryValue('hours')}
-						onChange={e =>
-							updateQueryParameter('hours', _ => +e.target.value)
-						}
+						value={hours}
+						onChange={e => setHours(e.target.value)}
 					/>
 					<span className="absolute right-2 text-sm text-gray-500">
 						hours
