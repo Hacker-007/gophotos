@@ -39,11 +39,10 @@ export default function HomePage({ searchParams }: HomeProps) {
 				<header className="lg:px-4 w-full max-w-[100rem] space-y-2 px-3 pb-4">
 					<div>
 						<h2 className="text-lg font-medium">
-							Heading about GoPhotos
+							Discover. Book. Create.
 						</h2>
 						<h3 className="text-sm text-gray-600">
-							Subheading about GoPhotos that elaborates what the
-							main heading says. This can be long as well.
+							Finding a photographer has never been this easy. Start searching for a photographer near you now!
 						</h3>
 					</div>
 					<div className="rounded-md border border-gray-400 p-2 @container/filters">

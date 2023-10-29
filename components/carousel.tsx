@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 
 import classNames from '@/utils/classnames'
+import { getAroundCenter } from '@/utils/array'
 
 const spaceGrotesk = SpaceGrotesk({
 	subsets: ['latin'],
@@ -67,12 +68,13 @@ export default function Carousel({
 					>
 						<Image
 							alt="Portfolio Image"
-							src={imageUrl.url}
-							placeholder="blur"
-							blurDataURL={imageUrl.placeholder}
+							src={`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/images/${imageUrl.url}`}
+							// placeholder="blur"
+							// blurDataURL={imageUrl.placeholder}
 							fill
 							sizes={sizes ?? '100vw'}
 							className="object-contain"
+							unoptimized
 						/>
 					</SwiperSlide>
 				))}

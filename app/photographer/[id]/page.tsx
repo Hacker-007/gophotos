@@ -206,9 +206,8 @@ export default async function PhotographerPortfolioPage({
 							Reviews and ratings
 						</h3>
 						<div>
-							<p>
-								Some sort of content to show that we don&apos;t
-								have enough ratings
+							<p className='text-sm text-gray-600'>
+								{photographerProfile.name} does not have enough reviews or ratings to show.
 							</p>
 						</div>
 					</div>

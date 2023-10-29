@@ -43,8 +43,7 @@ export default function RootLayout({
 								<div className="col-start-1 row-start-1">
 									<h1 className="font-medium">GoPhotos</h1>
 									<p className="text-xs text-gray-600">
-										Another subheading that talks about
-										GoPhotos.
+										Discover. Book. Create.
 									</p>
 									<div className="mt-1 flex gap-x-4">
 										<Link href="https://www.linkedin.com/company/gophotos-info">

@@ -6,6 +6,7 @@ import classNames from '@/utils/classnames'
 
 import PortfolioPreview from './portfolio-preview'
 import PaginationControls from './pagination-controls'
+import { getAroundCenter } from '@/utils/array'
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -30,7 +31,7 @@ async function getData(searchParams: {
 		fetch(
 			`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers?${queryString}`,
 			{
-				cache: 'no-cache'
+				cache: 'no-cache',
 			}
 		).then(res => res.json()),
 		new Promise(res => setTimeout(res, 1000)),

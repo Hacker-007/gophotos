@@ -18,7 +18,6 @@ export default function SearchInputs() {
 
 	useEffect(() => {
 		let parsedHours = Number.parseFloat(debouncedHours)
-		console.log(parsedHours)
 		if (Number.isNaN(parsedHours)) {
 			setHours('0')
 			return
