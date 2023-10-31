@@ -38,7 +38,23 @@ export default function Carousel({
 		swiperRef.current?.on('realIndexChange', swiper => {
 			setImageIndex(swiper.realIndex)
 		})
+
+		swiperRef
+			.current
+			?.slides
+			.slice(-2, 2)
+			.map(slide => slide.querySelector('img'))
+			.forEach(img => img?.setAttribute('loading', 'eager'))
 	}, [])
+
+	useEffect(() => {
+		swiperRef
+			.current
+			?.slides
+			.slice(imageIndex - 2, imageIndex + 2)
+			.map(slide => slide.querySelector('img'))
+			.forEach(img => img?.setAttribute('loading', 'eager'))
+	}, [imageIndex])
 
 	return (
 		<div
@@ -68,7 +84,7 @@ export default function Carousel({
 					>
 						<Image
 							alt="Portfolio Image"
-							src={`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/images/${imageUrl.url}`}
+							src={imageUrl.url}
 							// placeholder="blur"
 							// blurDataURL={imageUrl.placeholder}
 							fill
