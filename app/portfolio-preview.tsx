@@ -1,4 +1,4 @@
-import { StarIcon } from '@heroicons/react/24/solid'
+import { StarIcon, UserIcon } from '@heroicons/react/24/outline'
 
 import AccountCircle from '@/components/account-circle'
 import Carousel from '@/components/carousel'
@@ -12,7 +12,7 @@ type PortfolioPreviewProps = {
 	estimatedPriceRange: [number, number]
 	rating: number
 	numberOfReviews: number
-	profilePictureUrl: string
+	profilePictureUrl?: string
 	portfolioUrls: string[]
 }
 

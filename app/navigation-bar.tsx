@@ -21,21 +21,30 @@ export default function NavigationBar() {
 					</Link>
 					{/* <NavigationLink href="/">Home</NavigationLink> */}
 				</div>
-				<SignedIn>
-					<UserButton
-						afterSignOutUrl="/"
-						afterSwitchSessionUrl="/"
-						afterMultiSessionSingleSignOutUrl="/"
-					/>
-				</SignedIn>
-				<SignedOut>
-					<SignInButton>
-						<div className="flex cursor-pointer items-center gap-x-1 rounded-md border border-transparent hover:border-accent hover:text-accent px-3 py-2 text-sm font-medium">
-							<p>Login</p>
-							<ArrowLongRightIcon className="h-5 w-5" />
-						</div>
-					</SignInButton>
-				</SignedOut>
+				<div className="flex items-center gap-3">
+					<Link
+						href="https://docs.google.com/forms/d/e/1FAIpQLSem09PScOnSgmt87OxZjPLUabUl-zZ-v-FetmAVi8B5Wi5jsg/viewform?usp=sf_link"
+						target='_blank'
+						className="text-secondary bg-accent rounded-md px-3 py-2 text-sm"
+					>
+						Photographer?
+					</Link>
+					<SignedIn>
+						<UserButton
+							afterSignOutUrl="/"
+							afterSwitchSessionUrl="/"
+							afterMultiSessionSingleSignOutUrl="/"
+						/>
+					</SignedIn>
+					<SignedOut>
+						<SignInButton>
+							<div className="flex cursor-pointer items-center gap-x-1 rounded-md border border-transparent hover:border-accent hover:text-accent px-3 py-2 text-sm font-medium">
+								<p>Login</p>
+								<ArrowLongRightIcon className="h-5 w-5" />
+							</div>
+						</SignInButton>
+					</SignedOut>
+				</div>
 			</nav>
 		</div>
 	)
