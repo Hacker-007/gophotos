@@ -5,6 +5,5 @@ export function getAroundCenter<T>(arr: T[], center: number, spread: number): T[
 		result.push(arr[normalizedIdx])
 	}
 
-	// console.log(result)
 	return result
 }

@@ -7,6 +7,7 @@ import classNames from '@/utils/classnames'
 import PortfolioPreview from './portfolio-preview'
 import PaginationControls from './pagination-controls'
 import { getAroundCenter } from '@/utils/array'
+import Carousel from '@/components/carousel'
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -48,6 +49,11 @@ export default async function PhotographerResults({
 	searchParams,
 }: PaginationControlsProps) {
 	const { data: portfolios, pagination } = await getData(searchParams)
+	await Promise.all(
+		portfolios.map(portfolio =>
+			fetch((portfolio.portfolioUrls[0] as any).url)
+		)
+	)
 
 	return (
 		<>
