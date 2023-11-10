@@ -1,114 +1,69 @@
-import { Playfair_Display as PlayfairDisplay } from 'next/font/google'
+import { Suspense } from 'react'
 
-import { VerticalMarquee, HorizontalMarquee } from '@/components/Marquee'
-import classNames from '@/utils/classnames'
-import TypeformQuestion from '@/components/TypeformQuestion'
+import SyncedSearchFilterProvider from '@/context/synced-search-filter-context'
 
-const playfairDisplay = PlayfairDisplay({
-	subsets: ['latin'],
-})
+import SearchInputs from './search-inputs'
+import AdditionalFilters from './additional-filters'
+import SortBy from './sort-by'
+import PhotographerResults from './photographer-results'
+import PhotographerResultsLoader from './photographer-results-loader'
+import { updateURLParameter } from '@/utils/url'
 
-export default function LandingPage() {
+type HomeProps = {
+	searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default function HomePage({ searchParams }: HomeProps) {
+	let queryParams = new URLSearchParams()
+	for (let key in searchParams) {
+		queryParams = updateURLParameter(queryParams, key, searchParams[key])
+	}
+
+	const queryString = queryParams.toString()
 	return (
-		<main className="flex h-full w-full flex-col overflow-hidden md:grid md:grid-cols-[repeat(13,minmax(0,1fr))] md:gap-5">
-			<div className="mt-5 md:col-span-4 md:mt-0 md:flex md:flex-col md:justify-center">
-				<h1
-					className={classNames(
-						playfairDisplay.className,
-						'text-2xl font-medium md:col-span-2 md:text-justify md:text-2xl lg:text-4xl'
-					)}
-				>
-					Revolutionizing Photography
-				</h1>
-				<h2 className="mt-3 max-w-sm text-xs text-zinc-400 md:col-start-1 lg:text-sm">
-					Connecting photographers and clients like never before. Join
-					our waitlist now to stay up to date and be the first to
-					access our groundbreaking photography services.
-				</h2>
-				<TypeformQuestion
-					className="group mt-5 flex w-fit items-center justify-center rounded-md border border-gray-400 px-3 py-2 font-medium hover:bg-gray-200 md:mt-5 lg:mt-10"
-				>
-					<span className="flex-shrink-0 text-xs lg:text-sm">
-						Join Waitlist
-					</span>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						strokeWidth="1.5"
-						stroke="currentColor"
-						className="ml-2 h-5 w-5 flex-shrink-0 transition-transform group-hover:translate-x-0.5 lg:h-6 lg:w-6"
+		<SyncedSearchFilterProvider
+			defaultItems={{
+				location: 'Boston, MA',
+				hours: 2,
+				'price[low]': 100,
+				'price[high]': 500,
+				'schools[]': [],
+				'skills[]': [],
+				'ratings[]': [],
+				sort: 'rating',
+				order: 'desc',
+				page: 1,
+			}}
+		>
+			<div className="w-full z-10 bg-primary grid grid-rows-1 justify-items-center">
+				<header className="lg:px-4 w-full max-w-[100rem] space-y-2 px-3 pb-4">
+					<div>
+						<h2 className="text-lg font-medium">
+							Discover. Book. Create.
+						</h2>
+						<h3 className="text-sm text-gray-600">
+							Finding a photographer has never been this easy. Start searching for a photographer near you now!
+						</h3>
+					</div>
+					<div className="rounded-md border border-gray-400 p-2 @container/filters">
+						<SearchInputs />
+					</div>
+				</header>
+			</div>
+			<div className="w-full grid justify-items-center flex-grow">
+				<main className="max-w-[100rem] w-full grid px-3 py-2 xl:grid-cols-[auto_1fr] grid-rows-[auto_1fr_auto] gap-4 lg:px-4">
+					<AdditionalFilters />
+					<div className="col-start-2 row-start-1">
+						<SortBy />
+					</div>
+					<Suspense
+						key={queryString}
+						fallback={<PhotographerResultsLoader />}
 					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-						/>
-					</svg>
-				</TypeformQuestion>
+						<PhotographerResults searchParams={searchParams} />
+					</Suspense>
+				</main>
 			</div>
-			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-5 md:block">
-				<VerticalMarquee
-					images={[
-						'/images/Graduation.jpg',
-						'/images/Headshot.jpg',
-						'/images/Old Landscape.jpg',
-						'/images/Chariot Monument.jpg',
-						'/images/Lion Statue.jpg',
-						'/images/Solo Photographer.jpg',
-					]}
-				/>
-			</div>
-			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-8 md:block">
-				<VerticalMarquee
-					images={[
-						'/images/Speaker Event.jpg',
-						'/images/Concert.jpg',
-						'/images/Ring Delivery.jpg',
-						'/images/Graduation Celebration.jpg',
-						'/images/Street Headshot.jpg',
-						'/images/Graduation Solo.jpg',
-					]}
-					reversed
-				/>
-			</div>
-			<div className="mt-3 hidden max-h-full overflow-hidden md:col-span-3 md:col-start-11 md:block">
-				<VerticalMarquee
-					images={[
-						'/images/Birthday.jpg',
-						'/images/Night Streaks.jpg',
-						'/images/Group Picture.jpg',
-						'/images/Eiffel Tower.jpg',
-						'/images/Smiling Club.jpg',
-						'/images/Street Night View.jpg',
-					]}
-				/>
-			</div>
-			<div className="mt-7 block md:hidden">
-				<HorizontalMarquee
-					images={[
-						'/images/Graduation.jpg',
-						'/images/Headshot.jpg',
-						'/images/Old Landscape.jpg',
-						'/images/Chariot Monument.jpg',
-						'/images/Lion Statue.jpg',
-						'/images/Solo Photographer.jpg',
-					]}
-				/>
-			</div>
-			<div className="mt-7 block md:hidden">
-				<HorizontalMarquee
-					images={[
-						'/images/Birthday.jpg',
-						'/images/Night Streaks.jpg',
-						'/images/Group Picture.jpg',
-						'/images/Eiffel Tower.jpg',
-						'/images/Smiling Club.jpg',
-						'/images/Street Night View.jpg',
-					]}
-					reversed
-				/>
-			</div>
-		</main>
+		</SyncedSearchFilterProvider>
 	)
 }
