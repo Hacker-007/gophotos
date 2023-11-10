@@ -14,7 +14,7 @@ export default authMiddleware({
 			return NextResponse.redirect(req.nextUrl)
 		}
 	},
-	publicRoutes: ['/photographer/(.*)'],
+	publicRoutes: ['/'],
 })
 
 export const config = {
