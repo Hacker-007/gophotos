@@ -27,7 +27,7 @@ export default function NavigationBar() {
 						target='_blank'
 						className="text-secondary bg-accent rounded-md px-3 py-2 text-sm"
 					>
-						Photographer?
+						Become a photographer
 					</Link>
 					<SignedIn>
 						<UserButton

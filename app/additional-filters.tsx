@@ -119,7 +119,7 @@ function FilterContent({ className }: FilterContentProps) {
 							'Graduation',
 							'Headshots',
 							'Concert',
-							'Fasion',
+							'Fashion',
 							'Outdoor',
 							'Videography',
 						]}
