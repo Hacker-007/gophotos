@@ -17,6 +17,10 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'photographer-pictures.s3.us-east-2.amazonaws.com',
 			},
+			{
+				protocol: 'https',
+				hostname: 'res.cloudinary.com',
+			},
 		],
 	},
 }

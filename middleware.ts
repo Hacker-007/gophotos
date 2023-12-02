@@ -10,11 +10,15 @@ export default authMiddleware({
 			req.nextUrl.pathname === '/' &&
 			[...req.nextUrl.searchParams.keys()].length === 0
 		) {
-			req.nextUrl.search = 'location=Boston%2C+MA&hours=2&price%5Blow%5D=100&price%5Bhigh%5D=500&sort=rating&order=desc&page=1'
+			req.nextUrl.search =
+				'location=Boston%2C+MA&hours=2&price%5Blow%5D=100&price%5Bhigh%5D=500&sort=rating&order=desc&page=1'
 			return NextResponse.redirect(req.nextUrl)
 		}
+
+		req.cookies.set('latitude', req.geo?.latitude || '42.37203')
+		req.cookies.set('longitude', req.geo?.longitude || '-71.08841')
 	},
-	publicRoutes: ['/'],
+	publicRoutes: ['/', '/waitlist'],
 })
 
 export const config = {
