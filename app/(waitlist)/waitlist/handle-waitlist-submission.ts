@@ -14,7 +14,7 @@ export default async function handleSubmission(
 	const longitude = Number.parseFloat(cookies().get('longitude')?.value!)
 
 	try {
-		const response = await fetch('http://localhost:8080/v1/waitlists', {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/waitlists`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

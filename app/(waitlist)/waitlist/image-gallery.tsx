@@ -18,7 +18,7 @@ async function GalleryImage({
 }) {
 	const {
 		data: { placeholderBase64 },
-	} = await fetch(`http://localhost:8080/v1/assets/${publicId}`).then(res =>
+	} = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/assets/${publicId}`).then(res =>
 		res.json()
 	)
 
@@ -253,7 +253,7 @@ function MediumImageGrid({ className }: ImageGalleryProps) {
 async function LargeImageCover({ className }: ImageGalleryProps) {
 	const {
 		data: { publicId, placeholderBase64 },
-	} = await fetch('http://localhost:8080/v1/assets/eufuuWjaSYYBwoc').then(
+	} = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/assets/eufuuWjaSYYBwoc`).then(
 		res => res.json()
 	)
 
