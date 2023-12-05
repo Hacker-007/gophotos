@@ -4,6 +4,7 @@ import {
 	ReactNode,
 	createContext,
 	useContext,
+	useEffect,
 	useState,
 } from 'react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
@@ -166,6 +167,10 @@ export default function SyncedSearchFilterProvider({
 
 		router.push(pathname + '?' + queryParams.toString(), { scroll: false })
 	}
+
+	useEffect(() => {
+		batchUpdateURL()
+	}, [])
 
 	return (
 		<SyncedSearchFilterContext.Provider

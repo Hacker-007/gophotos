@@ -1,7 +1,7 @@
 'use client'
 
 import { StarIcon } from '@heroicons/react/24/solid'
-import useWindowDimensions from '../hooks/useWindowDimensions'
+import useWindowDimensions from '../../hooks/useWindowDimensions'
 
 export default function PhotographerResultsLoader() {
 	const minPortfolioPreviewWidth = 320

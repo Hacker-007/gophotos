@@ -60,7 +60,7 @@ export default async function PhotographerResults({
 			<div
 				className={classNames(
 					inter.className,
-					'col-span-2 grid w-full gap-4 xl:row-start-2 xl:col-span-1',
+					'col-span-2 grid w-full gap-4 xl:col-span-1 xl:row-start-2',
 					portfolios.length !== 0 &&
 						'grid-cols-[repeat(auto-fill,minmax(20rem,1fr))]'
 				)}
@@ -69,6 +69,7 @@ export default async function PhotographerResults({
 					<PortfolioPreview
 						key={portfolio.id}
 						photographerId={portfolio.id}
+						email={searchParams['email']! as string}
 						hours={+(searchParams['hours'] || 1)}
 						name={portfolio.name}
 						location={portfolio.location}
@@ -90,7 +91,7 @@ export default async function PhotographerResults({
 			</div>
 			{portfolios.length !== 0 && (
 				<PaginationControls
-					className="col-span-2 xl:col-start-2 xl:col-span-1"
+					className="col-span-2 xl:col-span-1 xl:col-start-2"
 					currentPage={pagination.currentPage}
 					maxPageCount={pagination.pageCount}
 				/>
