@@ -27,7 +27,7 @@ export default function RootLayout({
 				<div
 					className={classNames(
 						inter.className,
-						' h-screen max-h-screen overflow-hidden'
+						' h-screen max-h-screen overflow-x-hidden'
 					)}
 				>
 					{children}

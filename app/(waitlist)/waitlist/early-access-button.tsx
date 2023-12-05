@@ -5,6 +5,7 @@ import { ArrowLongRightIcon } from '@heroicons/react/24/outline'
 
 import { useFormStatus } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect } from 'react'
 
 export default function EarlyAccessButton() {
 	const { pending } = useFormStatus()

@@ -5,18 +5,32 @@ import { NextResponse } from 'next/server'
 // Please edit this to allow other routes to be public as needed.
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your middleware
 export default authMiddleware({
-	beforeAuth: req => {
-		if (
-			req.nextUrl.pathname === '/' &&
-			[...req.nextUrl.searchParams.keys()].length === 0
-		) {
-			req.nextUrl.search =
-				'location=Boston%2C+MA&hours=2&price%5Blow%5D=100&price%5Bhigh%5D=500&sort=rating&order=desc&page=1'
-			return NextResponse.redirect(req.nextUrl)
-		}
-
+	beforeAuth: async req => {
 		req.cookies.set('latitude', req.geo?.latitude || '42.37203')
 		req.cookies.set('longitude', req.geo?.longitude || '-71.08841')
+		if (req.nextUrl.pathname !== '/waitlist') {
+			const email = req.nextUrl.searchParams.get('email')
+			const verified = req.cookies.get('verified')
+			if (
+				email === null ||
+				(verified !== undefined && verified.value !== email)
+			) {
+				return NextResponse.redirect('http://localhost:3000/waitlist')
+			} else if (verified === undefined) {
+				const {
+					data,
+				} = await fetch(
+					`http://localhost:8080/v1/waitlists/${email}`
+				).then(res => res.json())
+				if (data === null || !data.isVerified) {
+					return NextResponse.redirect(
+						'http://localhost:3000/waitlist'
+					)
+				}
+
+				req.cookies.set('verified', email)
+			}
+		}
 	},
 	publicRoutes: ['/', '/waitlist'],
 })

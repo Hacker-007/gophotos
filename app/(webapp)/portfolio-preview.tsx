@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 type PortfolioPreviewProps = {
 	photographerId: string
+	email: string
 	hours: number
 	name: string
 	location: string
@@ -26,6 +27,7 @@ function formatRating(rating: number) {
 
 export default function PortfolioPreview({
 	photographerId,
+	email,
 	hours,
 	name,
 	location,
@@ -45,7 +47,7 @@ export default function PortfolioPreview({
 				<div className="absolute bottom-2 hidden w-full justify-center px-2 group-hover:flex z-10">
 					<Link
 						className="rounded-md border border-white/30 bg-white px-3 py-2 text-sm font-medium text-black shadow-lg hover:bg-gray-100"
-						href={`/photographer/${photographerId}?hours=${hours}`}
+						href={`/photographer/${photographerId}?email=${email}&hours=${hours}`}
 					>
 						View profile
 					</Link>

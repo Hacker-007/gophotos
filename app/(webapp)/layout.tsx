@@ -18,7 +18,8 @@ const spaceGrotesk = SpaceGrotesk({
 
 export const metadata: Metadata = {
 	title: 'GoPhotos',
-	description: 'Finding a photographer has never been this easy. Start searching for a photographer near you now!',
+	description:
+		'Finding a photographer has never been this easy. Start searching for a photographer near you now!',
 }
 
 export default function RootLayout({
@@ -27,19 +28,19 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang="en">
-			<ClerkProvider>
+		<ClerkProvider>
+			<html lang="en">
 				<body>
 					<div
 						className={classNames(
 							spaceGrotesk.className,
-							'@container/global flex flex-col h-screen w-screen overflow-y-auto'
+							'flex h-screen w-screen flex-col overflow-y-auto @container/global'
 						)}
 					>
 						<NavigationBar />
 						{children}
-						<div className="w-full bg-primary grid justify-items-center">
-							<footer className="@container/footer max-w-[100rem] grid grid-cols-[auto_1fr] gap-4 w-full lg:px-4 px-3 py-4">
+						<div className="grid w-full justify-items-center bg-primary">
+							<footer className="grid w-full max-w-[100rem] grid-cols-[auto_1fr] gap-4 px-3 py-4 @container/footer lg:px-4">
 								<div className="col-start-1 row-start-1">
 									<h1 className="font-medium">GoPhotos</h1>
 									<p className="text-xs text-gray-600">
@@ -84,8 +85,8 @@ export default function RootLayout({
 										</Link>
 									</div>
 								</div>
-								<div className="col-start-1 @2xl/footer:col-start-2 row-start-2 @2xl/footer:row-start-1 grid gap-4 w-96 justify-self-end">
-									<div className="flex flex-col col-start-1 space-y-1">
+								<div className="col-start-1 row-start-2 grid w-96 gap-4 justify-self-end @2xl/footer:col-start-2 @2xl/footer:row-start-1">
+									<div className="col-start-1 flex flex-col space-y-1">
 										<h3 className="font-medium">Legal</h3>
 										<a
 											href="/Terms of Service.pdf"
@@ -104,7 +105,7 @@ export default function RootLayout({
 											Privacy Policy
 										</a>
 									</div>
-									<div className="flex flex-col space-y-1 col-start-2">
+									<div className="col-start-2 flex flex-col space-y-1">
 										<h3 className="font-medium">Contact</h3>
 										<Link
 											href="tel:+4253756070"
@@ -124,7 +125,7 @@ export default function RootLayout({
 						</div>
 					</div>
 				</body>
-			</ClerkProvider>
-		</html>
+			</html>
+		</ClerkProvider>
 	)
 }
