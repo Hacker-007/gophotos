@@ -1,14 +1,6 @@
 import { authMiddleware } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 
-function getFrontendUrl() {
-	if (process.env.NEXT_PUBLIC_VERCEL_ENV! === 'production') {
-		return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-	}
-
-	return `http://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-}
-
 // This example protects all routes including api/trpc routes
 // Please edit this to allow other routes to be public as needed.
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your middleware
@@ -23,7 +15,7 @@ export default authMiddleware({
 				email === null ||
 				(verified !== undefined && verified.value !== email)
 			) {
-				return NextResponse.redirect(`${getFrontendUrl()}/waitlist`)
+				return NextResponse.redirect(`${req.nextUrl.origin}/waitlist`)
 			} else if (verified === undefined) {
 				const {
 					data,
@@ -32,7 +24,7 @@ export default authMiddleware({
 				).then(res => res.json())
 				if (data === null || !data.isVerified) {
 					return NextResponse.redirect(
-						`${getFrontendUrl()}/waitlist`
+						`${req.nextUrl.origin}/waitlist`
 					)
 				}
 
