@@ -3,10 +3,10 @@ import { NextResponse } from 'next/server'
 
 function getFrontendUrl() {
 	if (process.env.NEXT_PUBLIC_VERCEL_ENV! === 'production') {
-		return `https://${process.env.NEXT_PUBLIC_VERCEL_URl}`
+		return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
 	}
 
-	return `http://${process.env.NEXT_PUBLIC_VERCEL_URl}`
+	return `http://${process.env.NEXT_PUBLIC_VERCEL_URL}`
 }
 
 // This example protects all routes including api/trpc routes
