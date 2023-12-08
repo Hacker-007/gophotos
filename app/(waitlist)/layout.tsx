@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 
-import { Inter, Playfair_Display as PlayfairDisplay } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
 import classNames from '@/utils/classnames'
 
