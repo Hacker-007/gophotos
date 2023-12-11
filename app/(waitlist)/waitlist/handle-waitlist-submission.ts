@@ -6,7 +6,6 @@ export default async function handleSubmission(
 	previousState: unknown,
 	formData: FormData
 ) {
-	// console.log('here')
 	const email = formData.get('email')!.toString()
 	const fullName = formData.get('fullName')!.toString()
 	const isPhotographer = formData.get('isPhotographer') !== null
@@ -14,23 +13,26 @@ export default async function handleSubmission(
 	const longitude = Number.parseFloat(cookies().get('longitude')?.value!)
 
 	try {
-		const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/waitlists`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email,
-				fullName,
-				isPhotographer,
-				location: {
-					longitude,
-					latitude,
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/waitlists`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${process.env.SERVER_SECRET}`,
 				},
-			}),
-		}).then(res => res.json())
+				body: JSON.stringify({
+					email,
+					fullName,
+					isPhotographer,
+					location: {
+						longitude,
+						latitude,
+					},
+				}),
+			}
+		).then(res => res.json())
 
-		console.log(response)
 		return { ok: true, email }
 	} catch (e) {
 		return { ok: false }

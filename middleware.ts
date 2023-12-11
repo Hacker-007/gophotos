@@ -20,7 +20,12 @@ export default authMiddleware({
 				const {
 					data,
 				} = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/waitlists/${email}`
+					`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/waitlists/${email}`,
+					{
+						headers: {
+							'Authorization': `Bearer ${process.env.SERVER_SECRET}`
+						}
+					}
 				).then(res => res.json())
 				if (data === null || !data.isVerified) {
 					return NextResponse.redirect(
