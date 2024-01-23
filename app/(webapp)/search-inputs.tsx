@@ -36,10 +36,10 @@ export default function SearchInputs() {
 					className="w-full rounded-md @3xl/filters:h-16 bg-white px-3 py-2.5 h-full text-left text-sm data-[open=true]:ring-2 data-[open=true]:ring-accent focus:ring-2 focus:ring-accent focus:outline-none"
 					keyFn={location => location}
 					displayFn={location => location}
-					defaultItem={getQueryValue('location')}
-					onChange={location =>
-						updateQueryParameter('location', _ => location)
-					}
+					// defaultItem={getQueryValue('location')}
+					// onChange={location =>
+					// 	updateQueryParameter('location', _ => location)
+					// }
 					items={[
 						'Boston, MA',
 						'Los Angeles, CA',

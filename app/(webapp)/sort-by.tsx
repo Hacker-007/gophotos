@@ -11,14 +11,11 @@ import {
 import Select from '@/components/select'
 
 const sortByFilters: Array<{
-	value: { sort: 'price'; order: 'asc' | 'desc' }
+	value: 'price:asc' | 'price:desc'
 	display: ReactNode
 }> = [
 	{
-		value: {
-			sort: 'price',
-			order: 'desc',
-		},
+		value: 'price:desc',
 		display: (
 			<div className="flex items-center gap-1 whitespace-nowrap text-sm">
 				<ArrowTrendingDownIcon className="h-4 w-4" />
@@ -27,10 +24,7 @@ const sortByFilters: Array<{
 		),
 	},
 	{
-		value: {
-			sort: 'price',
-			order: 'asc',
-		},
+		value: 'price:asc',
 		display: (
 			<div className="flex items-center gap-1 whitespace-nowrap text-sm">
 				<ArrowTrendingUpIcon className="h-4 w-4" />
@@ -45,8 +39,7 @@ export default function SortBy() {
 	const [item, setItem] = useState(
 		sortByFilters.find(
 			item =>
-				item.value.sort === getQueryValue('sort') &&
-				item.value.order === getQueryValue('order')
+				item.value === getQueryValue('sortBy')
 		) ?? sortByFilters[0]
 	)
 
@@ -54,17 +47,12 @@ export default function SortBy() {
 		batchUpdateURL()
 	}, [item])
 
-	const handleOnChange = (value: {
-		sort: 'price'
-		order: 'asc' | 'desc'
-	}) => {
-		updateQueryParameter('sort', _ => value.sort)
-		updateQueryParameter('order', _ => value.order)
+	const handleOnChange = (value: 'price:asc' | 'price:desc') => {
+		updateQueryParameter('sortBy', _ => value)
 		setItem(
 			sortByFilters.find(
 				item =>
-					item.value.sort === value.sort &&
-					item.value.order === value.order
+					item.value === value
 			)!
 		)
 	}
@@ -75,7 +63,7 @@ export default function SortBy() {
 			<Select
 				className="relative z-0 mt-1 min-w-[7rem] whitespace-nowrap rounded-md border border-gray-600 px-2 py-1 text-left"
 				keyFn={sortFilter =>
-					`${sortFilter.value.sort}${sortFilter.value.order}`
+					sortFilter.value
 				}
 				displayFn={sortFilter => sortFilter.display}
 				defaultItem={item}
