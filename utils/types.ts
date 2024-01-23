@@ -1,8 +1,8 @@
 export type PhotographerProfile = {
 	id: string
 	accountId: string
-	// name: string
-	// email: string
+	fullName: string
+	email: string
 	// profilePictureUrl: string
 	// location: string
 	estimatedHourlyPriceRange: [number, number]
