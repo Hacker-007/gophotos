@@ -9,16 +9,16 @@ type ImageGalleryProps = {
 
 async function GalleryImage({
 	className,
-	publicId,
+	id,
 	authorName,
 }: {
 	className?: string
-	publicId: string
+	id: string
 	authorName: string
 }) {
 	const {
-		data: { placeholderBase64 },
-	} = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/assets/${publicId}`, {
+		data: { cdnPath, placeholderBase64 },
+	} = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/assets/${id}`, {
 		headers: {
 			'Authorization': `Bearer ${process.env.SERVER_SECRET}`
 		}
@@ -26,15 +26,11 @@ async function GalleryImage({
 		res.json()
 	)
 
-	const url = getCldImageUrl({
-		src: publicId,
-	})
-
 	return (
 		<div className={classNames('relative overflow-hidden', className)}>
 			<Image
 				alt="image in gallery"
-				src={url}
+				src={cdnPath}
 				fill
 				className="z-10 object-contain"
 				unoptimized
@@ -72,41 +68,41 @@ function DefaultImageGrid({ className }: ImageGalleryProps) {
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Maxwell Yun"
-					publicId="dmLGBRyDMctGpDm"
+					id="UkLWZg9"
 					className="h-24 w-36"
 				/>
 				<GalleryImage
 					authorName="Arnav Plande"
-					publicId="Kh8gJ6VoGn98M4g"
+					id="AXs1igz"
 					className="h-[13.5rem] w-36"
 				/>
 				<GalleryImage
 					authorName="Andrew Okyere"
-					publicId="a5kGTyGVX8OATzi"
+					id="EfhxLZ9"
 					className="h-24 w-36"
 				/>
 			</div>
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Andrew Mendez"
-					publicId="eufuuWjaSYYBwoc"
+					id="98FqgRu"
 					className="h-[13.5rem] w-36"
 				/>
 				<GalleryImage
 					authorName="Arnav Plande"
-					publicId="gF36LEkWVPYQsA3"
+					id="p6klVeM"
 					className="h-[13.5rem] w-36"
 				/>
 			</div>
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Jacob Slabosz"
-					publicId="rJQn6GiRtO5G2BX"
+					id="nJqfPa3"
 					className="h-[13.5rem] w-36"
 				/>
 				<GalleryImage
 					authorName="Emma Tysinger"
-					publicId="XD3XGn13s5d7Dqd"
+					id="xhoCpeN"
 					className="h-[13.5rem] w-36"
 				/>
 			</div>
@@ -120,63 +116,63 @@ function SmallImageGrid({ className }: ImageGalleryProps) {
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Frankie Schulte"
-					publicId="tyf9griu2VOr5Xk"
+					id="VqXmZF3"
 					className="h-32 w-48"
 				/>
 				<GalleryImage
 					authorName="Andrew Mendez"
-					publicId="eufuuWjaSYYBwoc"
+					id="98FqgRu"
 					className="h-72 w-48"
 				/>
 				<GalleryImage
 					authorName="Maxwell Yun"
-					publicId="dmLGBRyDMctGpDm"
+					id="UkLWZg9"
 					className="h-32 w-48"
 				/>
 			</div>
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Emma Tysinger"
-					publicId="XD3XGn13s5d7Dqd"
+					id="xhoCpeN"
 					className="h-72 w-48"
 				/>
 				<GalleryImage
 					authorName="Jacob Slabosz"
-					publicId="rJQn6GiRtO5G2BX"
+					id="nJqfPa3"
 					className="h-72 w-48"
 				/>
 			</div>
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Arnav Plande"
-					publicId="Kh8gJ6VoGn98M4g"
+					id="AXs1igz"
 					className="h-72 w-48"
 				/>
 				<GalleryImage
 					authorName="Jinger Chong"
-					publicId="62lrHKa6yzOzCrk"
+					id="uw2YK1r"
 					className="h-32 w-48"
 				/>
 				<GalleryImage
 					authorName="Andrew Okyere"
-					publicId="a5kGTyGVX8OATzi"
+					id="EfhxLZ9"
 					className="h-32 w-48"
 				/>
 			</div>
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Andrew Burke-Stevenson"
-					publicId="M5xdpxGSJGcIxcB"
+					id="gbHJdmf"
 					className="h-32 w-48"
 				/>
 				<GalleryImage
 					authorName="Qudus Shittu"
-					publicId="Z6H0HrKVlz4qPfI"
+					id="OIJLhNc"
 					className="h-32 w-48"
 				/>
 				<GalleryImage
 					authorName="Arnav Plande"
-					publicId="gF36LEkWVPYQsA3"
+					id="p6klVeM"
 					className="h-72 w-48"
 				/>
 			</div>
@@ -190,63 +186,63 @@ function MediumImageGrid({ className }: ImageGalleryProps) {
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Qudus Shittu"
-					publicId="Z6H0HrKVlz4qPfI"
+					id="OIJLhNc"
 					className="h-40 w-60"
 				/>
 				<GalleryImage
 					authorName="Emma Tysinger"
-					publicId="XD3XGn13s5d7Dqd"
+					id="xhoCpeN"
 					className="h-[22.5rem] w-60"
 				/>
 				<GalleryImage
 					authorName="Andrew Okyere"
-					publicId="a5kGTyGVX8OATzi"
+					id="EfhxLZ9"
 					className="h-40 w-60"
 				/>
 			</div>
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Arnav Plande"
-					publicId="gF36LEkWVPYQsA3"
+					id="p6klVeM"
 					className="h-[22.5rem] w-60"
 				/>
 				<GalleryImage
 					authorName="Jacob Slabosz"
-					publicId="rJQn6GiRtO5G2BX"
+					id="nJqfPa3"
 					className="h-[22.5rem] w-60"
 				/>
 			</div>
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Andrew Mendez"
-					publicId="eufuuWjaSYYBwoc"
+					id="98FqgRu"
 					className="h-[22.5rem] w-60"
 				/>
 				<GalleryImage
 					authorName="Maxwell Yun"
-					publicId="dmLGBRyDMctGpDm"
+					id="UkLWZg9"
 					className="h-40 w-60"
 				/>
 				<GalleryImage
 					authorName="Andrew Burke-Stevenson"
-					publicId="M5xdpxGSJGcIxcB"
+					id="gbHJdmf"
 					className="h-40 w-60"
 				/>
 			</div>
 			<div className="flex flex-col gap-2">
 				<GalleryImage
 					authorName="Jinger Chong"
-					publicId="62lrHKa6yzOzCrk"
+					id="uw2YK1r"
 					className="h-40 w-60"
 				/>
 				<GalleryImage
 					authorName="Frankie Schulte"
-					publicId="tyf9griu2VOr5Xk"
+					id="VqXmZF3"
 					className="h-40 w-60"
 				/>
 				<GalleryImage
 					authorName="Arnav Plande"
-					publicId="Kh8gJ6VoGn98M4g"
+					id="AXs1igz"
 					className="h-[22.5rem] w-60"
 				/>
 			</div>
@@ -256,18 +252,14 @@ function MediumImageGrid({ className }: ImageGalleryProps) {
 
 async function LargeImageCover({ className }: ImageGalleryProps) {
 	const {
-		data: { publicId, placeholderBase64 },
-	} = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/assets/eufuuWjaSYYBwoc`, {
+		data: { cdnPath, placeholderBase64 },
+	} = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/assets/98FqgRu`, {
 		headers: {
 			'Authorization': `Bearer ${process.env.SERVER_SECRET}`
 		}
 	}).then(
 		res => res.json()
 	)
-
-	const url = getCldImageUrl({
-		src: publicId,
-	})
 
 	return (
 		<div
@@ -278,7 +270,7 @@ async function LargeImageCover({ className }: ImageGalleryProps) {
 		>
 			<Image
 				alt="large image"
-				src={url}
+				src={cdnPath}
 				fill
 				className="z-0 object-cover blur-sm"
 				unoptimized
@@ -287,7 +279,7 @@ async function LargeImageCover({ className }: ImageGalleryProps) {
 			/>
 			<Image
 				alt="large image"
-				src={url}
+				src={cdnPath}
 				fill
 				className="z-10 object-contain"
 				unoptimized
