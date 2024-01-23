@@ -11,15 +11,13 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { updateURLParameter } from '@/utils/url'
 
 type SyncedSearchFilters = {
-	location: string
+	// location: string
 	hours: number
-	'price[low]': number
-	'price[high]': number
+	'price.low': number
+	'price.high': number
 	'schools[]': string[]
 	'skills[]': string[]
-	'ratings[]': string[]
-	sort: 'rating' | 'price'
-	order: 'asc' | 'desc'
+	sortBy: 'price:asc' | 'price:desc'
 	page: number
 }
 
@@ -74,45 +72,45 @@ export default function SyncedSearchFilterProvider({
 	const pathname = usePathname()
 	const searchParams = useSearchParams()!
 	const initialValues: SyncedSearchFilters = {
-		location:
-			getURLParameter(
-				searchParams,
-				'location',
-				([location]) => location
-			) ?? defaultItems.location,
+		// location:
+		// 	getURLParameter(
+		// 		searchParams,
+		// 		'location',
+		// 		([location]) => location
+		// 	) ?? defaultItems.location,
 		hours:
 			getURLParameter(searchParams, 'hours', ([hours]) => +hours) ??
 			defaultItems.hours,
-		'price[low]':
-			getURLParameter(searchParams, 'price[low]', ([low]) => +low) ??
-			defaultItems['price[low]'],
-		'price[high]':
+		'price.low':
+			getURLParameter(searchParams, 'price.low', ([low]) => +low) ??
+			defaultItems['price.low'],
+		'price.high':
 			getURLParameter(
 				searchParams,
-				'price[high]',
+				'price.high',
 				([high]) => +high
-			) ?? defaultItems['price[high]'],
+			) ?? defaultItems['price.high'],
 		'schools[]':
 			getURLParameter(searchParams, 'schools[]', schools => schools) ??
 			defaultItems['schools[]'],
 		'skills[]':
 			getURLParameter(searchParams, 'skills[]', skills => skills) ??
 			defaultItems['skills[]'],
-		'ratings[]':
-			getURLParameter(searchParams, 'ratings[]', ratings => ratings) ??
-			defaultItems['ratings[]'],
-		sort:
+		// 'ratings[]':
+		// 	getURLParameter(searchParams, 'ratings[]', ratings => ratings) ??
+		// 	defaultItems['ratings[]'],
+		sortBy:
 			getURLParameter(
 				searchParams,
-				'sort',
-				([sort]) => sort as 'rating' | 'price'
-			) ?? defaultItems.sort,
-		order:
-			getURLParameter(
-				searchParams,
-				'order',
-				([order]) => order as 'asc' | 'desc'
-			) ?? defaultItems.order,
+				'sortBy',
+				([sort]) => sort as 'price:asc' | 'price:desc'
+			) ?? defaultItems.sortBy,
+		// order:
+		// 	getURLParameter(
+		// 		searchParams,
+		// 		'order',
+		// 		([order]) => order as 'asc' | 'desc'
+		// 	) ?? defaultItems.order,
 		page:
 			getURLParameter(searchParams, 'page', ([page]) => +page) ??
 			defaultItems.page,

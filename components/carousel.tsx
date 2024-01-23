@@ -1,15 +1,8 @@
 'use client'
 
-// import 'swiper/css'
-// import 'swiper/css/pagination'
-
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 import Image from 'next/image'
-
-// import { Swiper as SwiperType } from 'swiper/types'
-// import { Swiper, SwiperSlide } from 'swiper/react'
-// import { Navigation, Pagination } from 'swiper/modules'
 
 import classNames from '@/utils/classnames'
 import { getAroundCenter } from '@/utils/array'
@@ -32,25 +25,7 @@ export default function Carousel({
 	className,
 	children,
 }: CarouselProps) {
-	// const swiperRef = useRef<SwiperType>()
 	const [imageIndex, setImageIndex] = useState(0)
-	// useEffect(() => {
-	// 	swiperRef.current?.on('realIndexChange', swiper => {
-	// 		setImageIndex(swiper.realIndex)
-	// 	})
-
-	// 	swiperRef.current?.slides
-	// 		.slice(-2, 2)
-	// 		.map(slide => slide.querySelector('img'))
-	// 		.forEach(img => img?.setAttribute('loading', 'eager'))
-	// }, [])
-
-	// useEffect(() => {
-	// 	swiperRef.current?.slides
-	// 		.slice(imageIndex - 2, imageIndex + 2)
-	// 		.map(slide => slide.querySelector('img'))
-	// 		.forEach(img => img?.setAttribute('loading', 'eager'))
-	// }, [imageIndex])
 	const preloadableImageUrls = getAroundCenter(imageUrls, imageIndex, 2)
 
 	return (
@@ -66,36 +41,10 @@ export default function Carousel({
 					{imageIndex + 1} of {imageUrls.length}
 				</p>
 			</div>
-			{/* <Swiper
-				className="w-full h-full"
-				modules={[Navigation, Pagination]}
-				loop={true}
-				onBeforeInit={swiper => {
-					swiperRef.current = swiper
-				}}
-			>
-				{imageUrls.map(imageUrl => (
-					<SwiperSlide
-						key={imageUrl.url}
-						className="flex !h-full justify-center relative overflow-hidden"
-					>
-						<Image
-							alt="Portfolio Image"
-							src={imageUrl.url}
-							// placeholder="blur"
-							// blurDataURL={imageUrl.placeholder}
-							fill
-							sizes={sizes ?? '100vw'}
-							className="object-contain"
-							unoptimized
-						/>
-					</SwiperSlide>
-				))}
-			</Swiper> */}
 			<div className="h-full w-full flex overflow-x-hidden">
 				{imageUrls.map(imageUrl => (
 					<div
-						key={imageUrl.url}
+						key={imageUrl.cdnPath}
 						className="flex !h-full !w-full flex-shrink-0 flex-grow-0 justify-center relative overflow-hidden"
 						style={{
 							left: `-${100 * imageIndex}%`,
@@ -103,21 +52,20 @@ export default function Carousel({
 					>
 						<Image
 							alt="Portfolio Image"
-							src={imageUrl.url}
-							// placeholder="blur"
-							// blurDataURL={imageUrl.placeholder}
+							src={imageUrl.cdnPath}
+							placeholder="blur"
+							blurDataURL={imageUrl.placeholderBase64}
 							fill
 							sizes={sizes ?? '100vw'}
 							unoptimized
 							priority={preloadableImageUrls.includes(imageUrl)}
-							className="object-contain"
+							className="object-cover"
 						/>
 					</div>
 				))}
 			</div>
 			<button
 				className="absolute left-1 shadow-lg z-20 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white p-2 hover:bg-gray-100 disabled:hidden group-hover:[&:not(:disabled)]:flex"
-				// onClick={() => swiperRef.current?.slidePrev()}
 				onClick={() =>
 					setImageIndex(imageIndex =>
 						imageIndex === 0 ? imageUrls.length - 1 : imageIndex - 1
@@ -154,7 +102,6 @@ export default function Carousel({
 			</button>
 			<button
 				className="absolute right-1 shadow-lg z-20 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-white p-2 hover:bg-gray-100 disabled:hidden group-hover:[&:not(:disabled)]:flex"
-				// onClick={() => swiperRef.current?.slideNext()}
 				onClick={() =>
 					setImageIndex(
 						imageIndex => (imageIndex + 1) % imageUrls.length

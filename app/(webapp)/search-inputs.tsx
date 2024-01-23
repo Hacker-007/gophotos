@@ -77,12 +77,12 @@ export default function SearchInputs() {
 					step={25}
 					minStepsBetweenThumbs={4}
 					value={[
-						getQueryValue('price[low]'),
-						getQueryValue('price[high]'),
+						getQueryValue('price.low'),
+						getQueryValue('price.high'),
 					]}
 					onValueChange={range => {
-						updateQueryParameter('price[low]', _ => range[0])
-						updateQueryParameter('price[high]', _ => range[1])
+						updateQueryParameter('price.low', _ => range[0])
+						updateQueryParameter('price.high', _ => range[1])
 					}}
 				>
 					{([from, to]) => (

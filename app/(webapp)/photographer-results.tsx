@@ -8,6 +8,7 @@ import PortfolioPreview from './portfolio-preview'
 import PaginationControls from './pagination-controls'
 import { getAroundCenter } from '@/utils/array'
 import Carousel from '@/components/carousel'
+import callApi from '@/utils/callApi'
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -16,7 +17,7 @@ const inter = Inter({
 
 type APIResult = {
 	data: PhotographerProfile[]
-	pagination: { currentPage: number; pageCount: number }
+	pagination: { currentPage: number; hasNext: boolean; hasPrevious: boolean }
 }
 
 async function getData(searchParams: {
@@ -29,12 +30,9 @@ async function getData(searchParams: {
 
 	const queryString = queryParams.toString()
 	return Promise.all([
-		fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers?${queryString}`,
-			{
-				cache: 'no-cache',
-			}
-		).then(res => res.json()),
+		callApi<APIResult>(`photographers?${queryString}`, {
+			cache: 'no-cache',
+		}),
 		new Promise(res => setTimeout(res, 1000)),
 	]).then(data => data[0])
 }
@@ -49,11 +47,6 @@ export default async function PhotographerResults({
 	searchParams,
 }: PaginationControlsProps) {
 	const { data: portfolios, pagination } = await getData(searchParams)
-	await Promise.all(
-		portfolios.map(portfolio =>
-			fetch((portfolio.portfolioUrls[0] as any).url)
-		)
-	)
 
 	return (
 		<>
@@ -68,16 +61,14 @@ export default async function PhotographerResults({
 				{portfolios.map(portfolio => (
 					<PortfolioPreview
 						key={portfolio.id}
+						hours={+(searchParams['hours'] as string) || 1}
 						photographerId={portfolio.id}
-						email={searchParams['email']! as string}
-						hours={+(searchParams['hours'] || 1)}
-						name={portfolio.name}
-						location={portfolio.location}
-						estimatedPriceRange={portfolio.estimatedPriceRange}
-						rating={portfolio.rating}
-						numberOfReviews={portfolio.numberOfReviews}
-						profilePictureUrl={portfolio.profilePictureUrl}
-						portfolioUrls={portfolio.portfolioUrls}
+						accountId={portfolio.accountId}
+						estimatedPriceRange={
+							portfolio.estimatedHourlyPriceRange
+						}
+						rating={5.0}
+						numberOfReviews={0}
 					/>
 				))}
 				{portfolios.length === 0 && (
@@ -92,8 +83,8 @@ export default async function PhotographerResults({
 			{portfolios.length !== 0 && (
 				<PaginationControls
 					className="col-span-2 xl:col-span-1 xl:col-start-2"
-					currentPage={pagination.currentPage}
-					maxPageCount={pagination.pageCount}
+					currentPage={1}
+					maxPageCount={2}
 				/>
 			)}
 		</>

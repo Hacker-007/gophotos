@@ -3,18 +3,17 @@ import { StarIcon, UserIcon } from '@heroicons/react/24/outline'
 import AccountCircle from '@/components/account-circle'
 import Carousel from '@/components/carousel'
 import Link from 'next/link'
+import callApi from '@/utils/callApi'
 
 type PortfolioPreviewProps = {
 	photographerId: string
-	email: string
+	accountId: string
 	hours: number
-	name: string
-	location: string
+	// location: string
 	estimatedPriceRange: [number, number]
 	rating: number
 	numberOfReviews: number
-	profilePictureUrl?: string
-	portfolioUrls: string[]
+	// profilePictureUrl?: string
 }
 
 function formatRating(rating: number) {
@@ -25,26 +24,31 @@ function formatRating(rating: number) {
 	}
 }
 
-export default function PortfolioPreview({
+export default async function PortfolioPreview({
 	photographerId,
-	email,
+	accountId,
 	hours,
-	name,
-	location,
+	// location,
 	estimatedPriceRange,
 	rating,
+	// profilePictureUrl,
 	numberOfReviews,
-	profilePictureUrl,
-	portfolioUrls,
 }: PortfolioPreviewProps) {
+	const {
+		data: { email, fullName },
+	} = (await callApi(`accounts/${accountId}`)) as any
+	const { data: assets } = (await callApi(
+		`assets?accountId=${accountId}`
+	)) as any
+
 	return (
 		<div className="w-full rounded-md">
 			<Carousel
-				className="aspect-[3/2] z-0"
-				imageUrls={portfolioUrls}
+				className="z-0 aspect-[3/2]"
+				imageUrls={assets}
 				sizes="700w"
 			>
-				<div className="absolute bottom-2 hidden w-full justify-center px-2 group-hover:flex z-10">
+				<div className="absolute bottom-2 z-10 hidden w-full justify-center px-2 group-hover:flex">
 					<Link
 						className="rounded-md border border-white/30 bg-white px-3 py-2 text-sm font-medium text-black shadow-lg hover:bg-gray-100"
 						href={`/photographer/${photographerId}?email=${email}&hours=${hours}`}
@@ -55,10 +59,12 @@ export default function PortfolioPreview({
 			</Carousel>
 			<div className="mt-2 flex items-center justify-between">
 				<div className="flex items-center space-x-2">
-					<AccountCircle src={profilePictureUrl} />
+					<AccountCircle />
 					<div>
-						<p className="text-sm font-medium">{name}</p>
-						<p className="text-xs">{location}</p>
+						{/* <p className="text-sm font-medium">{name}</p>
+						<p className="text-xs">{location}</p> */}
+						<p className="text-sm font-medium">{fullName}</p>
+						<p className="text-xs">Cambridge, MA</p>
 					</div>
 				</div>
 				<div className="w-24">
@@ -68,7 +74,7 @@ export default function PortfolioPreview({
 					</p>
 					{numberOfReviews < 10 ? (
 						<div className="flex items-center justify-end">
-							<p className="text-xs uppercase px-2 bg-accent text-secondary w-min rounded-sm">
+							<p className="w-min rounded-sm bg-accent px-2 text-xs uppercase text-secondary">
 								new
 							</p>
 						</div>

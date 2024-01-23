@@ -1,13 +1,18 @@
 export type PhotographerProfile = {
 	id: string
-	name: string
-	email: string
-	profilePictureUrl: string
-	location: string
-	estimatedPriceRange: [number, number]
-	rating: number
-	numberOfReviews: number
-	portfolioUrls: string[]
+	accountId: string
+	// name: string
+	// email: string
+	// profilePictureUrl: string
+	// location: string
+	estimatedHourlyPriceRange: [number, number]
+	school: string,
+	skills: string[],
+	about: string
+	hires: number,
+	// rating: number
+	// numberOfReviews: number
+	// portfolioUrls: string[]
 }
 
 export type PhotographerAbout = {

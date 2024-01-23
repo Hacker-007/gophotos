@@ -13,6 +13,8 @@ import {
 	PhotographerReviews,
 } from '@/utils/types'
 import classNames from '@/utils/classnames'
+import { headers } from 'next/headers'
+import callApi from '@/utils/callApi'
 
 const spaceGrotesk = SpaceGrotesk({
 	subsets: ['latin'],
@@ -32,9 +34,11 @@ async function getData(
 	hours: number
 ): Promise<PhotographerProfile & PhotographerAbout & PhotographerReviews> {
 	return fetch(
-		`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers/${id}?hours=${hours}`,
+		`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers/${id}`,
 		{
-			cache: 'no-cache',
+			headers: {
+				Authorization: `Bearer ${process.env.SERVER_SECRET}`,
+			},
 		}
 	)
 		.then(res => res.json())
@@ -50,44 +54,44 @@ export default async function PhotographerPortfolioPage({
 }) {
 	const hours = +(searchParams.hours ?? '1')
 	const photographerProfile = await getData(params.id, hours)
+	const {
+		data: { email, fullName },
+	} = (await callApi(`accounts/${photographerProfile.accountId}`)) as any
+	const { data: assets } = (await callApi(
+		`assets?accountId=${photographerProfile.accountId}`
+	)) as any
 
 	return (
 		<div
 			className={classNames(
-				'w-full grid justify-items-center px-3 py-4 flex-grow',
+				'grid w-full flex-grow justify-items-center px-3 py-4',
 				spaceGrotesk.className
 			)}
 		>
-			<div className="max-w-[90rem] w-full justify-self-center">
-				<div className="grid gap-4 grid-cols-1 max-w-full sm:grid-rows-[auto_1fr] sm:grid-cols-[minmax(1fr,34rem)_auto] md:grid-cols-[34rem_1fr] lg:grid-cols-[45rem_1fr] xl:grid-cols-[55rem_1fr]">
-					<div className="h-min col-start-1 w-full sm:row-start-1 sm:row-span-1">
+			<div className="w-full max-w-[90rem] justify-self-center">
+				<div className="grid max-w-full grid-cols-1 gap-4 sm:grid-cols-[minmax(1fr,34rem)_auto] sm:grid-rows-[auto_1fr] md:grid-cols-[34rem_1fr] lg:grid-cols-[45rem_1fr] xl:grid-cols-[55rem_1fr]">
+					<div className="col-start-1 h-min w-full sm:row-span-1 sm:row-start-1">
 						<Carousel
-							imageUrls={photographerProfile.portfolioUrls}
+							imageUrls={assets}
 							sizes="(max-width: 640px) 100vw, (max-width: 768px) 500w, (max-width: 1024px) 560w, (max-width: 1280px) 720w, 880w"
 							className="aspect-[3/2] w-full"
 						/>
 						<div className="mt-2 flex justify-between">
 							<div className="flex items-center space-x-2">
-								<AccountCircle
-									src={photographerProfile.profilePictureUrl}
-								/>
+								<AccountCircle />
 								<div>
-									<p className="font-medium">
-										{photographerProfile.name}
-									</p>
-									<p className="text-xs">
-										{photographerProfile.location}
-									</p>
+									<p className="font-medium">{fullName}</p>
+									<p className="text-xs">Cambridge, MA</p>
 								</div>
 							</div>
 							<div>
-								{photographerProfile.numberOfReviews < 10 ? (
-									<div className="flex items-center justify-end">
-										<p className="text-sm uppercase px-2 bg-accent text-secondary w-min rounded-sm">
-											new
-										</p>
-									</div>
-								) : (
+								{/* {photographerProfile.numberOfReviews < 10 ? ( */}
+								<div className="flex items-center justify-end">
+									<p className="w-min rounded-sm bg-accent px-2 text-sm uppercase text-secondary">
+										new
+									</p>
+								</div>
+								{/* ) : (
 									<p className="flex items-center justify-end gap-1 font-medium">
 										<StarIcon className="h-4 w-4 text-yellow-400" />
 										{formatRating(
@@ -97,30 +101,37 @@ export default async function PhotographerPortfolioPage({
 										{photographerProfile.numberOfReviews}{' '}
 										reviews
 									</p>
-								)}
+								)} */}
 								<p className="flex items-center justify-end gap-1 text-sm">
 									hired{' '}
 									<span className="font-medium">
-										{photographerProfile.hireCount}
+										{photographerProfile.hires}
 									</span>{' '}
 									times
 								</p>
 							</div>
 						</div>
 					</div>
-					<div className="sm:col-start-2 sm:w-56 md:w-full h-min sm:row-start-1 sm:flex-col flex sm:items-start items-center justify-between rounded-md border border-gray-200 p-2 sm:row-span-2">
+					<div className="flex h-min items-center justify-between rounded-md border border-gray-200 p-2 sm:col-start-2 sm:row-span-2 sm:row-start-1 sm:w-56 sm:flex-col sm:items-start md:w-full">
 						<div>
-							<p className="md:text-base text-sm font-medium">
+							<p className="text-sm font-medium md:text-base">
 								Estimated price
 							</p>
 							<p className="text-xs text-gray-600">
 								This estimate is based on {hours} hours of{' '}
-								{photographerProfile.name}&apos;s average hourly price
-								range.
+								{fullName}&apos;s average hourly price range.
 							</p>
-							<p className="mt-1 text-lg md:text-xl xl:text-2xl font-semibold">
-								${photographerProfile.estimatedPriceRange[0]} -
-								${photographerProfile.estimatedPriceRange[1]}
+							<p className="mt-1 text-lg font-semibold md:text-xl xl:text-2xl">
+								$
+								{
+									photographerProfile
+										.estimatedHourlyPriceRange[0] * hours
+								}{' '}
+								- $
+								{
+									photographerProfile
+										.estimatedHourlyPriceRange[1] * hours
+								}
 							</p>
 						</div>
 						<RequestQuote
@@ -128,7 +139,7 @@ export default async function PhotographerPortfolioPage({
 							hours={hours}
 						/>
 					</div>
-					<div className="lg:col-start-1 flex flex-col gap-2 sm:row-start-2 sm:row-span-1">
+					<div className="flex flex-col gap-2 sm:row-span-1 sm:row-start-2 lg:col-start-1">
 						<div>
 							<h3 className="text-sm font-medium">About</h3>
 							<p className="mt-1 text-gray-800">
@@ -145,7 +156,7 @@ export default async function PhotographerPortfolioPage({
 						</div>
 					</div>
 				</div>
-				{photographerProfile.numberOfReviews >= 10 ? (
+				{/* {photographerProfile.numberOfReviews >= 10 ? (
 					<div className="mt-4">
 						<h3 className="text-sm font-medium">
 							Reviews and ratings
@@ -165,7 +176,7 @@ export default async function PhotographerPortfolioPage({
 								{photographerProfile.numberOfReviews} reviews
 							</p>
 						</div>
-						<div className="grid grid-cols-1 md:grid-cols-[20rem_1fr] lg:grid-cols-[30rem_1fr] gap-4 md:gap-10 w-full">
+						<div className="grid w-full grid-cols-1 gap-4 md:grid-cols-[20rem_1fr] md:gap-10 lg:grid-cols-[30rem_1fr]">
 							<div className="grid grid-cols-2 gap-2 lg:gap-4">
 								{photographerProfile.categoryRatings.map(
 									({ label, rating }) => (
@@ -182,7 +193,7 @@ export default async function PhotographerPortfolioPage({
 									)
 								)}
 							</div>
-							<div className="grid md:grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] md:mt-[1.375rem] gap-4">
+							<div className="grid gap-4 md:mt-[1.375rem] md:grid-cols-[repeat(auto-fill,minmax(16rem,1fr))]">
 								{photographerProfile.reviews.map(
 									(review, idx) => (
 										<Rating
@@ -199,19 +210,18 @@ export default async function PhotographerPortfolioPage({
 								)}
 							</div>
 						</div>
+					</div> */}
+				{/* ) : ( */}
+				<div className="mt-4">
+					<h3 className="text-sm font-medium">Reviews and ratings</h3>
+					<div>
+						<p className="text-sm text-gray-600">
+							{photographerProfile.fullName} does not have enough
+							reviews or ratings to show.
+						</p>
 					</div>
-				) : (
-					<div className="mt-4">
-						<h3 className="text-sm font-medium">
-							Reviews and ratings
-						</h3>
-						<div>
-							<p className='text-sm text-gray-600'>
-								{photographerProfile.name} does not have enough reviews or ratings to show.
-							</p>
-						</div>
-					</div>
-				)}
+				</div>
+				{/* )} */}
 			</div>
 		</div>
 	)
