@@ -7,13 +7,6 @@ const config: Config = {
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 	theme: {
-		extend: {
-			colors: {
-				accent: '#3B6455',
-				primary: '#D6DEDC',
-				secondary: '#F5F5DC',
-			},
-		},
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
