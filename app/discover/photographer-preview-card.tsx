@@ -12,39 +12,33 @@ import {
 
 import PhotographerProfile from './photographer-profile'
 import Image from 'next/image'
+import { Account, Photographer } from '@/utils/types'
+import { getAccount, getAssets } from '@/utils/api'
 
-export default async function PhotographerPreviewCard() {
-	const skills = [
-		'Skill 1',
-		'Skill 2',
-		'Skill 3',
-		'Skill 4',
-		'Skill 5',
-		'Skill 6',
-	]
+type PhotographerPreviewCardProps = {
+	photographer: Photographer
+}
 
-	const {
-		data: { cdnPath, placeholderBase64 },
-	} = await fetch('http://localhost:3000/v1/assets/UkLWZg9', {
-		headers: {
-			Authorization: `Bearer ${process.env.SERVER_SECRET}`,
-		},
-	}).then(res => res.json())
+export default async function PhotographerPreviewCard({
+	photographer,
+}: PhotographerPreviewCardProps) {
+	const account = await getAccount(photographer.accountId)
+	const assets = await getAssets(photographer.accountId)
 
 	return (
 		<div className="m-2 grid gap-1 rounded-md py-1 md:grid-cols-[16rem_1fr] md:gap-3">
 			<ScrollArea className="w-full md:col-start-2">
 				<div className="flex w-max gap-1">
-					{[...Array(4)].map((_, idx) => (
+					{assets.map((asset, idx) => (
 						<div
 							key={idx}
 							className="relative aspect-[3/2] w-48 flex-shrink-0 overflow-hidden rounded-md sm:w-60 md:w-80 lg:w-96"
 						>
 							<Image
 								alt=""
-								src={cdnPath}
+								src={asset.cdnPath}
 								placeholder="blur"
-								blurDataURL={placeholderBase64}
+								blurDataURL={asset.placeholderBase64}
 								fill
 							/>
 						</div>
@@ -56,9 +50,11 @@ export default async function PhotographerPreviewCard() {
 				<div>
 					<div className="flex items-center justify-between">
 						<div className="flex w-full items-center gap-2">
-							<div className="h-8 w-8 rounded-full bg-gray-300" />
+							<div className="h-8 w-8 flex-shrink-0 rounded-full bg-gray-300" />
 							<div>
-								<p className="font-medium">Bob Ross</p>
+								<p className="text-sm font-medium">
+									{account.fullName}
+								</p>
 								<p className="text-xs text-gray-600">
 									Cambridge, MA
 								</p>
@@ -66,7 +62,10 @@ export default async function PhotographerPreviewCard() {
 						</div>
 						<div className="whitespace-nowrap text-right">
 							<p className="text-xs text-gray-600">Est. Price</p>
-							<p className="text-lg font-semibold">$200 - $400</p>
+							<p className="text-lg font-semibold">
+								${photographer.estimatedHourlyPriceRange[0]} - $
+								{photographer.estimatedHourlyPriceRange[1]}
+							</p>
 						</div>
 					</div>
 					<div className="mt-1 grid gap-1 sm:grid-cols-2 sm:grid-rows-1 md:grid-cols-1 md:grid-rows-[auto_auto]">
@@ -75,11 +74,7 @@ export default async function PhotographerPreviewCard() {
 								About
 							</p>
 							<p className="line-clamp-2 text-sm md:line-clamp-3">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Ab, ut impedit alias
-								laboriosam quis sit. Ea saepe voluptas earum
-								quae. Nam esse maiores, inventore unde quam
-								corrupti atque vero perspiciatis!
+								{photographer.about}
 							</p>
 						</div>
 						<div className="sm:col-start-2 sm:row-start-1 md:col-start-1 md:row-start-2">
@@ -87,14 +82,14 @@ export default async function PhotographerPreviewCard() {
 								Skills
 							</p>
 							<div className="mt-0.5 flex flex-wrap gap-1">
-								{skills.splice(0, 3).map(skill => (
+								{photographer.skills.slice(0, 3).map(skill => (
 									<Tag key={skill}>{skill}</Tag>
 								))}
-								{skills.length > 0 && (
-									<Tag key={skills[0]}>
+								{photographer.skills.length - 3 > 0 && (
+									<Tag key={photographer.skills[0]}>
 										<span className="flex items-center font-medium">
 											<PlusIcon className="h-3 w-3" />
-											{skills.length}
+											{photographer.skills.length - 3}
 										</span>
 									</Tag>
 								)}
@@ -111,7 +106,11 @@ export default async function PhotographerPreviewCard() {
 							<div className="fixed left-0 top-0 z-10 h-screen w-screen bg-black opacity-20" />
 							<DialogContent className="fixed left-0 top-0 z-20 h-full w-full overflow-y-auto bg-white p-4 sm:left-1/2 sm:top-1/2 sm:h-[90%] sm:w-[90%] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md lg:w-2/3">
 								<div className="mt-7">
-									<PhotographerProfile />
+									<PhotographerProfile
+										photographer={photographer}
+										account={account}
+										assets={assets}
+									/>
 								</div>
 								<DialogClose
 									autoFocus={false}

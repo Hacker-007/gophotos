@@ -1,3 +1,6 @@
+import { Account, Asset, Photographer } from '@/utils/types'
+
+import Image from 'next/image'
 import { XMarkIcon } from '@heroicons/react/20/solid'
 
 import Tag from '@/components/tag'
@@ -9,29 +12,36 @@ import {
 	DialogOverlay,
 	DialogTrigger,
 } from '@/components/dialog'
-
 import RequestQuotePanel from './request-quote-panel'
-import Image from 'next/image'
 
-export default async function PhotographerProfile() {
-	const skills = [
-		'Skill 1',
-		'Skill 2',
-		'Skill 3',
-		'Skill 4',
-		'Skill 5',
-		'Skill 6',
-	]
+type PhotographerProfileProps = {
+	photographer: Photographer
+	account: Account
+	assets: Asset[]
+}
 
+export default async function PhotographerProfile({
+	photographer,
+	account,
+	assets,
+}: PhotographerProfileProps) {
 	return (
 		<div className="grid gap-1 rounded-md py-1">
 			<ScrollArea className="w-full">
 				<div className="flex w-max gap-1">
-					{[...Array(4)].map((_, idx) => (
+					{assets.map((asset, idx) => (
 						<div
 							key={idx}
-							className="relative aspect-[3/2] w-72 flex-shrink-0  bg-gray-200 rounded-md md:w-80 lg:w-96"
-						/>
+							className="relative aspect-[3/2] w-48 flex-shrink-0 overflow-hidden rounded-md sm:w-60 md:w-80 lg:w-96"
+						>
+							<Image
+								alt=""
+								src={asset.cdnPath}
+								placeholder="blur"
+								blurDataURL={asset.placeholderBase64}
+								fill
+							/>
+						</div>
 					))}
 				</div>
 				<ScrollBar orientation="horizontal" />
@@ -40,9 +50,11 @@ export default async function PhotographerProfile() {
 				<div>
 					<div className="flex items-end justify-between">
 						<div className="flex w-full items-center gap-2">
-							<div className="h-8 w-8 rounded-full bg-gray-300" />
+							<div className="h-8 w-8 flex-shrink-0 rounded-full bg-gray-300" />
 							<div>
-								<p className="font-medium">Bob Ross</p>
+								<p className="text-sm font-medium">
+									{account.fullName}
+								</p>
 								<p className="text-xs text-gray-600">
 									Cambridge, MA
 								</p>
@@ -52,10 +64,14 @@ export default async function PhotographerProfile() {
 					<div className="mt-3 rounded-md border border-gray-300 p-2">
 						<p className="text-sm font-medium">Estimated price</p>
 						<p className="text-xs text-gray-700">
-							This estimate is based on 1 hour of Bob Ross&apos;
-							average hourly price range.
+							This estimate is based on 1 hour of{' '}
+							{account.fullName}&apos;s average hourly price
+							range.
 						</p>
-						<p className="text-lg font-semibold">$200 - $400</p>
+						<p className="text-lg font-semibold">
+							${photographer.estimatedHourlyPriceRange[0]} - $
+							{photographer.estimatedHourlyPriceRange[1]}
+						</p>
 						<Dialog>
 							<DialogTrigger className="mt-2 w-full rounded-md bg-black px-2 py-1 text-sm font-medium text-white">
 								Request quote
@@ -79,18 +95,12 @@ export default async function PhotographerProfile() {
 					<div className="mt-3">
 						<div className="">
 							<p className="text-sm font-medium">About</p>
-							<p className="text-sm">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Ab, ut impedit alias
-								laboriosam quis sit. Ea saepe voluptas earum
-								quae. Nam esse maiores, inventore unde quam
-								corrupti atque vero perspiciatis!
-							</p>
+							<p className="text-sm">{photographer.about}</p>
 						</div>
 						<div className="mt-3">
 							<p className="text-sm font-medium">Skills</p>
 							<div className="mt-0.5 flex flex-wrap gap-1">
-								{skills.map(skill => (
+								{photographer.skills.map(skill => (
 									<Tag key={skill}>{skill}</Tag>
 								))}
 							</div>
@@ -101,8 +111,8 @@ export default async function PhotographerProfile() {
 							Reviews and ratings
 						</p>
 						<p className="text-sm">
-							Bob Ross does not have enough reviews to show a
-							rating.
+							{account.fullName} does not have enough reviews to
+							show a rating.
 						</p>
 					</div>
 				</div>

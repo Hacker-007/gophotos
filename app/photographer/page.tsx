@@ -4,7 +4,6 @@ import { cn } from '@/utils/cn'
 import { Switch } from '@/components/switch'
 import { Playfair_Display as PlayfairDisplay } from 'next/font/google'
 import Image from 'next/image'
-import SearchArea from '@/app/discover/search-area'
 import Footer from '@/app/footer'
 import { redirect } from 'next/navigation'
 
@@ -18,7 +17,8 @@ export default function LandingPage() {
 	const redirectOnSwitch = async () => {
 		'use server'
 
-		redirect('/photographer')
+		console.log('test')
+		redirect('/')
 	}
 
 	return (
@@ -29,6 +29,7 @@ export default function LandingPage() {
 				</label>
 				<Switch
 					onCheckedChange={redirectOnSwitch}
+					checked
 					id="landing-page"
 					className="bg-black"
 				/>
@@ -45,17 +46,19 @@ export default function LandingPage() {
 								'text-6xl font-medium'
 							)}
 						>
-							Hiring Photographers <br />
-							<span className="inline-block bg-gradient-to-r from-[#A4C3B2] via-[#6B9080] to-[#556C62] bg-clip-text pt-3 italic text-transparent">
-								simplified.
+							More Bookings, <br />
+							<span className="inline-block pt-3">
+								Less Hassle.
 							</span>
 						</p>
 						<p className="mb-10 mt-6 font-serif text-2xl italic text-black">
-							The All-In-One Photographer Booking Platform
+							The All-In-One Booking Platform for Photographers
 						</p>
 					</div>
-					<div>
-						<SearchArea />
+					<div className="flex justify-center">
+						<button className="w-1/2 rounded-md bg-black px-3 py-2 text-sm font-medium text-white">
+							Join Now
+						</button>
 					</div>
 				</div>
 				<div className="flex w-1/2 items-center justify-center">
