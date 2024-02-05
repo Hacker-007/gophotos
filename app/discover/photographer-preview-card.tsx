@@ -11,8 +11,9 @@ import {
 } from '@/components/dialog'
 
 import PhotographerProfile from './photographer-profile'
+import Image from 'next/image'
 
-export default function PhotographerPreviewCard() {
+export default async function PhotographerPreviewCard() {
 	const skills = [
 		'Skill 1',
 		'Skill 2',
@@ -22,6 +23,14 @@ export default function PhotographerPreviewCard() {
 		'Skill 6',
 	]
 
+	const {
+		data: { cdnPath, placeholderBase64 },
+	} = await fetch('http://localhost:3000/v1/assets/UkLWZg9', {
+		headers: {
+			Authorization: `Bearer ${process.env.SERVER_SECRET}`,
+		},
+	}).then(res => res.json())
+
 	return (
 		<div className="m-2 grid gap-1 rounded-md py-1 md:grid-cols-[16rem_1fr] md:gap-3">
 			<ScrollArea className="w-full md:col-start-2">
@@ -29,13 +38,21 @@ export default function PhotographerPreviewCard() {
 					{[...Array(4)].map((_, idx) => (
 						<div
 							key={idx}
-							className="aspect-[3/2] w-48 flex-shrink-0 rounded-md bg-gray-200 sm:w-60 md:w-80 lg:w-96"
-						/>
+							className="relative aspect-[3/2] w-48 flex-shrink-0 overflow-hidden rounded-md sm:w-60 md:w-80 lg:w-96"
+						>
+							<Image
+								alt=""
+								src={cdnPath}
+								placeholder="blur"
+								blurDataURL={placeholderBase64}
+								fill
+							/>
+						</div>
 					))}
 				</div>
 				<ScrollBar orientation="horizontal" />
 			</ScrollArea>
-			<div className="flex flex-col justify-between gap-2 md:row-start-1">
+			<div className="flex flex-col justify-between gap-2 rounded-md md:row-start-1">
 				<div>
 					<div className="flex items-center justify-between">
 						<div className="flex w-full items-center gap-2">
@@ -49,7 +66,7 @@ export default function PhotographerPreviewCard() {
 						</div>
 						<div className="whitespace-nowrap text-right">
 							<p className="text-xs text-gray-600">Est. Price</p>
-							<p className="text-lg font-medium">$200 - $400</p>
+							<p className="text-lg font-semibold">$200 - $400</p>
 						</div>
 					</div>
 					<div className="mt-1 grid gap-1 sm:grid-cols-2 sm:grid-rows-1 md:grid-cols-1 md:grid-rows-[auto_auto]">

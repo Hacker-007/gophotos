@@ -11,8 +11,9 @@ import {
 } from '@/components/dialog'
 
 import RequestQuotePanel from './request-quote-panel'
+import Image from 'next/image'
 
-export default function PhotographerProfile() {
+export default async function PhotographerProfile() {
 	const skills = [
 		'Skill 1',
 		'Skill 2',
@@ -29,7 +30,7 @@ export default function PhotographerProfile() {
 					{[...Array(4)].map((_, idx) => (
 						<div
 							key={idx}
-							className="aspect-[3/2] w-72 flex-shrink-0 rounded-md bg-gray-200 md:w-80 lg:w-96"
+							className="relative aspect-[3/2] w-72 flex-shrink-0  bg-gray-200 rounded-md md:w-80 lg:w-96"
 						/>
 					))}
 				</div>

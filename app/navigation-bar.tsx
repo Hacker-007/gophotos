@@ -8,7 +8,7 @@ import { cn } from '@/utils/cn'
 
 export default function NavigationBar() {
 	return (
-		<nav className="flex w-full items-center justify-between py-3 px-3 sm:px-5 md:px-7 space-y-4">
+		<nav className="flex w-full items-center justify-between py-3 px-3 sm:px-5 md:px-14 space-y-4">
 			<div className="flex items-center gap-2">
 				<Link className="font-medium" href="/">
 					GoPhotos
