@@ -7,9 +7,9 @@ type SearchProps = {
 
 export default function SearchArea({ className }: SearchProps) {
 	return (
-		<div className={cn('@container', className)}>
+		<div className={cn('@container', 'px-9', className)}>
 			<div className="grid @md:grid-cols-3 @lg:grid-cols-4 @xl:grid-cols-5 @3xl:grid-cols-6">
-				<div className="@xl:col-span-2">
+				<div className="mt-2 @md:col-span-2 @md:mt-0 @md:pr-2 @xl:col-span-2">
 					<label
 						htmlFor="location"
 						className="sm text-sm font-medium"
@@ -22,7 +22,7 @@ export default function SearchArea({ className }: SearchProps) {
 						className="w-full rounded-md border border-gray-200 text-sm outline-none"
 					/>
 				</div>
-				<div className="mt-2 @md:col-span-2 @md:mt-0 @md:pl-2">
+				<div className="@xl:col-span-2">
 					<label htmlFor="dateRange" className="text-sm font-medium">
 						Date
 					</label>
@@ -38,9 +38,9 @@ export default function SearchArea({ className }: SearchProps) {
 					</button>
 				</div>
 			</div>
-			<div className="flex justify-end">
+			{/* <div className="flex justify-end">
 				<FilterDropdown />
-			</div>
+			</div> */}
 		</div>
 	)
 }
