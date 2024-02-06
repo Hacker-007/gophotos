@@ -55,7 +55,7 @@ export default function LandingPage() {
 						</p>
 					</div>
 					<div>
-						<SearchArea />
+						<SearchArea withFilters={false} />
 					</div>
 				</div>
 				<div className="flex w-1/2 items-center justify-center">

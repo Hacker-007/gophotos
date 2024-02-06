@@ -1,11 +1,12 @@
 import { cn } from '@/utils/cn'
-import { PlusIcon } from '@heroicons/react/20/solid'
 
 type SearchProps = {
 	className?: string
 }
 
-export default function SearchArea({ className }: SearchProps) {
+export default function SearchArea({
+	className,
+}: SearchProps) {
 	return (
 		<div className={cn('@container', className)}>
 			<div className="grid @md:grid-cols-3 @lg:grid-cols-4 @xl:grid-cols-5 @3xl:grid-cols-6">
@@ -38,20 +39,6 @@ export default function SearchArea({ className }: SearchProps) {
 					</button>
 				</div>
 			</div>
-			<div className="flex justify-end">
-				<FilterDropdown />
-			</div>
 		</div>
-	)
-}
-
-function FilterDropdown() {
-	return (
-		<button className="flex items-center justify-center gap-1 py-1 text-sm font-medium text-gray-800 hover:cursor-pointer md:text-base">
-			<span>
-				<PlusIcon className="h-4 w-4" />
-			</span>
-			Filter
-		</button>
 	)
 }

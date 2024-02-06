@@ -8,9 +8,9 @@ import { cn } from '@/utils/cn'
 
 export default function NavigationBar() {
 	return (
-		<nav className="flex w-full items-center justify-between py-3 px-3 sm:px-5 md:px-14 space-y-4">
+		<nav className="flex w-full items-center justify-between space-y-4 px-3 py-3 sm:px-5 md:px-14">
 			<div className="flex items-center gap-2">
-				<Link className="font-medium" href="/landing">
+				<Link className="font-medium" href="/">
 					GoPhotos
 				</Link>
 				<NavigationLink href="/discover" linkPath="/discover">
