@@ -17,7 +17,6 @@ export default function NavigationBar() {
 					Discover
 				</NavigationLink>
 			</div>
-			<div className="h-8 w-8 rounded-full bg-gray-300" />
 		</nav>
 	)
 }

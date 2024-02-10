@@ -50,7 +50,7 @@ export default async function PhotographerPreviewCard({
 				<div>
 					<div className="flex items-center justify-between">
 						<div className="flex w-full items-center gap-2">
-							<div className="h-8 w-8 flex-shrink-0 rounded-full bg-gray-300" />
+							{/* <div className="h-8 w-8 flex-shrink-0 rounded-full bg-gray-300" /> */}
 							<div>
 								<p className="text-sm font-medium">
 									{account.fullName}
