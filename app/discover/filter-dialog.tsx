@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 
 import { AdjustmentsVerticalIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import {
@@ -20,6 +20,7 @@ import {
 } from '@radix-ui/react-slider'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { cn } from '@/utils/cn'
+import { ScrollArea, ScrollBar } from '@/components/scroll-area'
 
 export default function FilterDialog() {
 	const [isOpen, setIsOpen] = useState(false)
@@ -72,6 +73,8 @@ export default function FilterDialog() {
 }
 
 function FilterDialogContent({ className }: { className?: string }) {
+	const [priceRange, setPriceRange] = useState([0, 500])
+
 	return (
 		<div className={cn('mb-3', className)}>
 			<DialogTitle className="text-lg font-medium">Filters</DialogTitle>
@@ -109,7 +112,8 @@ function FilterDialogContent({ className }: { className?: string }) {
 					max={2000}
 					step={25}
 					minStepsBetweenThumbs={4}
-					defaultValue={[0, 500]}
+					value={priceRange}
+					onValueChange={([a, b]) => setPriceRange([a, b])}
 					className="relative flex h-5 w-full items-center"
 				>
 					<SliderTrack className="relative h-0.5 w-full bg-gray-300">
@@ -118,6 +122,16 @@ function FilterDialogContent({ className }: { className?: string }) {
 					<SliderThumb className="border-accent block h-4 w-4 rounded-full border-2 border-black bg-white focus:outline-none focus:ring-1 focus:ring-black" />
 					<SliderThumb className="border-accent block h-4 w-4 rounded-full border-2 border-black bg-white focus:outline-none focus:ring-1 focus:ring-black" />
 				</Slider>
+				<div className="flex gap-2">
+					<div className="flex items-center justify-between gap-3 rounded-md bg-gray-100 p-1">
+						<p className="text-xs uppercase text-gray-700">from</p>
+						<p className="text-sm">${priceRange[0]}</p>
+					</div>
+					<div className="flex items-center justify-between gap-3 rounded-md bg-gray-100 p-1">
+						<p className="text-xs uppercase text-gray-700">to</p>
+						<p className="text-sm">${priceRange[1]}</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	)
@@ -125,27 +139,39 @@ function FilterDialogContent({ className }: { className?: string }) {
 
 function BadgeGroup({
 	items,
+	onChange,
 	className,
 }: {
 	items: string[]
+	onChange?: (value: string[]) => void
 	className?: string
 }) {
 	return (
-		<div className={cn('flex gap-1', className)}>
-			{items.map(item => (
-				<Badge key={item}>{item}</Badge>
-			))}
-		</div>
+		<ScrollArea className="w-full">
+			<div className={cn('flex w-max gap-1', className)}>
+				{items.map(item => (
+					<Badge key={item}>{item}</Badge>
+				))}
+			</div>
+			<ScrollBar orientation="horizontal" />
+		</ScrollArea>
 	)
 }
 
-function Badge({ children }: { children?: ReactNode }) {
+function Badge({ onChange, children }: { onChange?: (value: boolean) => void, children?: ReactNode }) {
 	const [isSelected, setIsSelected] = useState(false)
 
 	return (
 		<button
 			onClick={() =>
-				setIsSelected(isCurrentlySelected => !isCurrentlySelected)
+				setIsSelected(isCurrentlySelected => {
+					const updatedValue = !isCurrentlySelected
+					if (onChange) {
+						onChange(updatedValue)
+					}
+					
+					return updatedValue
+				})
 			}
 			className={cn(
 				'flex-shrink-0 rounded-md border px-2 py-1 text-xs font-medium',

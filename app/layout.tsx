@@ -1,8 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter, Space_Grotesk as SpaceGrotesk } from 'next/font/google'
+import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 
 import { cn } from '@/utils/cn'
+
+import { Toaster } from 'sonner'
 import NavigationBar from './navigation-bar'
 
 export const metadata: Metadata = {
@@ -32,6 +34,7 @@ export default function RootLayout({
 			>
 				<NavigationBar />
 				{children}
+				<Toaster />
 			</body>
 		</html>
 	)

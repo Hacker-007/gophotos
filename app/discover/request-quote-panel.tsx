@@ -1,10 +1,48 @@
-export default function RequestQuotePanel() {
-	const handleOnSubmit = async (formData: FormData) => {
-		'use server'
-		const { name, email, phoneNumber, eventDate, organization, eventDescription } = Object.fromEntries(formData)
+'use client'
 
-		console.log(name, email, phoneNumber, eventDate, organization, eventDescription)
-	}
+import { useFormState } from 'react-dom'
+import RequestQuoteButton from './request-quote-button'
+import sendQuoteRequestAction from '@/actions/send-quote-request'
+import { useEffect } from 'react'
+import { Account } from '@/utils/types'
+import { toast } from 'sonner'
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/20/solid'
+
+type RequestQuotePanelProps = {
+	photographer: Account
+}
+
+export default function RequestQuotePanel({
+	photographer,
+}: RequestQuotePanelProps) {
+	const bindedAction = sendQuoteRequestAction.bind(null, photographer)
+	const [state, formAction] = useFormState(bindedAction, {
+		isSent: false,
+		hasError: false,
+	})
+
+	useEffect(() => {
+		if (state.isSent && !state.hasError) {
+			toast(
+				<p className="flex items-center justify-between gap-1">
+					<CheckCircleIcon className="h-5 w-5 text-green-600" />
+					<span className="text-sm font-medium">
+						A quote request has been sent!
+					</span>
+				</p>
+			)
+		} else if (!state.isSent && state.hasError) {
+			toast(
+				<p className="flex items-center justify-between gap-1">
+					<XCircleIcon className="h-5 w-5 text-red-600" />
+					<span className="text-sm font-medium">
+						An unknown error occurred.
+					</span>
+				</p>
+			)
+		}
+	}, [state])
+
 	return (
 		<div>
 			<p className="text-xl font-medium">Request a Quote</p>
@@ -12,30 +50,26 @@ export default function RequestQuotePanel() {
 				Great! There is some information that we need before sending a
 				quote request.
 			</p>
-			<form className="mt-3" action={handleOnSubmit}>
+			<form className="mt-3" action={formAction}>
 				<div className="">
-					<label
-						htmlFor="name"
-						className="sm text-sm font-medium"
-					>
+					<label htmlFor="name" className="sm text-sm font-medium">
 						Name
 					</label>
 					<input
 						id="name"
 						name="name"
+						required
 						className="w-full rounded-md border border-gray-200 text-sm outline-none"
 					/>
 				</div>
 				<div className="">
-					<label
-						htmlFor="email"
-						className="sm text-sm font-medium"
-					>
+					<label htmlFor="email" className="sm text-sm font-medium">
 						Email
 					</label>
 					<input
 						id="email"
 						name="email"
+						required
 						className="w-full rounded-md border border-gray-200 text-sm outline-none"
 					/>
 				</div>
@@ -49,6 +83,7 @@ export default function RequestQuotePanel() {
 					<input
 						id="phoneNumber"
 						name="phoneNumber"
+						required
 						className="w-full rounded-md border border-gray-200 text-sm outline-none"
 					/>
 				</div>
@@ -62,6 +97,7 @@ export default function RequestQuotePanel() {
 					<input
 						id="eventDate"
 						name="eventDate"
+						required
 						className="w-full rounded-md border border-gray-200 text-sm outline-none"
 					/>
 				</div>
@@ -88,10 +124,11 @@ export default function RequestQuotePanel() {
 					<textarea
 						id="eventDescription"
 						name="eventDescription"
+						required
 						className="w-full rounded-md border border-gray-200 text-sm outline-none"
 					/>
 				</div>
-				<button type="submit" className="w-full bg-black px-3 py-2 rounded-md text-white text-sm mt-2 font-medium">Send request</button>
+				<RequestQuoteButton />
 			</form>
 		</div>
 	)

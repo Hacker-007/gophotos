@@ -1,7 +1,11 @@
-import { Account, Asset, Photographer } from "./types";
+import GigEmailTemplate from '@/components/gig-email-template'
+import { Account, Asset, Photographer } from './types'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function getPhotographers(): Promise<Photographer[]> {
-    const { data } = await fetch(
+	const { data } = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/photographers`,
 		{
 			headers: {
@@ -14,7 +18,7 @@ export async function getPhotographers(): Promise<Photographer[]> {
 }
 
 export async function getAccount(accountId: string): Promise<Account> {
-    const { data } = await fetch(
+	const { data } = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_HOST}/v1/accounts/${accountId}`,
 		{
 			headers: {
@@ -37,4 +41,29 @@ export async function getAssets(accountId: string): Promise<Asset[]> {
 	).then(res => res.json())
 
 	return data
+}
+
+export async function sendEmail(
+	client: {
+		email: string
+		name: string
+		date: string
+		phoneNumber: string
+		eventDescription: string
+		organization?: string
+	},
+	photographer: { email: string; name: string }
+) {
+	const { error } = await resend.emails.send({
+		from: 'gigs@gophotos.us',
+		to: photographer.email,
+		cc: client.email,
+		subject: 'GoPhotos - Photography Gig Request',
+		react: GigEmailTemplate({ client, photographer }),
+	})
+
+	return {
+		isSent: error === null,
+		hasError: error !== null,
+	}
 }

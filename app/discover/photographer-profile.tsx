@@ -79,7 +79,7 @@ export default async function PhotographerProfile({
 							<DialogOverlay>
 								<DialogContent className="fixed left-0 top-0 z-10 h-full w-full overflow-y-auto bg-white p-4">
 									<div className="mt-7">
-										<RequestQuotePanel />
+										<RequestQuotePanel photographer={account} />
 									</div>
 									<DialogClose
 										autoFocus={false}
