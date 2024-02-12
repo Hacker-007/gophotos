@@ -46,6 +46,8 @@ export default async function PhotographerProfile({
 				</div>
 				<ScrollBar orientation="horizontal" />
 			</ScrollArea>
+			
+			{/* overlay section */}
 			<div className="mt-2">
 				<div>
 					<div className="flex items-end justify-between">
@@ -111,8 +113,7 @@ export default async function PhotographerProfile({
 							Reviews and ratings
 						</p>
 						<p className="text-sm">
-							{account.fullName} does not have enough reviews to
-							show a rating.
+							{account.fullName} is new to GoPhotos and does not yet have reviews or ratings.
 						</p>
 					</div>
 				</div>

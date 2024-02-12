@@ -32,6 +32,9 @@ export default function GigEmailTemplate({
 			<p>Phone number: {client.phoneNumber}</p>
 			{client.organization && <p>Organization: {client.organization}</p>}
 			<p className="mt-3">{client.eventDescription}</p>
+			<p className="mt-3 italics">
+				Please keep gigs@gophotos.us in this email thread to ensure the highest quality service from GoPhotos. 
+			</p>
 			<p className="mt-2">Sincerely,</p>
 			<p>GoPhotos</p>
 		</div>

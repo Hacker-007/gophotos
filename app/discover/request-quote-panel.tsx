@@ -27,7 +27,7 @@ export default function RequestQuotePanel({
 				<p className="flex items-center justify-between gap-1">
 					<CheckCircleIcon className="h-5 w-5 text-green-600" />
 					<span className="text-sm font-medium">
-						A quote request has been sent!
+						A quote request has been sent! Please check your email.
 					</span>
 				</p>
 			)

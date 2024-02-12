@@ -11,6 +11,7 @@ export async function getPhotographers(): Promise<Photographer[]> {
 			headers: {
 				Authorization: `Bearer ${process.env.SERVER_SECRET}`,
 			},
+			cache: 'no-cache'
 		}
 	).then(res => res.json())
 
@@ -62,6 +63,7 @@ export async function sendEmail(
 		react: GigEmailTemplate({ client, photographer }),
 	})
 
+	console.log(error)
 	return {
 		isSent: error === null,
 		hasError: error !== null,

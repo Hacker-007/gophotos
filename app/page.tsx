@@ -5,7 +5,6 @@ import { Switch } from '@/components/switch'
 import { Playfair_Display as PlayfairDisplay } from 'next/font/google'
 import Image from 'next/image'
 import SearchArea from '@/app/discover/search-area'
-import Footer from '@/app/footer'
 import { redirect } from 'next/navigation'
 
 const playfairDisplay = PlayfairDisplay({
@@ -22,8 +21,8 @@ export default function LandingPage() {
 	}
 
 	return (
-		<div className="relative h-screen bg-white">
-			<div className="mb-7 mt-10 flex items-center justify-center space-x-2">
+		<div className="relative h-auto bg-white pt-3 ">
+			{/* <div className="mb-7 mt-10 flex items-center justify-center space-x-2">
 				<label htmlFor="hiring" className="text-lg text-black">
 					For Hiring
 				</label>
@@ -35,7 +34,7 @@ export default function LandingPage() {
 				<label htmlFor="photographers" className="text-lg text-black">
 					For Photographers
 				</label>
-			</div>
+			</div> */}
 			<div className="flex items-center justify-center">
 				<div className="w-1/2 pl-10">
 					<div className="ml-9 text-black">
@@ -46,7 +45,7 @@ export default function LandingPage() {
 							)}
 						>
 							Hiring Photographers <br />
-							<span className="inline-block bg-gradient-to-r from-[#A4C3B2] via-[#6B9080] to-[#556C62] bg-clip-text pt-3 italic text-transparent">
+							<span className="inline-block bg-gradient-to-r from-[#FF9993] via-[#FC7674] to-[#FC4D74] bg-clip-text italic leading-snug text-transparent pl-0.5">
 								simplified.
 							</span>
 						</p>
@@ -54,8 +53,9 @@ export default function LandingPage() {
 							The All-In-One Photographer Booking Platform
 						</p>
 					</div>
-					<div>
-						<SearchArea withFilters={false} />
+					<div className='pl-9'>
+						<SearchArea />
+						<p className='text-sm text-gray-600 pt-5 italic'> Currently available in Boston, MA & Cambridge, MA areas</p>
 					</div>
 				</div>
 				<div className="flex w-1/2 items-center justify-center">
@@ -68,7 +68,6 @@ export default function LandingPage() {
 					/>
 				</div>
 			</div>
-			<Footer />
 		</div>
 	)
 }

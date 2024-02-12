@@ -26,7 +26,7 @@ export default async function PhotographerPreviewCard({
 	const assets = await getAssets(photographer.accountId)
 
 	return (
-		<div className="m-2 grid gap-1 rounded-md py-1 md:grid-cols-[16rem_1fr] md:gap-3">
+		<div className="m-2 grid gap-1 rounded-md py-1 md:grid-cols-[16rem_1fr] md:gap-3 ">
 			<ScrollArea className="w-full md:col-start-2">
 				<div className="flex w-max gap-1">
 					{assets.map((asset, idx) => (
@@ -46,7 +46,9 @@ export default async function PhotographerPreviewCard({
 				</div>
 				<ScrollBar orientation="horizontal" />
 			</ScrollArea>
-			<div className="flex flex-col justify-between gap-2 rounded-md md:row-start-1">
+
+			{/* brief pg info section */}
+			<div className="flex flex-col justify-between gap-2 rounded-md md:row-start-1 ">
 				<div>
 					<div className="flex items-center justify-between">
 						<div className="flex w-full items-center gap-2">
@@ -70,7 +72,7 @@ export default async function PhotographerPreviewCard({
 					</div>
 					<div className="mt-1 grid gap-1 sm:grid-cols-2 sm:grid-rows-1 md:grid-cols-1 md:grid-rows-[auto_auto]">
 						<div className="sm:col-start-1 sm:row-start-1">
-							<p className="text-xs uppercase text-gray-600">
+							<p className="text-xs uppercase text-gray-600 mt-2">
 								About
 							</p>
 							<p className="line-clamp-2 text-sm md:line-clamp-3">
@@ -78,7 +80,7 @@ export default async function PhotographerPreviewCard({
 							</p>
 						</div>
 						<div className="sm:col-start-2 sm:row-start-1 md:col-start-1 md:row-start-2">
-							<p className="text-xs uppercase text-gray-600">
+							<p className="text-xs uppercase text-gray-600 mt-2">
 								Skills
 							</p>
 							<div className="mt-0.5 flex flex-wrap gap-1">
@@ -97,10 +99,12 @@ export default async function PhotographerPreviewCard({
 						</div>
 					</div>
 				</div>
+
+				{/* Book Now button */}
 				<div>
 					<Dialog>
 						<DialogTrigger className="w-full rounded-md border border-gray-600 px-2 py-1 text-sm font-medium text-gray-600">
-							See more
+							Book Now
 						</DialogTrigger>
 						<DialogOverlay>
 							<div className="fixed left-0 top-0 z-10 h-screen w-screen bg-black opacity-20" />

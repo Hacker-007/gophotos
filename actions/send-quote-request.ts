@@ -32,7 +32,7 @@ export default async function sendQuoteRequestAction(
 			organization: organization?.toString(),
 		},
 		{
-			email: photographer.email,
+			email: 'qudus@mit.edu',
 			name: photographer.fullName,
 		}
 	)
