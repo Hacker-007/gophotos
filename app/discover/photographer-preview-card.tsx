@@ -26,20 +26,21 @@ export default async function PhotographerPreviewCard({
 	const assets = await getAssets(photographer.accountId)
 
 	return (
-		<div className="m-2 grid gap-1 rounded-md py-1 md:grid-cols-[16rem_1fr] md:gap-3 ">
-			<ScrollArea className="w-full md:col-start-2">
+		<div className="m-2 grid gap-5 rounded-md py-5 md:grid-cols-[21rem_1fr] md:gap-0 bg-white">
+			<ScrollArea className="w-full rounded-md md:col-start-2 bg-black">
 				<div className="flex w-max gap-1">
 					{assets.map((asset, idx) => (
 						<div
 							key={idx}
-							className="relative aspect-[3/2] w-48 flex-shrink-0 overflow-hidden rounded-md sm:w-60 md:w-80 lg:w-96"
+							className="relative aspect-[3/2] w-48 h-full flex-shrink-0 overflow-hidden rounded-md sm:w-60 md:w-80 lg:w-96 mr-1"
 						>
 							<Image
 								alt=""
 								src={asset.cdnPath}
 								placeholder="blur"
 								blurDataURL={asset.placeholderBase64}
-								fill
+								layout="fill"
+    							style={{ objectFit: 'contain' }}
 							/>
 						</div>
 					))}
@@ -48,7 +49,7 @@ export default async function PhotographerPreviewCard({
 			</ScrollArea>
 
 			{/* brief pg info section */}
-			<div className="flex flex-col justify-between gap-2 rounded-md md:row-start-1 ">
+			<div className="flex flex-col justify-between gap-2 rounded-md md:row-start-1 p-2 border border-gray-200 shadow-sm">
 				<div>
 					<div className="flex items-center justify-between">
 						<div className="flex w-full items-center gap-2">
@@ -62,8 +63,8 @@ export default async function PhotographerPreviewCard({
 								</p>
 							</div>
 						</div>
-						<div className="whitespace-nowrap text-right">
-							<p className="text-xs text-gray-600">Est. Price</p>
+						<div className="whitespace-nowrap text-right pt-2">
+							<p className="text-xs text-gray-600">Est. Hourly Price</p>
 							<p className="text-lg font-semibold">
 								${photographer.estimatedHourlyPriceRange[0]} - $
 								{photographer.estimatedHourlyPriceRange[1]}

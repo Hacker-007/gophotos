@@ -11,8 +11,10 @@ export default function SearchArea({
 }: SearchProps) {
 	return (
 		<div className={cn('@container', className)}>
-			<div className="grid @md:grid-cols-3 @lg:grid-cols-4 @xl:grid-cols-5 @3xl:grid-cols-6">
-				<div className="mt-2 @md:col-span-2 @md:mt-0 @md:pr-2 @xl:col-span-2">
+			<div className="grid @md:grid-cols-4">
+				<div className="mt-3 pr-5 
+								@md:col-span-2 @md:mt-0 @md:pr-2
+								@lg:pr-0">
 					<label
 						htmlFor="location"
 						className="sm text-sm font-medium"
@@ -27,7 +29,9 @@ export default function SearchArea({
 						readOnly
 					/>
 				</div>
-				<div className="mt-3 @md:col-span-full @md:row-start-2 @lg:col-span-1 @lg:col-start-3 @lg:row-start-1 @lg:mt-6 @lg:pl-2 @xl:col-start-3 @3xl:col-span-2 @3xl:col-start-4">
+				<div className="mt-3 pr-5
+								@md:col-span-1 @md:col-start-3 @md:pr-5 @md:mt-6
+				 				@lg:pl-2">
 					<Button as={Link} href="/discover" className="w-full rounded-md bg-black px-3 py-2 text-sm font-medium text-white">
 						Search
 					</Button>

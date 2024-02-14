@@ -21,7 +21,7 @@ export default function LandingPage() {
 	}
 
 	return (
-		<div className="relative h-auto bg-white pt-3 ">
+		<div className="relative h-auto pt-5 pb-7 bg-[#f4f4f4]">
 			{/* <div className="mb-7 mt-10 flex items-center justify-center space-x-2">
 				<label htmlFor="hiring" className="text-lg text-black">
 					For Hiring
@@ -35,9 +35,9 @@ export default function LandingPage() {
 					For Photographers
 				</label>
 			</div> */}
-			<div className="flex items-center justify-center">
-				<div className="w-1/2 pl-10">
-					<div className="ml-9 text-black">
+			<div className="flex items-center justify-right space-x-7">
+				<div className="w-1/2 pl-20">
+					<div className="text-black">
 						<p
 							className={cn(
 								playfairDisplay.className,
@@ -53,16 +53,16 @@ export default function LandingPage() {
 							The All-In-One Photographer Booking Platform
 						</p>
 					</div>
-					<div className='pl-9'>
+					<div>
 						<SearchArea />
-						<p className='text-sm text-gray-600 pt-5 italic'> Currently available in Boston, MA & Cambridge, MA areas</p>
+						<p className='text-sm text-gray-600 pt-3 italic'> Currently available in Boston, MA & Cambridge, MA areas</p>
 					</div>
 				</div>
-				<div className="flex w-1/2 items-center justify-center">
+				<div className="flex w-1/2 items-center justify-end pr-16">
 					<Image
 						src="/images/photographer.JPG"
 						alt="Photographer taking a picture"
-						width={650}
+						width={750}
 						height={100}
 						className="rounded-2xl"
 					/>

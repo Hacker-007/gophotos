@@ -19,7 +19,7 @@ export default function GigEmailTemplate({
 	return (
 		<div>
 			<p>
-				Dear <span className="font-medium">{photographer.name}</span>,
+				Hi <span className="font-medium">{photographer.name.split(' ')[0]}</span>,
 			</p>
 			<p>
 				You have a photographer gig request from {client.name}. Please

@@ -13,16 +13,14 @@ export default async function PhotographerResults({
 	className,
 }: PhotographerResultsProps) {
 	const photographers = await getPhotographers()
-	shuffleArray(photographers)
+	// shuffleArray(photographers)
 
 	return (
-		<div className={cn('space-y-3', className)}>
+		<div className={cn('space-y-5', className)}>
 			{photographers.map((photographer, idx) => (
 				<Fragment key={photographer.id}>
 					<PhotographerPreviewCard photographer={photographer} />
-					{idx !== photographers.length - 1 && (
-						<div className="m-2 hidden md:block md:h-[1px] md:w-auto md:bg-gray-300" />
-					)}
+					{idx !== photographers.length - 1 }
 				</Fragment>
 			))}
 		</div>
