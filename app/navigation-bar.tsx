@@ -3,36 +3,48 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button} from "@nextui-org/react"
-import gpLogo from "../public/GoPhotos_logo.png"
-import Image from 'next/image';
+import {
+	Navbar,
+	NavbarBrand,
+	NavbarContent,
+	NavbarItem,
+	Button,
+} from '@nextui-org/react'
+import gpLogo from '../public/GoPhotos_logo.png'
+import Image from 'next/image'
 
 import { cn } from '@/utils/cn'
 
 export default function NavigationBar() {
 	return (
-		<Navbar isBlurred className='px-20 py-5 sticky bg-white z-10'>
-
-	  		<Link href="/" className="cursor-pointer">
+		<Navbar isBlurred className="sticky z-10 bg-white px-20 py-5">
+			<Link href="/" className="cursor-pointer">
 				<Image src={gpLogo} alt="" width={150} height={800} />
 			</Link>
 
-			<NavbarContent className="hidden sm:flex gap-4" justify="center">
+			<NavbarContent className="hidden gap-4 sm:flex" justify="center">
 				<NavbarItem>
-				<NavigationLink href="/discover" linkPath="/discover">
-		 			Discover
-		 		</NavigationLink>
+					<NavigationLink href="/discover" linkPath="/discover">
+						Discover
+					</NavigationLink>
 				</NavbarItem>
 			</NavbarContent>
-			
+
 			<NavbarContent justify="end">
 				<NavbarItem>
-					<Button as={Link} color="primary" target="_blank" href="http://tinyurl.com/GP-Photographer" variant="flat" className='font-medium'>
+					<Button
+						as={Link}
+						color="primary"
+						target="_blank"
+						href="http://tinyurl.com/GP-Photographer"
+						variant="flat"
+						className="font-medium"
+					>
 						Become a Photographer
 					</Button>
 				</NavbarItem>
 			</NavbarContent>
-    	</Navbar>
+		</Navbar>
 	)
 }
 

@@ -7,6 +7,7 @@ export type Account = {
 export type Photographer = {
 	id: string
 	accountId: string
+	location: string
 	estimatedHourlyPriceRange: [number, number]
 	school: string
 	skills: string[]

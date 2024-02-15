@@ -19,7 +19,11 @@ export default function GigEmailTemplate({
 	return (
 		<div>
 			<p>
-				Hi <span className="font-medium">{photographer.name.split(' ')[0]}</span>,
+				Hi{' '}
+				<span className="font-medium">
+					{photographer.name.split(' ')[0]}
+				</span>
+				,
 			</p>
 			<p>
 				You have a photographer gig request from {client.name}. Please
@@ -32,8 +36,9 @@ export default function GigEmailTemplate({
 			<p>Phone number: {client.phoneNumber}</p>
 			{client.organization && <p>Organization: {client.organization}</p>}
 			<p className="mt-3">{client.eventDescription}</p>
-			<p className="mt-3 italics">
-				Please keep gigs@gophotos.us in this email thread to ensure the highest quality service from GoPhotos. 
+			<p className="italics mt-3">
+				Please keep gigs@gophotos.us in this email thread to ensure the
+				highest quality service from GoPhotos.
 			</p>
 			<p className="mt-2">Sincerely,</p>
 			<p>GoPhotos</p>

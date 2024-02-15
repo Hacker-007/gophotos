@@ -21,7 +21,7 @@ export default function LandingPage() {
 	}
 
 	return (
-		<div className="relative h-auto pt-5 pb-7 bg-[#f4f4f4]">
+		<div className="relative h-auto bg-[#f4f4f4] pb-7 pt-5">
 			{/* <div className="mb-7 mt-10 flex items-center justify-center space-x-2">
 				<label htmlFor="hiring" className="text-lg text-black">
 					For Hiring
@@ -35,7 +35,7 @@ export default function LandingPage() {
 					For Photographers
 				</label>
 			</div> */}
-			<div className="flex items-center justify-right space-x-7">
+			<div className="justify-right flex items-center space-x-7">
 				<div className="w-1/2 pl-20">
 					<div className="text-black">
 						<p
@@ -45,7 +45,7 @@ export default function LandingPage() {
 							)}
 						>
 							Hiring Photographers <br />
-							<span className="inline-block bg-gradient-to-r from-[#FF9993] via-[#FC7674] to-[#FC4D74] bg-clip-text italic leading-snug text-transparent pl-0.5">
+							<span className="inline-block bg-gradient-to-r from-[#FF9993] via-[#FC7674] to-[#FC4D74] bg-clip-text pl-0.5 italic leading-snug text-transparent">
 								simplified.
 							</span>
 						</p>
@@ -55,7 +55,11 @@ export default function LandingPage() {
 					</div>
 					<div>
 						<SearchArea />
-						<p className='text-sm text-gray-600 pt-3 italic'> Currently available in Boston, MA & Cambridge, MA areas</p>
+						<p className="pt-3 text-sm italic text-gray-600">
+							{' '}
+							Currently available in Boston, MA & Cambridge, MA
+							areas
+						</p>
 					</div>
 				</div>
 				<div className="flex w-1/2 items-center justify-end pr-16">

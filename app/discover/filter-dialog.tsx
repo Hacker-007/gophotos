@@ -158,7 +158,13 @@ function BadgeGroup({
 	)
 }
 
-function Badge({ onChange, children }: { onChange?: (value: boolean) => void, children?: ReactNode }) {
+function Badge({
+	onChange,
+	children,
+}: {
+	onChange?: (value: boolean) => void
+	children?: ReactNode
+}) {
 	const [isSelected, setIsSelected] = useState(false)
 
 	return (
@@ -169,7 +175,7 @@ function Badge({ onChange, children }: { onChange?: (value: boolean) => void, ch
 					if (onChange) {
 						onChange(updatedValue)
 					}
-					
+
 					return updatedValue
 				})
 			}
