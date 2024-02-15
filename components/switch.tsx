@@ -1,41 +1,29 @@
 'use client'
 
-import classNames from '@/utils/classnames'
-import { useState } from 'react'
+import * as React from 'react'
+import * as SwitchPrimitives from '@radix-ui/react-switch'
 
-type SwitchProps = {
-	id: string
-	name: string
-	className?: string
-}
+import { cn } from '@/utils/cn'
 
-export default function Switch({ id, name, className }: SwitchProps) {
-	const [isSelected, setIsSelected] = useState(false)
-
-	return (
-		<div
-			className={classNames(
-				'w-9 h-5 rounded-full relative transition-colors duration-200 focus-within:ring-2 focus-within:ring-[#556C62]',
-				!isSelected ? 'bg-gray-200' : 'bg-[#556C62]',
-				className
+const Switch = React.forwardRef<
+	React.ElementRef<typeof SwitchPrimitives.Root>,
+	React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
+>(({ className, ...props }, ref) => (
+	<SwitchPrimitives.Root
+		className={cn(
+			'focus-visible:ring-ring focus-visible:ring-offset-background peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-2 border-red-600 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-white data-[state=unchecked]:bg-[#6B9080]',
+			className
+		)}
+		{...props}
+		ref={ref}
+	>
+		<SwitchPrimitives.Thumb
+			className={cn(
+				'pointer-events-none block h-4 w-4 rounded-full bg-white shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0 data-[state=checked]:bg-[#6B9080]'
 			)}
-		>
-			<div
-				className={classNames(
-					'absolute z-10 w-4 h-4 rounded-full bg-white inset-y-1/2 transition-[left] -translate-y-1/2',
-					isSelected ? 'left-[calc(100%-1.125rem)]' : 'left-0.5'
-				)}
-			/>
-			<input
-				type="checkbox"
-				id={id}
-				name={name}
-				value={isSelected ? 'yes' : 'no'}
-				onClick={ev =>
-					setIsSelected(isCurrentlySelected => !isCurrentlySelected)
-				}
-				className="aria-hidden opacity-0 z-20 absolute w-9 h-5"
-			/>
-		</div>
-	)
-}
+		/>
+	</SwitchPrimitives.Root>
+))
+Switch.displayName = SwitchPrimitives.Root.displayName
+
+export { Switch }

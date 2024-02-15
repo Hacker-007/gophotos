@@ -6,7 +6,6 @@ const nextConfig = {
 				protocol: 'https',
 				hostname:
 					'api.gophotos.us',
-				port: '',
 			},
 			{
 				protocol: 'http',
@@ -15,11 +14,15 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: 'photographer-pictures.s3.us-east-2.amazonaws.com',
+				hostname: 'res.cloudinary.com',
 			},
 			{
 				protocol: 'https',
-				hostname: 'res.cloudinary.com',
+				hostname: 'picsum.photos',
+			},
+			{
+				protocol: 'https',
+				hostname: 'loremflickr.com',
 			},
 		],
 	},

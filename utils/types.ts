@@ -1,33 +1,24 @@
-export type PhotographerProfile = {
+export type Account = {
 	id: string
-	name: string
 	email: string
-	profilePictureUrl: string
+	fullName: string
+}
+
+export type Photographer = {
+	id: string
+	accountId: string
 	location: string
-	estimatedPriceRange: [number, number]
-	rating: number
-	numberOfReviews: number
-	portfolioUrls: string[]
-}
-
-export type PhotographerAbout = {
-	hireCount: number
-	about: string
+	estimatedHourlyPriceRange: [number, number]
+	school: string
 	skills: string[]
+	about: string
+	hires: number
 }
 
-export type PhotographerReviews = {
-	overallRating: number
-	numberOfReviews: number
-	categoryRatings: Array<{
-		label: string
-		rating: number
-	}>
-	reviews: Array<{
-		name: string
-		profilePictureUrl: string
-		date: string
-		rating: number
-		review: string
-	}>
+export type Asset = {
+	id: string
+	ownerAccountId: string
+	cdnPath: string
+	placeholderBase64: string
+	dateUploaded: string
 }
